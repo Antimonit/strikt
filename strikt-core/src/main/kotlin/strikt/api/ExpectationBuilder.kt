@@ -28,10 +28,19 @@ interface ExpectationBuilder {
 
   /**
    * Start a chain of assertions over the result of [action].
-
+   *
    * @param action an action that may result in a value being returned or an
    * exception being thrown.
    * @return an assertion for the result of [action].
    */
-  fun <T> catching(action: suspend () -> T): DescribeableBuilder<Result<T>>
+  suspend fun <T> coCatching(action: suspend () -> T): DescribeableBuilder<Result<T>>
+
+  /**
+   * Start a chain of assertions over the result of [action].
+   *
+   * @param action an action that may result in a value being returned or an
+   * exception being thrown.
+   * @return an assertion for the result of [action].
+   */
+  fun <T> catching(action: () -> T): DescribeableBuilder<Result<T>>
 }

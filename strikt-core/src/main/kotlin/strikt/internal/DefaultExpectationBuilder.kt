@@ -1,6 +1,5 @@
 package strikt.internal
 
-import kotlinx.coroutines.runBlocking
 import strikt.api.Assertion
 import strikt.api.DescribeableBuilder
 import strikt.api.ExpectationBuilder
@@ -23,13 +22,23 @@ internal class DefaultExpectationBuilder(
     block: Assertion.Builder<T>.() -> Unit
   ): DescribeableBuilder<T> = that(subject).apply(block)
 
-  override fun <T> catching(action: suspend () -> T): DescribeableBuilder<Result<T>> =
+  override suspend fun <T> coCatching(
+    action: suspend () -> T
+  ): DescribeableBuilder<Result<T>> = achromaticCatching { action() }
+
+  override fun <T> catching(
+    action: () -> T
+  ): DescribeableBuilder<Result<T>> = achromaticCatching { action() }
+
+  private inline fun <T> achromaticCatching(
+    action: () -> T
+  ): DescribeableBuilder<Result<T>> =
     that(
       try {
-        runBlocking { action() }
+        action()
           .let(::success)
       } catch (e: Throwable) {
-        failure<T>(e)
+        failure(e)
       }
     )
 }

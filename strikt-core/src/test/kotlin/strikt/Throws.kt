@@ -1,6 +1,7 @@
 package strikt
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -58,8 +59,9 @@ internal class Throws {
       .isA<IllegalStateException>()
   }
 
+  // TODO: This test is a lie now.
   @Test
-  fun `expectThrows accepts a suspending lambda`() {
+  fun `expectThrows accepts a suspending lambda`() = runTest {
     expectThrows<IllegalStateException> { delayedException(IllegalStateException()) }
       .isA<IllegalStateException>()
   }

@@ -13,4 +13,5 @@ dependencies {
 
   testImplementation("dev.failgood:failgood:${property("versions.failgood")}")
   testImplementation("dev.minutest:minutest:${property("versions.minutest")}")
+  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 }

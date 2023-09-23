@@ -1,6 +1,5 @@
 package strikt.api
 
-import kotlinx.coroutines.runBlocking
 import strikt.api.Assertion.Builder
 import strikt.assertions.failedWith
 import strikt.assertions.isSuccess
@@ -15,13 +14,19 @@ import strikt.internal.DefaultExpectationBuilder
  * earlier ones fail.
  * This is the entry-point for the assertion API.
  */
-fun expect(block: suspend ExpectationBuilder.() -> Unit) {
+fun expect(block: ExpectationBuilder.() -> Unit) {
+  expectAchromatic { block() }
+}
+
+suspend fun coExpect(block: suspend ExpectationBuilder.() -> Unit) {
+  expectAchromatic { block() }
+}
+
+private inline fun expectAchromatic(block: ExpectationBuilder.() -> Unit) {
   val subjects = mutableListOf<AssertionSubject<*>>()
   DefaultExpectationBuilder(subjects)
     .apply {
-      runBlocking {
-        block()
-      }
+      block()
     }
     .let {
       Throwing.evaluate(subjects)
@@ -62,7 +67,7 @@ fun <T> expectThat(
  * @return an assertion over the thrown exception, allowing further assertions
  * about messages, root causes, etc.
  */
-inline fun <reified E : Throwable> expectThrows(noinline action: suspend () -> Any?): Builder<E> = expectCatching(action).failedWith()
+inline fun <reified E : Throwable> expectThrows(action: () -> Any?): Builder<E> = expectCatching(action).failedWith()
 
 
 /**
@@ -81,9 +86,9 @@ fun <T> expectDoesNotThrow(
  *
  * @return an assertion for the successful or failed result of [action].
  */
-fun <T : Any?> expectCatching(action: suspend () -> T): DescribeableBuilder<Result<T>> =
+inline fun <T : Any?> expectCatching(action: () -> T): DescribeableBuilder<Result<T>> =
   expectThat(
     runCatching {
-      runBlocking { action() }
+      action()
     }
   )

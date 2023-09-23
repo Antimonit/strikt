@@ -1,17 +1,23 @@
 package strikt
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import strikt.api.coExpect
 import strikt.api.expect
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import strikt.assertions.isLessThan
 import strikt.assertions.isLowerCase
 import strikt.assertions.isNull
 import strikt.assertions.isUpperCase
 import strikt.assertions.message
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.measureTime
 
 @DisplayName("assertions in blocks")
 internal class Nested {
@@ -56,19 +62,12 @@ internal class Nested {
   }
 
   @Test
-  fun `nested expectations accepts a suspending lambda`() {
-    expect {
-      that(delayedReturnValue(6)).isEqualTo(6)
-    }
-  }
-
-  @Test
   fun `all assertions in a block are evaluated even if some fail async`() {
     assertThrows<AssertionError> {
       expect {
-        that(delayedReturnValue("fnord" as Any?)).isNull()
-        that(delayedReturnValue("FNORD")).isUpperCase()
-        that(delayedReturnValue("FNØRD")).isLowerCase()
+        that("fnord" as Any?).isNull()
+        that("FNORD").isUpperCase()
+        that("FNØRD").isLowerCase()
       }
     }.let { error ->
       val expected =
@@ -80,6 +79,18 @@ internal class Nested {
           "  ✗ is lower case"
       expectThat(expected).isEqualTo(error.message)
     }
+  }
+
+  @Test
+  fun `coExpect does not override the coroutines scheduler`() = runTest {
+    expectThat(
+      measureTime {
+        coExpect {
+          delay(1000.milliseconds)
+          that(delayedReturnValue(6)).isEqualTo(6)
+        }
+      }
+    ) isLessThan 100.milliseconds
   }
 }
 
