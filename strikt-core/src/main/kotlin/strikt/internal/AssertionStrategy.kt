@@ -11,6 +11,7 @@ import strikt.internal.opentest4j.IncompleteAssertion
 import strikt.internal.reporting.writePartialToString
 import strikt.internal.reporting.writeToString
 
+@PublishedApi
 internal sealed class AssertionStrategy {
   fun <T> appendAtomic(
     context: AssertionGroup<T>,

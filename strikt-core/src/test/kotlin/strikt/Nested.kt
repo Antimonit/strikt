@@ -7,7 +7,6 @@ import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import strikt.api.coExpect
 import strikt.api.expect
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
@@ -85,7 +84,7 @@ internal class Nested {
   fun `coExpect does not override the coroutines scheduler`() = runTest {
     expectThat(
       measureTime {
-        coExpect {
+        expect {
           delay(1000.milliseconds)
           that(delayedReturnValue(6)).isEqualTo(6)
         }

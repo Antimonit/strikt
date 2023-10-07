@@ -3,6 +3,7 @@ package strikt.docs
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.opentest4j.AssertionFailedError
+import strikt.api.catching
 import strikt.api.expect
 import strikt.api.expectCatching
 import strikt.api.expectThat

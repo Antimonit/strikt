@@ -14,15 +14,7 @@ import strikt.internal.DefaultExpectationBuilder
  * earlier ones fail.
  * This is the entry-point for the assertion API.
  */
-fun expect(block: ExpectationBuilder.() -> Unit) {
-  expectAchromatic { block() }
-}
-
-suspend fun coExpect(block: suspend ExpectationBuilder.() -> Unit) {
-  expectAchromatic { block() }
-}
-
-private inline fun expectAchromatic(block: ExpectationBuilder.() -> Unit) {
+inline fun expect(block: ExpectationBuilder.() -> Unit) {
   val subjects = mutableListOf<AssertionSubject<*>>()
   DefaultExpectationBuilder(subjects)
     .apply {
