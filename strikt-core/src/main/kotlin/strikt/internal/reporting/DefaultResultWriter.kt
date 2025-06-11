@@ -194,4 +194,4 @@ internal open class DefaultResultWriter : ResultWriter {
   }
 }
 
-private val EOL = System.getProperty("line.separator")
+private val EOL = System.lineSeparator()
