@@ -474,4 +474,4 @@ infix fun <T : Iterable<E>, E> Builder<T>.isSorted(comparator: Comparator<E>) =
  * Asserts that the subject iterable is sorted according to the natural order of its elements. Empty
  * iterables are considered sorted.
  */
-fun <T : Iterable<E>, E : Comparable<E>> Builder<T>.isSorted() = isSorted(Comparator.naturalOrder())
+fun <T : Iterable<E>, E : Comparable<E>> Builder<T>.isSorted() = isSorted(naturalOrder())
