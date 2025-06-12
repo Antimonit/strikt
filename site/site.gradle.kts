@@ -22,12 +22,6 @@ plugins {
   id("com.eden.orchidPlugin") version "0.21.1"
 }
 
-repositories {
-  mavenCentral()
-  @Suppress("DEPRECATION")
-  jcenter()
-}
-
 dependencies {
   orchidImplementation("io.github.javaeden.orchid:OrchidCore:+")
   orchidImplementation("io.github.javaeden.orchid:OrchidCopper:+")
