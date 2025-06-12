@@ -148,7 +148,7 @@ infix fun <T : Iterable<E>, E> Builder<T>.filterNot(predicate: (E) -> Boolean): 
  *
  * @see Iterable.filterIsInstance
  */
-inline fun <reified R> Builder<out Iterable<*>>.filterIsInstance(): Builder<List<R>> = get { filterIsInstance(R::class.java) }
+inline fun <reified R> Builder<out Iterable<*>>.filterIsInstance(): Builder<List<R>> = get { filterIsInstance<R>() }
 
 /**
  * Asserts that all elements of the subject pass the assertions in [predicate].
