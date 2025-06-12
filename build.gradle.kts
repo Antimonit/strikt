@@ -19,14 +19,6 @@ plugins {
   id("org.jetbrains.kotlinx.kover") version "0.8.3"
 }
 
-repositories {
-  mavenCentral()
-  // needed for dokka plugin, feels like this belongs in published.gradle.kts but it doesn't work there
-  maven {
-    url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
-  }
-}
-
 allprojects {
   group = "io.strikt"
 
@@ -40,14 +32,6 @@ allprojects {
 }
 
 subprojects {
-  repositories {
-    mavenCentral()
-    // needed for dokka plugin, feels like this belongs in published.gradle.kts but it doesn't work there
-    maven {
-      url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
-    }
-  }
-
   afterEvaluate {
     plugins.withId("kotlin") {
       configure<JavaPluginExtension> {
