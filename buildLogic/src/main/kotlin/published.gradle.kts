@@ -72,7 +72,7 @@ plugins.withId("kotlin") {
     }
   }
 
-  val dokkaJar = task<Jar>("dokkaJar") {
+  val dokkaJar = tasks.register<Jar>("dokkaJar") {
     group = "build"
     description = "Assembles Javadoc jar from Dokka API docs"
     archiveClassifier.set("javadoc")
