@@ -4,11 +4,6 @@ plugins {
   `kotlin-dsl-precompiled-script-plugins`
 }
 
-repositories {
-  mavenCentral()
-  gradlePluginPortal()
-}
-
 dependencies {
   implementation("org.jetbrains.dokka:dokka-gradle-plugin:1.9.20")
   implementation("com.netflix.nebula:nebula-publishing-plugin:21.0.0")
