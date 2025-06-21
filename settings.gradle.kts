@@ -18,14 +18,6 @@ rootProject.children.forEach {
 
 pluginManagement {
   includeBuild("buildLogic")
-
-  plugins {
-    val versions = mapOf<String, String>()
-      .withDefault { extra["versions.$it"].toString() }
-
-    kotlin("jvm") version versions.getValue("kotlin")
-    id("org.jetbrains.kotlin.plugin.spring") version versions.getValue("kotlin")
-  }
 }
 
 @Suppress("UnstableApiUsage")

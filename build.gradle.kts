@@ -10,12 +10,13 @@ import org.jmailen.gradle.kotlinter.KotlinterExtension
 import kotlin.text.RegexOption.IGNORE_CASE
 
 plugins {
-  kotlin("jvm") apply false
-  id("io.codearte.nexus-staging") version "0.30.0"
-  id("org.jmailen.kotlinter") version "4.4.1" apply false
-  id("com.adarshr.test-logger") version "4.0.0" apply false
-  id("com.github.ben-manes.versions") version "0.51.0"
-  id("org.jetbrains.kotlinx.kover") version "0.8.3"
+  alias(libs.plugins.kotlin.jvm) apply false
+  alias(libs.plugins.kotlin.spring) apply false
+  alias(libs.plugins.nexus.staging)
+  alias(libs.plugins.kotlinter) apply false
+  alias(libs.plugins.test.logger) apply false
+  alias(libs.plugins.versions)
+  alias(libs.plugins.kover)
 }
 
 allprojects {
@@ -24,7 +25,7 @@ allprojects {
   configurations.all {
     resolutionStrategy.eachDependency {
       if (requested.group == "org.jetbrains.kotlin") {
-        useVersion("${property("versions.kotlin")}")
+        useVersion(libs.versions.kotlin.get())
       }
     }
   }
@@ -48,12 +49,12 @@ subprojects {
       }
 
       dependencies {
-        "implementation"(platform("org.jetbrains.kotlin:kotlin-bom:${property("versions.kotlin")}"))
-        "implementation"(platform("org.jetbrains.kotlinx:kotlinx-coroutines-bom:${property("versions.kotlinx-coroutines")}"))
+        "implementation"(platform(libs.kotlin.bom))
+        "implementation"(platform(libs.kotlinx.coroutines.bom))
 
-        "testImplementation"(platform("org.junit:junit-bom:${property("versions.junit")}"))
-        "testImplementation"("org.junit.jupiter:junit-jupiter-api")
-        "testRuntimeOnly"("org.junit.jupiter:junit-jupiter-engine")
+        "testImplementation"(platform(libs.junit.bom))
+        "testImplementation"(libs.junit.jupiter.api)
+        "testRuntimeOnly"(libs.junit.jupiter.engine)
       }
 
       // Test with JUnit 5
