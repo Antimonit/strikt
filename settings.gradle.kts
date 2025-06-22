@@ -25,8 +25,7 @@ dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
     mavenCentral()
-    @Suppress("DEPRECATION")
-    jcenter {
+    maven("https://www.jitpack.io") {
       content { includeGroup("io.github.javaeden.orchid") }
     }
   }
