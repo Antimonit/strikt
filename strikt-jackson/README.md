@@ -1,12 +1,9 @@
----
----
-
-## [Jackson]({{page.link}})
+## Jackson
 
 Extensions for assertions and traversals on types [Jackson](https://github.com/FasterXML/jackson)'s `JsonNode` and sub-types.
 
 Add the following to your dependencies:
 
 ```kotlin
-testImplementation("io.strikt:strikt-jackson:{{ site.version }}")
+testImplementation("io.strikt:strikt-jackson:<version>")
 ```
