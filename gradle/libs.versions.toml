@@ -94,5 +94,3 @@ test-logger = { id = "com.adarshr.test-logger", version.ref = "test-logger" }
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 # buildLogic/src/main/kotlin/published.gradle.kts
 published = { id = "published" }
-# https://github.com/orchidhq/orchid
-orchid = { id = "com.eden.orchidPlugin", version = "0.21.1" }
