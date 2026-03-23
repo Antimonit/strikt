@@ -18,7 +18,7 @@ internal class CustomAssertions {
 // -----------------------------------------------------------------------------
 
   @Test fun `custom assertions 1, 2`() {
-    // START custom_assertions_1
+    // --8<-- [start:custom_assertions_1]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assert("is St. Tib's Day") {
         when (MonthDay.from(it)) {
@@ -26,14 +26,14 @@ internal class CustomAssertions {
           else -> fail()
         }
       }
-    // END custom_assertions_1
+    // --8<-- [end:custom_assertions_1]
 
     val s =
       """
-      // START custom_assertions_2
+      // --8<-- [start:custom_assertions_2]
       ▼ Expect that 2018-05-01:
         ✗ is St. Tib's Day
-      // END custom_assertions_2
+      // --8<-- [end:custom_assertions_2]
       """
 
     expectThrows<AssertionFailedError> {
@@ -44,7 +44,7 @@ internal class CustomAssertions {
   }
 
   @Test fun `custom assertions 3, 4`() {
-    // START custom_assertions_3
+    // --8<-- [start:custom_assertions_3]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assert("is St. Tib's Day") {
         when (MonthDay.from(it)) {
@@ -56,15 +56,15 @@ internal class CustomAssertions {
             )
         }
       }
-    // END custom_assertions_3
+    // --8<-- [end:custom_assertions_3]
 
     val s =
       """
-      // START custom_assertions_4
+      // --8<-- [start:custom_assertions_4]
       ▼ Expect that 2018-05-01:
         ✗ is St. Tib's Day
           in fact it is 2018-05-01
-      // END custom_assertions_4
+      // --8<-- [end:custom_assertions_4]
       """
 
     expectThrows<AssertionFailedError> {
@@ -75,12 +75,12 @@ internal class CustomAssertions {
   }
 
   @Test fun `custom assertions 5`() {
-    // START custom_assertions_5
+    // --8<-- [start:custom_assertions_5]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assertThat("is St. Tib's Day") {
         MonthDay.from(it) == MonthDay.of(2, 29)
       }
-    // END custom_assertions_5
+    // --8<-- [end:custom_assertions_5]
 
     val s =
       """
@@ -96,7 +96,7 @@ internal class CustomAssertions {
   }
 
   @Test fun `custom assertions 6`() {
-    // START custom_assertions_6
+    // --8<-- [start:custom_assertions_6]
     fun <T : Iterable<E?>, E> Assertion.Builder<T>.containsNoNullElements(): Assertion.Builder<T> =
       compose("does not contain any null elements") { subject ->
         subject.forEach { element ->
@@ -105,11 +105,11 @@ internal class CustomAssertions {
       } then {
         if (allPassed) pass() else fail()
       }
-    // END custom_assertions_6
+    // --8<-- [end:custom_assertions_6]
 
     val s =
       """
-      // START custom_assertions_7
+      // --8<-- [start:custom_assertions_7]
       ▼ Expect that ["catflap", null, "rubberplant", "marzipan"]:
         ✗ does not contain any null elements
           ▼ "catflap":
@@ -120,7 +120,7 @@ internal class CustomAssertions {
             ✓ is not null
           ▼ "marzipan":
             ✓ is not null
-      // END custom_assertions_7
+      // --8<-- [end:custom_assertions_7]
       """
 
     val subject = listOf("catflap", null, "rubberplant", "marzipan")
