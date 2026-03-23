@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation("io.strikt:strikt-core:<version>")
+  testImplementation("io.strikt:strikt-core:{{ version }}")
 }
 ```
 
