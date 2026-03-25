@@ -13,10 +13,12 @@ theme:
   favicon: assets/favicon.ico
   palette:
     - scheme: default
+      primary: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
+      primary: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
@@ -62,6 +64,9 @@ markdown_extensions:
   - pymdownx.details
   - attr_list
   - md_in_html
+
+extra_css:
+  - assets/extra.css
 
 extra:
   version: !ENV [VERSION, 'latest']
