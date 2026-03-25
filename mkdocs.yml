@@ -1,5 +1,5 @@
 site_name: Strikt
-site_url: https://strikt.io/
+site_url: https://antimonit.github.io/strikt/
 site_description: Strikt is an assertion library for Kotlin intended for use with a test runner such as JUnit or Spek.
 repo_url: https://github.com/robfletcher/strikt
 repo_name: robfletcher/strikt
