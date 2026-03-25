@@ -1,0 +1,13 @@
+# Arrow Module
+
+Extensions for assertions and traversals on types from the [Arrow](https://arrow-kt.io/)'s functional programming library.
+
+Add the following to your dependencies:
+
+```kotlin
+testImplementation("io.strikt:strikt-arrow:{{ version }}")
+```
+
+## API Documentation
+
+- [strikt.arrow](/api/strikt-arrow/strikt.arrow/)

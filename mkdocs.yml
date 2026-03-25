@@ -1,0 +1,89 @@
+site_name: Strikt
+site_url: https://strikt.io/
+site_description: Strikt is an assertion library for Kotlin intended for use with a test runner such as JUnit or Spek.
+repo_url: https://github.com/robfletcher/strikt
+repo_name: robfletcher/strikt
+
+docs_dir: docs
+site_dir: build/docs
+
+theme:
+  name: material
+  font: false
+  logo: assets/logo-white-28.png
+  favicon: assets/favicon.ico
+  palette:
+    - scheme: default
+      primary: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Getting Started: wiki/getting-started.md
+    - Assertion Styles: wiki/assertion-styles.md
+    - Collection Element Assertions: wiki/collection-elements.md
+    - Expecting Exceptions: wiki/expecting-exceptions.md
+    - Strongly Typed Assertions: wiki/flow-typing.md
+    - Traversing Assertion Subjects: wiki/traversing-subjects.md
+    - Grouping with and or with: wiki/grouping-with-and.md
+    - Custom Assertions: wiki/custom-assertions.md
+    - Additional Modules: wiki/additional-modules.md
+  - API:
+    - Core API: modules/core.md
+    - Bill of Materials: modules/bom.md
+    - Arrow Module: modules/arrow.md
+    - Jackson Module: modules/jackson.md
+    - JVM Module: modules/jvm.md
+    - Mockk Module: modules/mockk.md
+    - Protobuf Module: modules/protobuf.md
+    - Spring Module: modules/spring.md
+  - Information:
+    - About Strikt: about.md
+    - Changelog: changelog.md
+
+plugins:
+  - search
+  - macros
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.snippets:
+      base_path: ['.']
+      dedent_subsections: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - assets/extra.css
+
+extra:
+  version: !ENV [VERSION, 'latest']
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/robfletcher/strikt
+    - icon: fontawesome/brands/slack
+      link: https://kotlinlang.slack.com/messages/CAR7KJ96J
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/stri_kt

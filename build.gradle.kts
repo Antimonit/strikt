@@ -10,6 +10,7 @@ import org.jmailen.gradle.kotlinter.KotlinterExtension
 import kotlin.text.RegexOption.IGNORE_CASE
 
 plugins {
+  alias(libs.plugins.dokka)
   alias(libs.plugins.kotlin.jvm) apply false
   alias(libs.plugins.kotlin.spring) apply false
   alias(libs.plugins.nexus.staging)
@@ -80,6 +81,10 @@ subprojects {
     theme = MOCHA_PARALLEL
     showSimpleNames = true
   }
+}
+
+tasks.dokkaHtmlMultiModule {
+  outputDirectory.set(rootDir.resolve("docs/api"))
 }
 
 configure<NexusStagingExtension> {

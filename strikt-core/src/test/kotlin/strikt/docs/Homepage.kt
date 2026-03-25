@@ -24,43 +24,43 @@ import strikt.internal.opentest4j.CompoundAssertionFailure
 import java.time.LocalDate
 import java.time.MonthDay
 
-// Wrap each code snippet in comments like "// START (snippet name)...// END (snippet name)"
-// Code snippets can be referenced from the docs using the {% snippet %} tag
-// (see https://orchid.run/plugins/orchidsnippets for snippets docs)
-@DisplayName("Snippets used in Orchid docs")
+// Wrap each code snippet in comments like "// --8<-- [start:name] ... // --8<-- [end:name]"
+// Code snippets can be referenced from the docs using pymdownx.snippets
+// (see https://facelessuser.github.io/pymdown-extensions/extensions/snippets/)
+@DisplayName("Snippets used in MkDocs")
 internal class Homepage {
   @Test
   fun `homepage one`() {
-    // START homepage_one
+    // --8<-- [start:homepage_one]
     val subject = "The Enlightened take things Lightly"
     expectThat(subject)
       .hasLength(35)
       .matches(Regex("[\\w\\s]+"))
       .startsWith("T")
-    // END homepage_one
+    // --8<-- [end:homepage_one]
   }
 
   @Test
   fun `homepage two, three`() {
-    // START homepage_two
+    // --8<-- [start:homepage_two]
     val subject = listOf("Eris", "Thor", "Anubis", "Ra")
     expectThat(subject)
       .contains("Eris", "Thor", "Anubis")
-    // END homepage_two
+    // --8<-- [end:homepage_two]
 
-    // START homepage_three
+    // --8<-- [start:homepage_three]
     expectThat(subject)[0].isEqualTo("Eris")
-    // END homepage_three
+    // --8<-- [end:homepage_three]
   }
 
   @Test
   fun `homepage four`() {
-    // START homepage_four
+    // --8<-- [start:homepage_four]
     val subject = Deity.entries.map { it.toString() }
     expectThat(subject)
       .isNotEmpty()
       .any { startsWith("E") }
-    // END homepage_four
+    // --8<-- [end:homepage_four]
   }
 
   @Suppress("ktlint:standard:no-multi-spaces")
@@ -68,25 +68,25 @@ internal class Homepage {
   fun `homepage five, six, seven`() {
     val s =
       """
-      // START homepage_six
+      // --8<-- [start:homepage_six]
       ▼ Expect that "The Enlightened take things Lightly":
         ✗ has length 5
                found 35
         ✗ matches the regular expression /\d+/
                                    found "The Enlightened take things Lightly"
         ✓ starts with "T"
-      // END homepage_six
+      // --8<-- [end:homepage_six]
       """
 
     expectThrows<CompoundAssertionFailure> {
-      // START homepage_five
+      // --8<-- [start:homepage_five]
       val subject = "The Enlightened take things Lightly"
       expectThat(subject) {
         hasLength(5)           // fails
         matches(Regex("\\d+")) // fails
         startsWith("T")        // still evaluated and passes
       }
-      // END homepage_five
+      // --8<-- [end:homepage_five]
     }
       .message
       .isEqualTo(s.removeSnippetTags().trimIndent().trim())
@@ -94,44 +94,44 @@ internal class Homepage {
 
   @Test
   fun `homepage seven`() {
-    // START homepage_seven
+    // --8<-- [start:homepage_seven]
     val person1 = Person(name = "David")
     val person2 = Person(name = "Ziggy")
     expect {
       that(person1.name).isEqualTo("David")
       that(person2.name).isEqualTo("Ziggy")
     }
-    // END homepage_seven
+    // --8<-- [end:homepage_seven]
   }
 
   @Suppress("ktlint:standard:no-multi-spaces", "RedundantNullableReturnType")
   @Test
   fun `homepage eight`() {
-    // START homepage_eight
+    // --8<-- [start:homepage_eight]
     val subject: Any? = "The Enlightened take things Lightly"
     expectThat(subject) // type: Assertion.Builder<Any?>
       .isNotNull()      // type: Assertion.Builder<Any>
       .isA<String>()    // type: Assertion.Builder<String>
       // only available on Assertion.Builder<CharSequence>
       .matches(Regex("[\\w\\s]+"))
-    // END homepage_eight
+    // --8<-- [end:homepage_eight]
   }
 
   @Suppress("ktlint:standard:no-multi-spaces")
   @Test
   fun `homepage nine`() {
-    // START homepage_nine
+    // --8<-- [start:homepage_nine]
     val subject = Pantheon.NORSE
     expectThat(subject)
       .get(Pantheon::ruler) // reference to a property
       .get { toString() }   // return type of a method call
       .isEqualTo("Odin")
-    // END homepage_nine
+    // --8<-- [end:homepage_nine]
   }
 
   @Test
   fun `homepage ten, eleven`() {
-    // START homepage_ten
+    // --8<-- [start:homepage_ten]
     fun Assertion.Builder<LocalDate>.isStTibsDay() =
       assert("is St. Tib's Day") {
         when (MonthDay.from(it)) {
@@ -140,21 +140,21 @@ internal class Homepage {
         }
       }
     expectThat(LocalDate.of(2020, 2, 29)).isStTibsDay()
-    // END homepage_ten
+    // --8<-- [end:homepage_ten]
   }
 
-  // START homepage_eleven_a
+  // --8<-- [start:homepage_eleven_a]
   val Assertion.Builder<Pantheon>.realm: Assertion.Builder<String>
     get() = get { "$ruler to $underworldRuler" }
-  // END homepage_eleven_a
+  // --8<-- [end:homepage_eleven_a]
 
   @Test
   fun `homepage eleven`() {
-    // START homepage_eleven_b
+    // --8<-- [start:homepage_eleven_b]
     val subject = Pantheon.NORSE
     expectThat(subject)
       .realm
       .isEqualTo("Odin to Hel")
-    // END homepage_eleven_b
+    // --8<-- [end:homepage_eleven_b]
   }
 }

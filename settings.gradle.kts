@@ -3,7 +3,6 @@ rootProject.name = "strikt"
 include(
   "strikt-bom",
   "strikt-core",
-  "site",
   "strikt-arrow",
   "strikt-jackson",
   "strikt-jvm",
@@ -25,8 +24,5 @@ dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
     mavenCentral()
-    maven("https://www.jitpack.io") {
-      content { includeGroup("io.github.javaeden.orchid") }
-    }
   }
 }
