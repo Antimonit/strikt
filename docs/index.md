@@ -6,12 +6,17 @@ hide:
 
 # ![Strikt](assets/logo.png)
 
-**Strikt** is an assertion library for Kotlin intended for use with a test runner such as JUnit or Spek.
+<div class="homepage-version" markdown>
+[Version {{ version }}](changelog.md)
+</div>
 
-[Get Started](wiki/getting-started.md){ .md-button .md-button--primary }
-[View on GitHub](https://github.com/robfletcher/strikt){ .md-button }
+<div class="homepage-intro" markdown>
 
----
+Strikt is an assertion library for Kotlin intended for use with a test runner such as [JUnit](https://junit.org/junit5/), [Minutest](https://github.com/dmcg/minutest) or [Spek](http://spekframework.org/).
+
+Strikt gives you…
+
+</div>
 
 <div class="homepage-feature" markdown>
 <div class="homepage-feature-title" markdown>

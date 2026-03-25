@@ -49,6 +49,16 @@
   margin-right: auto;
 }
 
+/* Homepage intro text (matching original .column.is-8 centered) */
+.homepage-version {
+  text-align: center;
+}
+
+.homepage-intro {
+  max-width: 66.67%;
+  margin: 0 auto;
+}
+
 /* Homepage logo: 50% width on tablet+ (matching original .column.is-half) */
 @media screen and (min-width: 769px), print {
   .md-content h1 img[alt="Strikt"] {
