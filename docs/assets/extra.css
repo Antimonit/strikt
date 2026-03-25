@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+code, pre, kbd, .md-typeset code, .md-typeset pre, .md-typeset kbd {
+  font-size: 1em;
+}
+
 /* Custom primary color */
 [data-md-color-scheme="default"],
 [data-md-color-scheme="slate"] {
@@ -108,18 +114,18 @@
   justify-content: flex-end;
   text-align: right;
   font-size: 0.85rem;
+  line-height: 1.4;
   color: #4a4a4a;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 .homepage-feature-label p {
   margin: 0;
-  padding-top: 1.2em;
 }
 
 .homepage-feature-code {
   background: #363636;
-  padding: 1em;
+  padding: 0.5rem 0rem;
   overflow-x: auto;
 }
 
