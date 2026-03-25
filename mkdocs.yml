@@ -42,6 +42,15 @@ nav:
     - Grouping with and or with: wiki/grouping-with-and.md
     - Custom Assertions: wiki/custom-assertions.md
     - Additional Modules: wiki/additional-modules.md
+  - API:
+    - Core API: modules/core.md
+    - Bill of Materials: modules/bom.md
+    - Arrow Module: modules/arrow.md
+    - Jackson Module: modules/jackson.md
+    - JVM Module: modules/jvm.md
+    - Mockk Module: modules/mockk.md
+    - Protobuf Module: modules/protobuf.md
+    - Spring Module: modules/spring.md
   - Information:
     - About Strikt: about.md
     - Changelog: changelog.md

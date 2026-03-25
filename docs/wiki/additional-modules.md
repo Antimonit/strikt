@@ -2,7 +2,7 @@
 
 In addition to the core functionality provided by the `strikt-core` module, Strikt has the following optional modules:
 
-## [Arrow](/api/strikt-arrow/)
+## [Arrow](../modules/arrow.md)
 
 Extensions for assertions and traversals on types from the Arrow's functional programming library.
 
@@ -12,7 +12,7 @@ Add the following to your dependencies:
 testImplementation("io.strikt:strikt-arrow:{{ version }}")
 ```
 
-## [Jackson](/api/strikt-jackson/)
+## [Jackson](../modules/jackson.md)
 
 Extensions for assertions and traversals on types Jackson's `JsonNode` and sub-types.
 
@@ -22,7 +22,7 @@ Add the following to your dependencies:
 testImplementation("io.strikt:strikt-jackson:{{ version }}")
 ```
 
-## [JVM](/api/strikt-jvm/)
+## [JVM](../modules/jvm.md)
 
 Extensions for assertions and traversals on types from the Java SDK.
 
@@ -32,7 +32,7 @@ Add the following to your dependencies:
 testImplementation("io.strikt:strikt-jvm:{{ version }}")
 ```
 
-## [Mockk](/api/strikt-mockk/)
+## [Mockk](../modules/mockk.md)
 
 Extensions for assertions and traversals on types from the Mockk mocking and verification library.
 
@@ -42,7 +42,7 @@ Add the following to your dependencies:
 testImplementation("io.strikt:strikt-mockk:{{ version }}")
 ```
 
-## [Protobuf](/api/strikt-protobuf/)
+## [Protobuf](../modules/protobuf.md)
 
 Extensions for testing code that uses Protobuf / gRPC.
 
@@ -52,7 +52,7 @@ Add the following to your dependencies:
 testImplementation("io.strikt:strikt-protobuf:{{ version }}")
 ```
 
-## [Spring](/api/strikt-spring/)
+## [Spring](../modules/spring.md)
 
 Extensions for testing code that uses the Spring Framework.
 
