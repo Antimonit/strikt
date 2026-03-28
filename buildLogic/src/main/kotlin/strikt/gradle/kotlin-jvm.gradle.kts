@@ -1,6 +1,5 @@
 package strikt.gradle
 
-import com.adarshr.gradle.testlogger.theme.ThemeType
 import org.gradle.api.JavaVersion
 import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.testing.Test
@@ -11,8 +10,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
   id("org.jetbrains.kotlin.jvm")
-  id("org.jmailen.kotlinter")
-  id("com.adarshr.test-logger")
+  id("strikt.gradle.kotlinter")
+  id("strikt.gradle.test-logger")
 }
 
 configure<JavaPluginExtension> {
@@ -46,16 +45,4 @@ tasks.withType<Test> {
   useJUnitPlatform {
     includeEngines("junit-jupiter", "failgood")
   }
-}
-
-// Lint Kotlin code
-kotlinter {
-  ignoreFailures = true
-//  indentSize = 2
-  reporters = arrayOf("html", "plain")
-}
-
-testlogger {
-  theme = ThemeType.MOCHA_PARALLEL
-  showSimpleNames = true
 }
