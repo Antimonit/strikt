@@ -5,6 +5,6 @@ plugins {
 }
 
 dependencies {
-  implementation(libs.dokka)
-  implementation(libs.nebula.publishing)
+  implementation(libs.plugin.dokka)
+  implementation(libs.plugin.nebula.publishing)
 }
