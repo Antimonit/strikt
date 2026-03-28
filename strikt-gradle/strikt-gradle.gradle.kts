@@ -2,7 +2,7 @@ import org.gradle.util.GradleVersion
 import java.net.URL
 
 plugins {
-  alias(libs.plugins.kotlin.jvm)
+  id("strikt.gradle.kotlin-jvm")
   alias(libs.plugins.published)
 }
 

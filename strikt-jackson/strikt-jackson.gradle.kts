@@ -2,7 +2,7 @@ import org.jetbrains.dokka.gradle.DokkaTaskPartial
 import java.net.URI
 
 plugins {
-  alias(libs.plugins.kotlin.jvm)
+  id("strikt.gradle.kotlin-jvm")
   alias(libs.plugins.published)
 }
 
