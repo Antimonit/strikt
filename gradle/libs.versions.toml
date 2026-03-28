@@ -79,8 +79,14 @@ jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api" }
 # Gradle plugin artifacts (for buildLogic classpath)
 # https://github.com/Kotlin/dokka
 plugin-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+# https://github.com/JetBrains/kotlin
+plugin-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+# https://github.com/jeremymailen/kotlinter-gradle
+plugin-kotlinter = { module = "org.jmailen.kotlinter:org.jmailen.kotlinter.gradle.plugin", version.ref = "kotlinter" }
 # https://github.com/nebula-plugins/nebula-publishing-plugin
 plugin-nebula-publishing = { module = "com.netflix.nebula:nebula-publishing-plugin", version.ref = "nebula" }
+# https://github.com/radarsh/gradle-test-logger-plugin
+plugin-test-logger = { module = "com.adarshr:gradle-test-logger-plugin", version.ref = "test-logger" }
 
 [plugins]
 # https://github.com/Kotlin/dokka
