@@ -1,13 +1,9 @@
 package strikt.internal
 
-import org.opentest4j.AssertionFailedError
 import strikt.api.Status
 import strikt.api.Status.Failed
 import strikt.api.Status.Passed
 import strikt.api.Status.Pending
-import strikt.internal.opentest4j.AssertionFailed
-import strikt.internal.opentest4j.CompoundAssertionFailure
-import strikt.internal.opentest4j.IncompleteAssertion
 import strikt.internal.reporting.writePartialToString
 import strikt.internal.reporting.writeToString
 
@@ -129,18 +125,18 @@ internal sealed class AssertionStrategy {
   data object Throwing : AssertionStrategy() {
     override fun evaluate(tree: AssertionGroup<*>) {
       if (tree.status is Failed) {
-        throw CompoundAssertionFailure(
+        throwCompoundAssertionFailure(
           tree.root.writeToString(),
           tree.findFailureNodes()
             .map {
-              createAssertionFailedError(
+              createAssertionFailure(
                 it.writePartialToString(),
                 it.status as Failed
               )
             }
         )
       } else if (tree.status is Pending) {
-        throw IncompleteAssertion()
+        throwIncompleteAssertion()
       }
     }
 
@@ -165,19 +161,19 @@ internal sealed class AssertionStrategy {
           trees
             .filter { it.status is Failed }
             .map {
-              createAssertionFailedError(
+              createAssertionFailure(
                 it.writeToString(),
                 it.status as Failed
               )
             }
-        throw CompoundAssertionFailure(trees.writeToString(), failures)
+        throwCompoundAssertionFailure(trees.writeToString(), failures)
       }
     }
 
     override fun <T> afterStatusSet(result: AssertionResult<T>) {
       val status = result.status
       if (status is Failed) {
-        throw createAssertionFailedError(
+        throw createAssertionFailure(
           result.root.writeToString(),
           status
         )
@@ -218,37 +214,5 @@ internal sealed class AssertionStrategy {
     override fun <T> afterStatusSet(result: AssertionResult<T>) {
       delegate.afterStatusSet(result)
     }
-  }
-
-  internal fun createAssertionFailedError(
-    message: String,
-    failed: Failed?,
-  ): AssertionFailedError {
-    val error =
-      if (failed?.comparison != null) {
-        AssertionFailed(
-          message,
-          failed.comparison.expected,
-          failed.comparison.actual,
-          failed.cause
-        )
-      } else {
-        AssertionFailed(
-          message,
-          failed?.cause
-        )
-      }
-
-    val stackTrace = error.stackTrace
-    val lastIndex =
-      stackTrace
-        .indexOfLast { it.className.startsWith("strikt") }
-    val suppressedElements = stackTrace.copyOfRange(0, lastIndex)
-    val remainingElements = stackTrace.copyOfRange(lastIndex + 1, stackTrace.lastIndex)
-    error.stackTrace = remainingElements
-    val striktError = AssertionFailedError()
-    striktError.stackTrace = suppressedElements
-    error.addSuppressed(striktError)
-    return error
   }
 }

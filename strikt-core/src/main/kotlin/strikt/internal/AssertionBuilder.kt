@@ -7,7 +7,6 @@ import strikt.api.CompoundAssertions
 import strikt.api.DescribeableBuilder
 import strikt.internal.AssertionStrategy.Collecting
 import strikt.internal.AssertionStrategy.Negating
-import strikt.internal.opentest4j.MappingFailed
 
 internal class AssertionBuilder<T>(
   private val context: AssertionGroup<T>,
@@ -106,7 +105,7 @@ internal class AssertionBuilder<T>(
       runCatching {
         function(context.subject)
       }
-        .getOrElse { ex -> throw MappingFailed(description, ex) }
+        .getOrElse { ex -> throwMappingFailed(description, ex) }
         .let {
           AssertionBuilder(
             AssertionSubject(context, it, description),
@@ -136,7 +135,7 @@ internal class AssertionBuilder<T>(
             strategy.evaluate(nestedContext)
           }
       }
-      .onFailure { ex -> throw MappingFailed(description, ex) }
+      .onFailure { ex -> throwMappingFailed(description, ex) }
     return this
   }
 
