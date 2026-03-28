@@ -1,9 +1,7 @@
 package strikt.gradle
 
 import org.gradle.api.JavaVersion
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.tasks.testing.Test
-import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -14,7 +12,7 @@ plugins {
   id("strikt.gradle.test-logger")
 }
 
-configure<JavaPluginExtension> {
+java {
   sourceCompatibility = JavaVersion.VERSION_17
 }
 
