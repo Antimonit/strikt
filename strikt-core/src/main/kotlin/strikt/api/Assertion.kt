@@ -1,6 +1,5 @@
 package strikt.api
 
-import filepeek.LambdaBody
 import strikt.internal.FilePeek
 import kotlin.jvm.internal.CallableReference
 import kotlin.reflect.KFunction
@@ -325,14 +324,7 @@ private fun <Receiver, Result> (Receiver.() -> Result).describe(): String =
     is KFunction<*> ->
       "return value of $name"
     is CallableReference -> "value of $propertyName"
-    else -> {
-      try {
-        val line = FilePeek.filePeek.getCallerFileInfo().line
-        LambdaBody("get", line).body.trim()
-      } catch (e: Exception) {
-        "%s"
-      }
-    }
+    else -> FilePeek.getCallerLambdaBody() ?: "%s"
   }
 
 private val CallableReference.propertyName: String
