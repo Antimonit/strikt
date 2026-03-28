@@ -7,7 +7,7 @@ import strikt.internal.opentest4j.CompoundAssertionFailure
 import strikt.internal.opentest4j.IncompleteAssertion
 import strikt.internal.opentest4j.MappingFailed
 
-internal fun createAssertionFailure(message: String, failed: Failed?): Throwable {
+internal actual fun createAssertionFailure(message: String, failed: Failed?): Throwable {
   val error =
     if (failed?.comparison != null) {
       AssertionFailed(
@@ -36,11 +36,11 @@ internal fun createAssertionFailure(message: String, failed: Failed?): Throwable
   return error
 }
 
-internal fun throwCompoundAssertionFailure(message: String, failures: List<Throwable>): Nothing =
+internal actual fun throwCompoundAssertionFailure(message: String, failures: List<Throwable>): Nothing =
   throw CompoundAssertionFailure(message, failures)
 
-internal fun throwIncompleteAssertion(): Nothing =
+internal actual fun throwIncompleteAssertion(): Nothing =
   throw IncompleteAssertion()
 
-internal fun throwMappingFailed(description: String, cause: Throwable): Nothing =
+internal actual fun throwMappingFailed(description: String, cause: Throwable): Nothing =
   throw MappingFailed(description, cause)

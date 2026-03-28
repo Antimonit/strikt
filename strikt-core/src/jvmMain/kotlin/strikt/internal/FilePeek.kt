@@ -1,11 +1,11 @@
 package strikt.internal
 
-import filepeek.FilePeek
+import filepeek.FilePeek as FilePeekLib
 import filepeek.LambdaBody
 
-internal object FilePeek {
+internal actual object FilePeek {
   private val filePeek by lazy {
-    FilePeek(
+    FilePeekLib(
       listOf(
         "strikt.internal",
         "strikt.api",
@@ -14,7 +14,7 @@ internal object FilePeek {
     )
   }
 
-  fun getCallerLambdaBody(): String? =
+  actual fun getCallerLambdaBody(): String? =
     try {
       val line = filePeek.getCallerFileInfo().line
       LambdaBody("get", line).body.trim()
