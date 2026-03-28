@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":strikt-protobuf:dokkaHtmlPartial/main":[],":strikt-spring:dokkaHtmlPartial/main":[],":strikt-jackson:dokkaHtmlPartial/main":[],":strikt-core:dokkaHtmlPartial/main":[],":strikt-arrow:dokkaHtmlPartial/main":[],":strikt-jvm:dokkaHtmlPartial/main":[],":strikt-mockk:dokkaHtmlPartial/main":[]}'

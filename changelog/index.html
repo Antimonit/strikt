@@ -1,0 +1,4013 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Strikt is an assertion library for Kotlin intended for use with a test runner such as JUnit or Spek.">
+      
+      
+      
+        <link rel="canonical" href="https://antimonit.github.io/strikt/changelog/">
+      
+      
+        <link rel="prev" href="../about/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Changelog - Strikt</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Strikt" class="md-header__button md-logo" aria-label="Strikt" data-md-component="logo">
+      
+  <img src="../assets/logo-white-28.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Strikt
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/robfletcher/strikt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    robfletcher/strikt
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../wiki/getting-started/" class="md-tabs__link">
+          
+  
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../modules/core/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../about/" class="md-tabs__link">
+          
+  
+  
+  Information
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Strikt" class="md-nav__button md-logo" aria-label="Strikt" data-md-component="logo">
+      
+  <img src="../assets/logo-white-28.png" alt="logo">
+
+    </a>
+    Strikt
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/robfletcher/strikt" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    robfletcher/strikt
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/assertion-styles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assertion Styles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/collection-elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Collection Element Assertions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/expecting-exceptions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expecting Exceptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/flow-typing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strongly Typed Assertions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/traversing-subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traversing Assertion Subjects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/grouping-with-and/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grouping with and or with
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/custom-assertions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Custom Assertions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wiki/additional-modules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional Modules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/core/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/bom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bill of Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/arrow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arrow Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/jackson/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jackson Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/jvm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JVM Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/mockk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mockk Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/protobuf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protobuf Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring Module
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Information
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Strikt
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0350-radiant-factory-2024-06-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.35.0 Radiant Factory - 2024-06-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0341-glorious-bureaucrat-2022-02-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.34.1 Glorious Bureaucrat - 2022-02-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0340-stalwart-blossom-2022-01-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.34.0 Stalwart Blossom - 2022-01-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0330-scarlet-attitude-2021-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.33.0 Scarlet Attitude - 2021-11-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0320-golden-depths-2021-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.32.0 Golden Depths - 2021-08-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-ashen-forests-2021-04-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.31.0 Ashen Forests - 2021-04-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0301-ascending-ivory-2021-04-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.30.1 Ascending Ivory - 2021-04-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0300-sorrowful-glass-2021-03-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.30.0 Sorrowful Glass - 2021-03-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0290-hateful-mantis-2021-02-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.29.0 Hateful Mantis - 2021-02-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0282-hidden-ruin-2021-01-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.2 Hidden Ruin - 2021-01-26
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0281-distant-princess-2020-12-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.1 Distant Princess - 2020-12-01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0280-invincible-sadness-2020-09-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.0 Invincible Sadness - 2020-09-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0270-hungry-spear-2020-08-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.27.0 Hungry Spear - 2020-08-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0261-quicksilver-silhouette-2020-05-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.26.1 Quicksilver Silhouette - 2020-05-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0260-ferocious-daughter-2020-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.26.0 Ferocious Daughter - 2020-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0250-blighted-depths-2020-03-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.25.0 Blighted Depths - 2020-03-27
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0240-auspicious-misery-2020-02-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.24.0 Auspicious Misery - 2020-02-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0237-celestial-depths-2020-02-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.7 Celestial Depths - 2020-02-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0236-weeping-spire-2020-02-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.6 Weeping Spire - 2020-02-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0235-auspicious-misery-2020-02-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.5 Auspicious Misery - 2020-02-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0234-grievous-form-2020-01-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.4 Grievous Form - 2020-01-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0233-savage-wing-2020-01-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.3 Savage Wing - 2020-01-01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0232-mighty-empress-2019-12-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.2 Mighty Empress - 2019-12-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0231-bounteous-moon-2019-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.1 Bounteous Moon - 2019-12-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0230-rancorous-horizon-2019-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.0 Rancorous Horizon - 2019-12-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0223-vermillion-warrior-2019-11-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.3 Vermillion Warrior - 2019-11-23
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0222-flawless-assassin-2019-09-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.2 Flawless Assassin - 2019-09-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0221-blessed-hammer-2019-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.1 Blessed Hammer - 2019-09-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0220-rancourous-dirge-2019-09-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.0 Rancourous Dirge - 2019-09-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0212-funereal-daughter-2019-09-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.2 Funereal Daughter - 2019-09-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0211-heavenly-bear-2019-06-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.1 Heavenly Bear - 2019-06-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0210-funereal-raven-2019-06-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.0 Funereal Raven - 2019-06-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0201-elder-refuge-2019-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.20.1 Elder Refuge - 2019-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0200-pain-mother-2019-04-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.20.0 Pain Mother - 2019-04-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0197-glorious-catacomb-2019-04-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.7 Glorious Catacomb - 2019-04-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0196-bitter-forest-2019-03-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.6 Bitter Forest - 2019-03-30
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0195-victorious-scholar-2019-03-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.5 Victorious Scholar - 2019-03-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0194-poison-spire-2019-03-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.4 Poison Spire - 2019-03-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0193-iron-ocean-2019-03-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.3 Iron Ocean - 2019-03-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0192-bounteous-steel-2019-03-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.2 Bounteous Steel - 2019-03-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0191-mighty-rainbow-2019-03-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.1 Mighty Rainbow - 2019-03-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0190-poison-hammer-2019-03-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.0 Poison Hammer - 2019-03-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0182-venomous-twilight-2019-03-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.2 Venomous Twilight - 2019-03-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0181-ferocious-rose-2019-03-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.1 Ferocious Rose - 2019-03-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0180-silken-grasshopper-2019-03-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.0 Silken Grasshopper - 2019-03-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0173-unfettered-serpent-2019-02-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.3 Unfettered Serpent - 2019-02-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0172-battleworn-understanding-2019-01-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.2 Battleworn Understanding - 2019-01-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0171-whispering-sword-2018-11-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.1 Whispering Sword - 2018-11-30
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0170-forsaken-raven-2018-11-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.0 Forsaken Raven - 2018-11-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0163-saffron-mammoth-2018-10-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.3 Saffron Mammoth - 2018-10-26
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0162-anonymous-ifrit-2018-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.2 Anonymous Ifrit - 2018-10-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0161-onyx-mammoth-2018-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.1 Onyx Mammoth - 2018-10-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0160-sadness-blossom-2018-10-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.0 Sadness Blossom - 2018-10-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-alabaster-tyrant-2018-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.2 Alabaster Tyrant - 2018-10-08
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-wasteland-monkey-2018-10-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.1 Wasteland Monkey - 2018-10-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-garden-daimyo-2018-10-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.0 Garden Daimyo - 2018-10-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0144-void-maiden-2018-09-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.4 Void Maiden - 2018-09-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0143-hungry-boulder-2018-09-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.3 Hungry Boulder - 2018-09-27
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-black-waterfall-2018-09-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.2 Black Waterfall - 2018-09-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141-bitter-tiger-2018-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.1 Bitter Tiger - 2018-09-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-ruby-panther-2018-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.0 Ruby Panther - 2018-09-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130-blessed-starfall-2018-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13.0 Blessed Starfall - 2018-09-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-adamant-rose-2018-09-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.0 Adamant Rose - 2018-09-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0116-moonsilver-serpent-2018-09-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.6 Moonsilver Serpent - 2018-09-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0115-harmonious-eagle-2018-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.5 Harmonious Eagle - 2018-08-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0114-pain-empress-2018-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.4 Pain Empress - 2018-08-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0113-unfettered-sky-2018-08-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.3 Unfettered Sky - 2018-08-23
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0112-viper-understanding-2018-08-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.2 Viper Understanding - 2018-08-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111-mantis-discipline-2018-08-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.1 Mantis Discipline - 2018-08-17
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-ascending-snake-2018-08-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0 Ascending Snake - 2018-08-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102-forest-daimyo-2018-08-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.2 Forest Daimyo - 2018-08-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101-silhouette-evasion-2018-08-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.1 Silhouette Evasion - 2018-08-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100-ashen-intuition-2018-08-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.0 Ashen Intuition - 2018-08-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090-glorious-bitterness-2018-07-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0 Glorious Bitterness - 2018-07-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#086-fluttering-rat-2018-07-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.6 Fluttering Rat - 2018-07-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#085-havoc-lotus-2018-07-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.5 Havoc Lotus - 2018-07-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#084-vengeful-technique-2018-06-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.4 Vengeful Technique - 2018-06-28
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#083-scorning-guardian-2018-06-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.3 Scorning Guardian - 2018-06-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#082-ebon-claw-2018-06-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.2 Ebon Claw - 2018-06-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#081-marginal-spring-2018-06-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.1 Marginal Spring - 2018-06-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080-ridiculous-diplomat-2018-06-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.0 Ridiculous Diplomat - 2018-06-08
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#074-stalwart-havoc-2018-06-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.4 Stalwart Havoc - 2018-06-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072-noticeable-bell-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.2 Noticeable Bell - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071-bright-raven-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.1 Bright Raven - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-vermillion-mantis-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.0 Vermillion Mantis - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#068-battleworn-hyena-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.8 Battleworn Hyena - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#067-black-rampart-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.7 Black Rampart - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#066-quicksilver-serpent-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.6 Quicksilver Serpent - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#065-whispering-horizon-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.5 Whispering Horizon - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#064-sorrowful-bow-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.4 Sorrowful Bow - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063-flaxen-tiger-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.3 Flaxen Tiger - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062-benificent-locust-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.2 Benificent Locust - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061-drunken-orchid-2018-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.1 Drunken Orchid - 2018-05-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-metal-eagle-2018-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.0 Metal Eagle - 2018-05-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#051-tsunami-carp-2018-05-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 Tsunami Carp - 2018-05-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-saffron-thunderhead-2018-05-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 Saffron Thunderhead - 2018-05-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#042-virtuous-monsoon-2018-05-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.2 Virtuous Monsoon - 2018-05-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#041-iron-mind-2018-05-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 Iron Mind - 2018-05-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-starmetal-mist-2018-05-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.0 Starmetal Mist - 2018-05-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-towering-moon-2018-05-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3.0 Towering Moon - 2018-05-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#027-elder-starfall-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.7 Elder Starfall - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#026-sapphire-spear-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.6 Sapphire Spear - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#025-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.5 - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#024-2018-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.4 - 2018-05-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#023-2018-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.3 - 2018-05-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#022-2018-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.2 - 2018-05-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#021-2018-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.1 - 2018-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2018-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.0 - 2018-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2018-05-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1.0 - 2018-05-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0350-radiant-factory-2024-06-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.35.0 Radiant Factory - 2024-06-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0341-glorious-bureaucrat-2022-02-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.34.1 Glorious Bureaucrat - 2022-02-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0340-stalwart-blossom-2022-01-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.34.0 Stalwart Blossom - 2022-01-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0330-scarlet-attitude-2021-11-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.33.0 Scarlet Attitude - 2021-11-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0320-golden-depths-2021-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.32.0 Golden Depths - 2021-08-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0310-ashen-forests-2021-04-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.31.0 Ashen Forests - 2021-04-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0301-ascending-ivory-2021-04-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.30.1 Ascending Ivory - 2021-04-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0300-sorrowful-glass-2021-03-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.30.0 Sorrowful Glass - 2021-03-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0290-hateful-mantis-2021-02-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.29.0 Hateful Mantis - 2021-02-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0282-hidden-ruin-2021-01-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.2 Hidden Ruin - 2021-01-26
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0281-distant-princess-2020-12-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.1 Distant Princess - 2020-12-01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0280-invincible-sadness-2020-09-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.28.0 Invincible Sadness - 2020-09-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0270-hungry-spear-2020-08-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.27.0 Hungry Spear - 2020-08-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0261-quicksilver-silhouette-2020-05-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.26.1 Quicksilver Silhouette - 2020-05-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0260-ferocious-daughter-2020-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.26.0 Ferocious Daughter - 2020-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0250-blighted-depths-2020-03-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.25.0 Blighted Depths - 2020-03-27
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0240-auspicious-misery-2020-02-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.24.0 Auspicious Misery - 2020-02-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0237-celestial-depths-2020-02-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.7 Celestial Depths - 2020-02-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0236-weeping-spire-2020-02-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.6 Weeping Spire - 2020-02-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0235-auspicious-misery-2020-02-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.5 Auspicious Misery - 2020-02-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0234-grievous-form-2020-01-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.4 Grievous Form - 2020-01-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0233-savage-wing-2020-01-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.3 Savage Wing - 2020-01-01
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0232-mighty-empress-2019-12-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.2 Mighty Empress - 2019-12-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0231-bounteous-moon-2019-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.1 Bounteous Moon - 2019-12-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0230-rancorous-horizon-2019-12-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.23.0 Rancorous Horizon - 2019-12-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0223-vermillion-warrior-2019-11-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.3 Vermillion Warrior - 2019-11-23
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0222-flawless-assassin-2019-09-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.2 Flawless Assassin - 2019-09-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0221-blessed-hammer-2019-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.1 Blessed Hammer - 2019-09-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0220-rancourous-dirge-2019-09-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.22.0 Rancourous Dirge - 2019-09-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0212-funereal-daughter-2019-09-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.2 Funereal Daughter - 2019-09-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0211-heavenly-bear-2019-06-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.1 Heavenly Bear - 2019-06-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0210-funereal-raven-2019-06-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.21.0 Funereal Raven - 2019-06-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0201-elder-refuge-2019-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.20.1 Elder Refuge - 2019-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0200-pain-mother-2019-04-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.20.0 Pain Mother - 2019-04-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0197-glorious-catacomb-2019-04-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.7 Glorious Catacomb - 2019-04-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0196-bitter-forest-2019-03-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.6 Bitter Forest - 2019-03-30
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0195-victorious-scholar-2019-03-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.5 Victorious Scholar - 2019-03-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0194-poison-spire-2019-03-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.4 Poison Spire - 2019-03-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0193-iron-ocean-2019-03-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.3 Iron Ocean - 2019-03-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0192-bounteous-steel-2019-03-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.2 Bounteous Steel - 2019-03-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0191-mighty-rainbow-2019-03-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.1 Mighty Rainbow - 2019-03-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0190-poison-hammer-2019-03-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.19.0 Poison Hammer - 2019-03-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0182-venomous-twilight-2019-03-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.2 Venomous Twilight - 2019-03-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0181-ferocious-rose-2019-03-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.1 Ferocious Rose - 2019-03-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0180-silken-grasshopper-2019-03-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.18.0 Silken Grasshopper - 2019-03-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0173-unfettered-serpent-2019-02-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.3 Unfettered Serpent - 2019-02-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0172-battleworn-understanding-2019-01-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.2 Battleworn Understanding - 2019-01-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0171-whispering-sword-2018-11-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.1 Whispering Sword - 2018-11-30
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0170-forsaken-raven-2018-11-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.17.0 Forsaken Raven - 2018-11-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0163-saffron-mammoth-2018-10-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.3 Saffron Mammoth - 2018-10-26
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0162-anonymous-ifrit-2018-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.2 Anonymous Ifrit - 2018-10-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0161-onyx-mammoth-2018-10-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.1 Onyx Mammoth - 2018-10-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0160-sadness-blossom-2018-10-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.16.0 Sadness Blossom - 2018-10-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0152-alabaster-tyrant-2018-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.2 Alabaster Tyrant - 2018-10-08
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0151-wasteland-monkey-2018-10-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.1 Wasteland Monkey - 2018-10-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0150-garden-daimyo-2018-10-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.15.0 Garden Daimyo - 2018-10-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0144-void-maiden-2018-09-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.4 Void Maiden - 2018-09-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0143-hungry-boulder-2018-09-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.3 Hungry Boulder - 2018-09-27
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0142-black-waterfall-2018-09-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.2 Black Waterfall - 2018-09-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0141-bitter-tiger-2018-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.1 Bitter Tiger - 2018-09-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0140-ruby-panther-2018-09-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.14.0 Ruby Panther - 2018-09-22
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0130-blessed-starfall-2018-09-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.13.0 Blessed Starfall - 2018-09-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0120-adamant-rose-2018-09-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.12.0 Adamant Rose - 2018-09-13
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0116-moonsilver-serpent-2018-09-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.6 Moonsilver Serpent - 2018-09-06
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0115-harmonious-eagle-2018-08-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.5 Harmonious Eagle - 2018-08-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0114-pain-empress-2018-08-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.4 Pain Empress - 2018-08-24
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0113-unfettered-sky-2018-08-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.3 Unfettered Sky - 2018-08-23
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0112-viper-understanding-2018-08-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.2 Viper Understanding - 2018-08-18
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0111-mantis-discipline-2018-08-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.1 Mantis Discipline - 2018-08-17
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0110-ascending-snake-2018-08-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.11.0 Ascending Snake - 2018-08-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0102-forest-daimyo-2018-08-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.2 Forest Daimyo - 2018-08-12
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0101-silhouette-evasion-2018-08-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.1 Silhouette Evasion - 2018-08-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0100-ashen-intuition-2018-08-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.10.0 Ashen Intuition - 2018-08-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#090-glorious-bitterness-2018-07-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.9.0 Glorious Bitterness - 2018-07-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#086-fluttering-rat-2018-07-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.6 Fluttering Rat - 2018-07-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#085-havoc-lotus-2018-07-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.5 Havoc Lotus - 2018-07-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#084-vengeful-technique-2018-06-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.4 Vengeful Technique - 2018-06-28
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#083-scorning-guardian-2018-06-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.3 Scorning Guardian - 2018-06-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#082-ebon-claw-2018-06-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.2 Ebon Claw - 2018-06-11
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#081-marginal-spring-2018-06-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.1 Marginal Spring - 2018-06-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#080-ridiculous-diplomat-2018-06-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.8.0 Ridiculous Diplomat - 2018-06-08
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#074-stalwart-havoc-2018-06-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.4 Stalwart Havoc - 2018-06-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#072-noticeable-bell-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.2 Noticeable Bell - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#071-bright-raven-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.1 Bright Raven - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#070-vermillion-mantis-2018-05-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7.0 Vermillion Mantis - 2018-05-31
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#068-battleworn-hyena-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.8 Battleworn Hyena - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#067-black-rampart-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.7 Black Rampart - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#066-quicksilver-serpent-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.6 Quicksilver Serpent - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#065-whispering-horizon-2018-05-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.5 Whispering Horizon - 2018-05-29
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#064-sorrowful-bow-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.4 Sorrowful Bow - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#063-flaxen-tiger-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.3 Flaxen Tiger - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#062-benificent-locust-2018-05-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.2 Benificent Locust - 2018-05-25
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#061-drunken-orchid-2018-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.1 Drunken Orchid - 2018-05-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#060-metal-eagle-2018-05-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6.0 Metal Eagle - 2018-05-21
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#051-tsunami-carp-2018-05-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 Tsunami Carp - 2018-05-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#050-saffron-thunderhead-2018-05-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.0 Saffron Thunderhead - 2018-05-19
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#042-virtuous-monsoon-2018-05-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.2 Virtuous Monsoon - 2018-05-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#041-iron-mind-2018-05-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 Iron Mind - 2018-05-16
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#040-starmetal-mist-2018-05-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.0 Starmetal Mist - 2018-05-15
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#030-towering-moon-2018-05-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3.0 Towering Moon - 2018-05-14
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#027-elder-starfall-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.7 Elder Starfall - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#026-sapphire-spear-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.6 Sapphire Spear - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#025-2018-05-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.5 - 2018-05-10
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#024-2018-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.4 - 2018-05-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#023-2018-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.3 - 2018-05-09
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#022-2018-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.2 - 2018-05-05
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#021-2018-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.1 - 2018-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#020-2018-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.0 - 2018-05-04
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2018-05-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1.0 - 2018-05-03
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="changelog">Changelog</h1>
+<h2 id="0350-radiant-factory-2024-06-18">0.35.0 Radiant Factory - 2024-06-18</h2>
+<ul>
+<li>Drops support for Java &lt; 17.</li>
+<li>Support Spring Boot 3.</li>
+<li>Adds <code>comparesEqualTo</code> for comparable subjects.</li>
+<li>Adds <code>isEqualToIgnoringWhitespace</code> for string subjects.</li>
+<li>Adds <code>hasSize</code> assertion for array subjects.</li>
+<li>Adds <code>keys</code> and <code>values</code> mappings for map subjects</li>
+</ul>
+<h2 id="0341-glorious-bureaucrat-2022-02-02">0.34.1 Glorious Bureaucrat - 2022-02-02</h2>
+<ul>
+<li>Removes the overload of <code>isNotNull</code> to avoid overload ambiguity when the subject is a platform type.</li>
+</ul>
+<h2 id="0340-stalwart-blossom-2022-01-31">0.34.0 Stalwart Blossom - 2022-01-31</h2>
+<ul>
+<li>Adds <code>propertiesAreEqualToIgnoring</code> assertion.</li>
+<li>Adds <code>isSameInstant</code> assertion for date/time types.</li>
+</ul>
+<h2 id="0330-scarlet-attitude-2021-11-16">0.33.0 Scarlet Attitude - 2021-11-16</h2>
+<ul>
+<li>Supports Kotlin 1.6</li>
+<li>Add <code>doesNotContainKey</code> and <code>doesNotContainKeys</code> map assertions</li>
+</ul>
+<h2 id="0320-golden-depths-2021-08-25">0.32.0 Golden Depths - 2021-08-25</h2>
+<ul>
+<li>Supports Kotlin 1.5</li>
+<li>Removes <code>strikt-gradle</code> module as classpath isolation is problematic with Kotlin 1.5 and the <code>gradleTestKit</code> dependency.</li>
+<li>Adds <code>Assertion.Builder&lt;T&gt;.subject : T</code> property for accessing the subject value.</li>
+</ul>
+<h2 id="0310-ashen-forests-2021-04-22">0.31.0 Ashen Forests - 2021-04-22</h2>
+<ul>
+<li>Incomplete assertion chains now throw <code>IncompleteAssertion</code>.</li>
+<li>Suppresses class name in the <code>toString</code> of exceptions thrown by Strikt assertions.</li>
+<li>Updates <code>strikt-arrow</code> to support recent changes in the Arrow library.</li>
+</ul>
+<h2 id="0301-ascending-ivory-2021-04-11">0.30.1 Ascending Ivory - 2021-04-11</h2>
+<ul>
+<li>Fixes an issue where pending assertion chains in a block took precedence over failures, causing false positives. See <a href="https://github.com/robfletcher/strikt/issues/243">#243</a></li>
+</ul>
+<h2 id="0300-sorrowful-glass-2021-03-21">0.30.0 Sorrowful Glass - 2021-03-21</h2>
+<ul>
+<li>All transitive dependencies are now resolvable from Maven Central rather than needing JCenter.</li>
+<li>Adds <code>isContainedIn</code> assertion.</li>
+</ul>
+<h2 id="0290-hateful-mantis-2021-02-06">0.29.0 Hateful Mantis - 2021-02-06</h2>
+<ul>
+<li>Moves several JVM-specific assertions to the new <code>strikt-jvm</code> module.</li>
+<li>Removes the <code>strikt-java-time</code> module (use <code>strikt-jvm</code> instead).</li>
+<li>Adds <code>isSorted</code> assertion for <code>Iterable&lt;Comparable&lt;*&gt;&gt;</code>.</li>
+<li>Broadens <code>isSorted(Comparator)</code> so that it applies to <code>Iterable&lt;*&gt;</code> rather than <code>Collection&lt;*&gt;</code>.</li>
+</ul>
+<h2 id="0282-hidden-ruin-2021-01-26">0.28.2 Hidden Ruin - 2021-01-26</h2>
+<ul>
+<li>Removes support for Arrow's <code>Try</code> type that has been removed from <code>arrow-core</code>.</li>
+<li>Adds <code>anyIndexed</code>, <code>allIndexed</code>, and <code>noneIndexed</code> assertions for <code>Iterable&lt;*&gt;</code>.</li>
+</ul>
+<h2 id="0281-distant-princess-2020-12-01">0.28.1 Distant Princess - 2020-12-01</h2>
+<ul>
+<li>Adds <code>count()</code> and <code>count(predicate)</code> mappings for <code>Iterable</code> subjects.</li>
+<li>Additional support for <code>File</code> subjects. See <a href="https://github.com/robfletcher/strikt/pull/230">#230</a></li>
+<li>mapping property <code>Assertion.Builder&lt;File&gt;.parentFile: Builder&lt;File&gt;</code></li>
+<li>mapping property <code>Assertion.Builder&lt;File&gt;.lastModified: Long</code></li>
+<li>mapping property <code>Assertion.Builder&lt;File&gt;.length: Long</code></li>
+<li>mapping property <code>Assertion.Builder&lt;File&gt;.childFiles: Builder&lt;List&lt;File&gt;&gt;</code></li>
+<li>mapping function <code>Assertion.Builder&lt;File&gt;.childFile(name): Builder&lt;File&gt;</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.exists()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.notExists()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isRegularFile()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isNotRegularFile()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isDirectory()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isNotDirectory()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isReadable()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isNotReadable()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isWritable()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isNotWritable()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isExecutable()</code></li>
+<li>assertion <code>Assertion.Builder&lt;File&gt;.isNotExecutable()</code></li>
+</ul>
+<h2 id="0280-invincible-sadness-2020-09-13">0.28.0 Invincible Sadness - 2020-09-13</h2>
+<ul>
+<li>Fixes compilation using Android due to use of private interface methods. See <a href="https://github.com/robfletcher/strikt/issues/229">#229</a></li>
+<li>Assertion chains that use <code>not</code> will now report actual values if they fail. See <a href="https://github.com/robfletcher/strikt/issues/222">#222</a></li>
+</ul>
+<h2 id="0270-hungry-spear-2020-08-18">0.27.0 Hungry Spear - 2020-08-18</h2>
+<p>Kotlin 1.4 compatibility</p>
+<h2 id="0261-quicksilver-silhouette-2020-05-11">0.26.1 Quicksilver Silhouette - 2020-05-11</h2>
+<ul>
+<li><code>Assertion.Builder&lt;Iterable&lt;E&gt;&gt;withFirst</code></li>
+<li><code>Assertion.Builder&lt;Iterable&lt;E&gt;&gt;withFirst(predicate)</code></li>
+<li><code>Assertion.Builder&lt;Iterable&lt;E&gt;&gt;withLast</code></li>
+<li><code>Assertion.Builder&lt;Iterable&lt;E&gt;&gt;withElementAt</code></li>
+<li><code>Assertion.Builder&lt;Map&lt;K, V&gt;&gt;withValue</code></li>
+<li><code>Assertion.Builder&lt;CapturingSlot&lt;T&gt;&gt;withCaptured</code> in <em>strikt-mockk</em>.</li>
+</ul>
+<h2 id="0260-ferocious-daughter-2020-05-04">0.26.0 Ferocious Daughter - 2020-05-04</h2>
+<ul>
+<li><code>succeeded</code> and <code>failed</code> deprecated in favor of <code>isSuccess</code> and <code>isFailure</code>.</li>
+<li>added <code>Assertion.Builder&lt;Enum&lt;T&gt;&gt;.isOneOf</code> assertion.</li>
+<li><code>single</code> now displays the number of elements found if it fails. See <a href="https://github.com/robfletcher/strikt/issues/210">#210</a></li>
+<li>Improved description of <code>task</code> mapping. See <a href="https://github.com/robfletcher/strikt/issues/218">#218</a></li>
+</ul>
+<h2 id="0250-blighted-depths-2020-03-27">0.25.0 Blighted Depths - 2020-03-27</h2>
+<ul>
+<li><code>strikt-mockk</code> module.</li>
+</ul>
+<h2 id="0240-auspicious-misery-2020-02-25">0.24.0 Auspicious Misery - 2020-02-25</h2>
+<ul>
+<li>New methods:</li>
+<li><code>Assertion.Builder&lt;Iterable&lt;T&gt;&gt;.elementAt</code></li>
+<li><code>Assertion.Builder&lt;Iterable&lt;T&gt;&gt;.one</code></li>
+<li><code>Assertion.Builder&lt;ArrayNode&gt;.findValuesAsText</code></li>
+<li><code>Assertion.Builder&lt;ArrayNode&gt;.textValues</code></li>
+</ul>
+<h2 id="0237-celestial-depths-2020-02-13">0.23.7 Celestial Depths - 2020-02-13</h2>
+<ul>
+<li>Fixes filepeek support on Windows</li>
+</ul>
+<h2 id="0236-weeping-spire-2020-02-10">0.23.6 Weeping Spire - 2020-02-10</h2>
+<ul>
+<li>Fixes missing transitive dependency on <code>com.christophsturm:filepeek</code></li>
+</ul>
+<h2 id="0235-auspicious-misery-2020-02-09">0.23.5 Auspicious Misery - 2020-02-09</h2>
+<ul>
+<li>Fixes some errors in complex nested block scenarios. See <a href="https://github.com/robfletcher/strikt/issues/203">#203</a> and <a href="https://github.com/robfletcher/strikt/issues/204">#204</a></li>
+</ul>
+<h2 id="0234-grievous-form-2020-01-06">0.23.4 Grievous Form - 2020-01-06</h2>
+<ul>
+<li>Fixes BOM file from previous release</li>
+</ul>
+<h2 id="0233-savage-wing-2020-01-01">0.23.3 Savage Wing - 2020-01-01</h2>
+<ul>
+<li>Improved descriptions associated with Jackson extensions. See <a href="https://github.com/robfletcher/strikt/issues/195">#195</a></li>
+<li>Added <code>at</code> mapping for <code>JsonNode</code> assertions. See <a href="https://github.com/robfletcher/strikt/issues/152">#152</a></li>
+</ul>
+<h2 id="0232-mighty-empress-2019-12-11">0.23.2 Mighty Empress - 2019-12-11</h2>
+<ul>
+<li>Fixes <code>IllegalArgumentException</code> on <code>compose</code> when prior assertions have failed because the subject is the wrong type. See <a href="https://github.com/robfletcher/strikt/issues/194">#194</a></li>
+</ul>
+<h2 id="0231-bounteous-moon-2019-12-09">0.23.1 Bounteous Moon - 2019-12-09</h2>
+<p>Re-release of v0.23.0 following broken release</p>
+<h2 id="0230-rancorous-horizon-2019-12-09">0.23.0 Rancorous Horizon - 2019-12-09</h2>
+<ul>
+<li>Adds <code>with</code> function for performing blocks of assertions on a derived subject. See <a href="https://github.com/robfletcher/strikt/issues/117">#117</a></li>
+<li>Many assertion functions may now be used in infix style. See <a href="https://github.com/robfletcher/strikt/pull/187">#187</a></li>
+<li>Improves presentation of multi-line values in expectation output. See <a href="https://github.com/robfletcher/strikt/issues/158">#158</a></li>
+<li>The <code>expectThat</code> override that accepts a lambda is now <code>Unit</code> rather than returning <code>Assertion.Builder</code>. See <a href="https://github.com/robfletcher/strikt/issues/190">#190</a></li>
+</ul>
+<h2 id="0223-vermillion-warrior-2019-11-23">0.22.3 Vermillion Warrior - 2019-11-23</h2>
+<ul>
+<li>Adds assertions for sequence of values being present in a list</li>
+<li>Fixes to documentation in Arrow module</li>
+</ul>
+<h2 id="0222-flawless-assassin-2019-09-25">0.22.2 Flawless Assassin - 2019-09-25</h2>
+<ul>
+<li>Fixes transitive dependency on opentest4j for consumers</li>
+<li>Updates Arrow dependency</li>
+</ul>
+<h2 id="0221-blessed-hammer-2019-09-16">0.22.1 Blessed Hammer - 2019-09-16</h2>
+<ul>
+<li>Fixes documentation link that broke previous release</li>
+</ul>
+<h2 id="0220-rancourous-dirge-2019-09-15">0.22.0 Rancourous Dirge - 2019-09-15</h2>
+<ul>
+<li>New module for assertions on Arrow's <code>Either</code>, <code>Try</code> and <code>Option</code> types.</li>
+</ul>
+<h2 id="0212-funereal-daughter-2019-09-14">0.21.2 Funereal Daughter - 2019-09-14</h2>
+<ul>
+<li>Fixes issues with <code>and</code> (see #176)</li>
+<li>Kotlin 1.3.50</li>
+</ul>
+<h2 id="0211-heavenly-bear-2019-06-22">0.21.1 Heavenly Bear - 2019-06-22</h2>
+<ul>
+<li>Bug-fix for type inference in <code>succeeded()</code>.</li>
+<li>Improved output for <code>failed()</code>.</li>
+</ul>
+<h2 id="0210-funereal-raven-2019-06-16">0.21.0 Funereal Raven - 2019-06-16</h2>
+<ul>
+<li>Updated exception handling assertions that use Kotlin's <code>runCatching</code> and <code>Result&lt;T&gt;</code>.</li>
+<li>Added override for <code>describedAs</code> that accepts a lambda.</li>
+</ul>
+<h2 id="0201-elder-refuge-2019-05-10">0.20.1 Elder Refuge - 2019-05-10</h2>
+<ul>
+<li>Changed <code>Assertion.Builder&lt;Iterable&lt;*&gt;&gt;.contains</code> to pass if the argument is an empty list/varargs.</li>
+<li>Fixed an out of bounds exception in <code>Assertion.Builder&lt;Iterable&lt;*&gt;&gt;.containsExactly</code></li>
+</ul>
+<h2 id="0200-pain-mother-2019-04-15">0.20.0 Pain Mother - 2019-04-15</h2>
+<p>Added <code>strikt.gradle</code> module with some support for testing Gradle's API.</p>
+<h2 id="0197-glorious-catacomb-2019-04-02">0.19.7 Glorious Catacomb - 2019-04-02</h2>
+<ul>
+<li>Adds assertions and mappings for <code>java.io.File</code> and <code>java.nio.file.Path</code></li>
+<li>Adds assertions for Spring's <code>ResponseEntity</code> class.</li>
+</ul>
+<h2 id="0196-bitter-forest-2019-03-30">0.19.6 Bitter Forest - 2019-03-30</h2>
+<p>Fixes issues with bom publication.</p>
+<h2 id="0195-victorious-scholar-2019-03-29">0.19.5 Victorious Scholar - 2019-03-29</h2>
+<p>Packages a BOM for aligning strikt versions.</p>
+<h2 id="0194-poison-spire-2019-03-24">0.19.4 Poison Spire - 2019-03-24</h2>
+<p>Suppresses internal stack frames from exceptions to make it easier to determine where the assertion was raised.</p>
+<h2 id="0193-iron-ocean-2019-03-22">0.19.3 Iron Ocean - 2019-03-22</h2>
+<ul>
+<li>Adds assertions and mappings for <code>Assertion.Builder&lt;ClosedRange&gt;</code>.</li>
+<li>Adds <code>endsWith(Char)</code> for <code>Assertion.Builder&lt;CharSequence&gt;</code>.</li>
+</ul>
+<h2 id="0192-bounteous-steel-2019-03-13">0.19.2 Bounteous Steel - 2019-03-13</h2>
+<ul>
+<li>Adds <code>getValue</code> assertion/mapping for <code>Assertion.Builder&lt;Map&lt;*, *&gt;&gt;</code>.</li>
+</ul>
+<h2 id="0191-mighty-rainbow-2019-03-12">0.19.1 Mighty Rainbow - 2019-03-12</h2>
+<ul>
+<li>Adds overload of <code>not</code> that accepts a block.</li>
+</ul>
+<h2 id="0190-poison-hammer-2019-03-10">0.19.0 Poison Hammer - 2019-03-10</h2>
+<ul>
+<li>Ensures that chains inside of blocks still fail fast.</li>
+<li>Ensures <code>get</code> is runtime type safe. It's now a no-op when preceded by a failing type-narrowing assertion.</li>
+</ul>
+<h2 id="0182-venomous-twilight-2019-03-03">0.18.2 Venomous Twilight - 2019-03-03</h2>
+<p>Added <code>atLeat</code>, <code>atMost</code> and <code>exactly</code> assertions for iterables.</p>
+<h2 id="0181-ferocious-rose-2019-03-03">0.18.1 Ferocious Rose - 2019-03-03</h2>
+<p>Extends <code>strikt-jackson</code> module with further assertion and mapping functions:</p>
+<ul>
+<li><code>hasNodeType(JsonNodeType)</code></li>
+<li><code>isMissing()</code></li>
+<li><code>textValue()</code></li>
+<li><code>numberValue()</code></li>
+<li><code>booleanValue()</code></li>
+</ul>
+<h2 id="0180-silken-grasshopper-2019-03-02">0.18.0 Silken Grasshopper - 2019-03-02</h2>
+<p>Adds <code>strikt-jackson</code> module.</p>
+<h2 id="0173-unfettered-serpent-2019-02-24">0.17.3 Unfettered Serpent - 2019-02-24</h2>
+<p>Adds <code>isPresent</code> and <code>isAbsent</code> assertions for <code>java.util.Optional</code> along with <code>toNullable</code> mapping function.</p>
+<h2 id="0172-battleworn-understanding-2019-01-25">0.17.2 Battleworn Understanding - 2019-01-25</h2>
+<p>Fixes <code>isSorted</code> when used in a block.</p>
+<h2 id="0171-whispering-sword-2018-11-30">0.17.1 Whispering Sword - 2018-11-30</h2>
+<p>Adds <code>filter</code>, <code>filterNot</code> and <code>filterIsInstance</code> functions for <code>Assertion.Builder&lt;Iterable&lt;*&gt;&gt;</code></p>
+<h2 id="0170-forsaken-raven-2018-11-03">0.17.0 Forsaken Raven - 2018-11-03</h2>
+<ul>
+<li>Upgrades Strikt to depend on Kotlin 1.3.</li>
+<li><code>expectThrows</code> is un-deprecated.</li>
+<li>Expectations are now compatible with suspending lambdas.</li>
+<li><code>isBefore</code> and <code>isAfter</code> in <code>strikt-java-time</code> now support <code>ZonedDateTime</code>.</li>
+</ul>
+<h2 id="0163-saffron-mammoth-2018-10-26">0.16.3 Saffron Mammoth - 2018-10-26</h2>
+<ul>
+<li><code>Assertion.Builder&lt;Collection&lt;*&gt;.isSorted</code></li>
+<li><code>isEqualTo</code> now has special handling for arrays that compares content using <code>contentEquals</code>.</li>
+</ul>
+<h2 id="0162-anonymous-ifrit-2018-10-19">0.16.2 Anonymous Ifrit - 2018-10-19</h2>
+<ul>
+<li>Backed out truncation of values in failure messages.</li>
+</ul>
+<h2 id="0161-onyx-mammoth-2018-10-19">0.16.1 Onyx Mammoth - 2018-10-19</h2>
+<ul>
+<li>Backed out truncation of values in failure messages.</li>
+</ul>
+<h2 id="0160-sadness-blossom-2018-10-11">0.16.0 Sadness Blossom - 2018-10-11</h2>
+<ul>
+<li>Assertions for <code>java.time</code> types moved from <code>strikt-core</code> to new <code>strikt-java-time</code> module.</li>
+<li><code>Assertion.Builder&lt;Map&lt;*, *&gt;&gt;.isNotEmpty</code></li>
+<li><code>Assertion.Builder&lt;Array&lt;*&gt;&gt;.toList</code></li>
+<li><code>Assertion.Builder&lt;CharSequence&gt;.trim</code></li>
+<li><code>Assertion.Builder&lt;String&gt;.trim</code></li>
+</ul>
+<h2 id="0152-alabaster-tyrant-2018-10-08">0.15.2 Alabaster Tyrant - 2018-10-08</h2>
+<ul>
+<li>Added <code>is(Not)(NullOr)(Empty|Blank)</code> assertions.</li>
+</ul>
+<h2 id="0151-wasteland-monkey-2018-10-05">0.15.1 Wasteland Monkey - 2018-10-05</h2>
+<ul>
+<li>Changes <code>get</code> to use a receiver rather than a parameter.</li>
+<li>Adds new <code>first(predicate)</code> and <code>flatMap</code> mapping extensions for iterable subjects.</li>
+</ul>
+<h2 id="0150-garden-daimyo-2018-10-02">0.15.0 Garden Daimyo - 2018-10-02</h2>
+<ul>
+<li>Deprecates <code>chain</code> in favor of new <code>get</code> method.</li>
+</ul>
+<h2 id="0144-void-maiden-2018-09-29">0.14.4 Void Maiden - 2018-09-29</h2>
+<ul>
+<li>Added Java 11 build &amp; hopefully fixed site publishing</li>
+</ul>
+<h2 id="0143-hungry-boulder-2018-09-27">0.14.3 Hungry Boulder - 2018-09-27</h2>
+<ul>
+<li>Added <code>isIn</code> assertion.</li>
+</ul>
+<h2 id="0142-black-waterfall-2018-09-24">0.14.2 Black Waterfall - 2018-09-24</h2>
+<h2 id="0141-bitter-tiger-2018-09-22">0.14.1 Bitter Tiger - 2018-09-22</h2>
+<p>Fixes broken dependency declaration in <code>strikt-protobuf</code>.</p>
+<h2 id="0140-ruby-panther-2018-09-22">0.14.0 Ruby Panther - 2018-09-22</h2>
+<p>Breaking change renaming <code>map</code> to <code>chain</code> in order to allow a map method that applies to <code>Assertion.Builder&lt;Iterable&lt;*&gt;&gt;</code>.</p>
+<h2 id="0130-blessed-starfall-2018-09-16">0.13.0 Blessed Starfall - 2018-09-16</h2>
+<ul>
+<li>Revisions to exception assertions.</li>
+<li>Instead of <code>assertThrows(() -&gt; Unit)</code> use <code>assertThat(catching(() -&gt; Unit))</code></li>
+<li>throws' receiver is now <code>Assertion.Builder&lt;Throwable?&gt;</code> instead of <code>Assertion.Builder&lt;() -&gt; Unit&gt;</code></li>
+</ul>
+<h2 id="0120-adamant-rose-2018-09-13">0.12.0 Adamant Rose - 2018-09-13</h2>
+<h2 id="0116-moonsilver-serpent-2018-09-06">0.11.6 Moonsilver Serpent - 2018-09-06</h2>
+<h2 id="0115-harmonious-eagle-2018-08-25">0.11.5 Harmonious Eagle - 2018-08-25</h2>
+<h2 id="0114-pain-empress-2018-08-24">0.11.4 Pain Empress - 2018-08-24</h2>
+<h2 id="0113-unfettered-sky-2018-08-23">0.11.3 Unfettered Sky - 2018-08-23</h2>
+<h2 id="0112-viper-understanding-2018-08-18">0.11.2 Viper Understanding - 2018-08-18</h2>
+<h2 id="0111-mantis-discipline-2018-08-17">0.11.1 Mantis Discipline - 2018-08-17</h2>
+<h2 id="0110-ascending-snake-2018-08-14">0.11.0 Ascending Snake - 2018-08-14</h2>
+<h2 id="0102-forest-daimyo-2018-08-12">0.10.2 Forest Daimyo - 2018-08-12</h2>
+<h2 id="0101-silhouette-evasion-2018-08-11">0.10.1 Silhouette Evasion - 2018-08-11</h2>
+<h2 id="0100-ashen-intuition-2018-08-09">0.10.0 Ashen Intuition - 2018-08-09</h2>
+<h2 id="090-glorious-bitterness-2018-07-15">0.9.0 Glorious Bitterness - 2018-07-15</h2>
+<h2 id="086-fluttering-rat-2018-07-15">0.8.6 Fluttering Rat - 2018-07-15</h2>
+<h2 id="085-havoc-lotus-2018-07-10">0.8.5 Havoc Lotus - 2018-07-10</h2>
+<h2 id="084-vengeful-technique-2018-06-28">0.8.4 Vengeful Technique - 2018-06-28</h2>
+<h2 id="083-scorning-guardian-2018-06-11">0.8.3 Scorning Guardian - 2018-06-11</h2>
+<h2 id="082-ebon-claw-2018-06-11">0.8.2 Ebon Claw - 2018-06-11</h2>
+<h2 id="081-marginal-spring-2018-06-10">0.8.1 Marginal Spring - 2018-06-10</h2>
+<h2 id="080-ridiculous-diplomat-2018-06-08">0.8.0 Ridiculous Diplomat - 2018-06-08</h2>
+<h2 id="074-stalwart-havoc-2018-06-05">0.7.4 Stalwart Havoc - 2018-06-05</h2>
+<h2 id="072-noticeable-bell-2018-05-31">0.7.2 Noticeable Bell - 2018-05-31</h2>
+<h2 id="071-bright-raven-2018-05-31">0.7.1 Bright Raven - 2018-05-31</h2>
+<h2 id="070-vermillion-mantis-2018-05-31">0.7.0 Vermillion Mantis - 2018-05-31</h2>
+<h2 id="068-battleworn-hyena-2018-05-29">0.6.8 Battleworn Hyena - 2018-05-29</h2>
+<h2 id="067-black-rampart-2018-05-29">0.6.7 Black Rampart - 2018-05-29</h2>
+<h2 id="066-quicksilver-serpent-2018-05-29">0.6.6 Quicksilver Serpent - 2018-05-29</h2>
+<h2 id="065-whispering-horizon-2018-05-29">0.6.5 Whispering Horizon - 2018-05-29</h2>
+<h2 id="064-sorrowful-bow-2018-05-25">0.6.4 Sorrowful Bow - 2018-05-25</h2>
+<h2 id="063-flaxen-tiger-2018-05-25">0.6.3 Flaxen Tiger - 2018-05-25</h2>
+<h2 id="062-benificent-locust-2018-05-25">0.6.2 Benificent Locust - 2018-05-25</h2>
+<h2 id="061-drunken-orchid-2018-05-21">0.6.1 Drunken Orchid - 2018-05-21</h2>
+<h2 id="060-metal-eagle-2018-05-21">0.6.0 Metal Eagle - 2018-05-21</h2>
+<h2 id="051-tsunami-carp-2018-05-19">0.5.1 Tsunami Carp - 2018-05-19</h2>
+<h2 id="050-saffron-thunderhead-2018-05-19">0.5.0 Saffron Thunderhead - 2018-05-19</h2>
+<h2 id="042-virtuous-monsoon-2018-05-16">0.4.2 Virtuous Monsoon - 2018-05-16</h2>
+<h2 id="041-iron-mind-2018-05-16">0.4.1 Iron Mind - 2018-05-16</h2>
+<h2 id="040-starmetal-mist-2018-05-15">0.4.0 Starmetal Mist - 2018-05-15</h2>
+<h2 id="030-towering-moon-2018-05-14">0.3.0 Towering Moon - 2018-05-14</h2>
+<h2 id="027-elder-starfall-2018-05-10">0.2.7 Elder Starfall - 2018-05-10</h2>
+<h2 id="026-sapphire-spear-2018-05-10">0.2.6 Sapphire Spear - 2018-05-10</h2>
+<h2 id="025-2018-05-10">0.2.5 - 2018-05-10</h2>
+<h2 id="024-2018-05-09">0.2.4 - 2018-05-09</h2>
+<h2 id="023-2018-05-09">0.2.3 - 2018-05-09</h2>
+<h2 id="022-2018-05-05">0.2.2 - 2018-05-05</h2>
+<h2 id="021-2018-05-04">0.2.1 - 2018-05-04</h2>
+<h2 id="020-2018-05-04">0.2.0 - 2018-05-04</h2>
+<h2 id="010-2018-05-03">0.1.0 - 2018-05-03</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/robfletcher/strikt" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://kotlinlang.slack.com/messages/CAR7KJ96J" target="_blank" rel="noopener" title="kotlinlang.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M94.1 315.1c0 25.9-21.2 47.1-47.1 47.1S0 341 0 315.1 21.2 268 47.1 268h47.1v47.1zm23.7 0c0-25.9 21.2-47.1 47.1-47.1s47.1 21.2 47.1 47.1v117.8c0 25.9-21.2 47.1-47.1 47.1s-47.1-21.2-47.1-47.1zm47.1-189c-25.9 0-47.1-21.2-47.1-47.1s21.2-47 47.1-47S212 53.2 212 79.1v47.1h-47.1zm0 23.7c25.9 0 47.1 21.2 47.1 47.1S190.8 244 164.9 244H47.1C21.2 244 0 222.8 0 196.9s21.2-47.1 47.1-47.1zm189 47.1c0-25.9 21.2-47.1 47.1-47.1s47 21.2 47 47.1-21.2 47.1-47.1 47.1h-47.1v-47.1zm-23.7 0c0 25.9-21.2 47.1-47.1 47.1S236 222.8 236 196.9V79.1c0-25.9 21.2-47.1 47.1-47.1s47.1 21.2 47.1 47.1zm-47.1 189c25.9 0 47.1 21.2 47.1 47.1s-21.2 47-47.1 47-47.1-21.2-47.1-47.1v-47.1h47.1zm0-23.7c-25.9 0-47.1-21.2-47.1-47.1s21.2-47.1 47.1-47.1h117.8c25.9 0 47.1 21.2 47.1 47.1s-21.2 47.1-47.1 47.1z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/stri_kt" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": "main"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
