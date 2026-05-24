@@ -14,7 +14,6 @@ java {
 
 kotlin {
   jvm {
-    withJava()
     compilerOptions {
       commonJvmCompilerOptions()
     }
