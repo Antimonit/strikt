@@ -4,7 +4,7 @@ arrow = "2.2.2.1"
 # https://central.sonatype.com/artifact/com.fasterxml.jackson/jackson-bom
 jackson = "2.21.3"
 # https://github.com/junit-team/junit5/releases
-junit = "5.14.4"
+junit = "6.1.0"
 # https://github.com/Kotlin/dokka/releases
 dokka = "1.9.20"
 # https://github.com/JetBrains/kotlin/releases
