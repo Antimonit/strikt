@@ -6,7 +6,7 @@ plugins {
 
 // Lint Kotlin code
 kotlinter {
-  ignoreFailures = true
+  ignoreLintFailures = true
   // indentSize = 2
   reporters = arrayOf("html", "plain")
 }
