@@ -1,9 +1,15 @@
 package strikt.gradle
 
+import org.gradle.api.JavaVersion
+
 plugins {
   id("org.jetbrains.kotlin.multiplatform")
   id("strikt.gradle.kotlinter")
   id("strikt.gradle.test-logger")
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
