@@ -10,7 +10,7 @@ dokka = "1.9.20"
 # https://github.com/JetBrains/kotlin/releases
 kotlin = "2.3.21"
 # https://github.com/jeremymailen/kotlinter-gradle/releases
-kotlinter = "5.0.2"
+kotlinter = "5.5.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.11.0"
 # https://github.com/Kotlin/kotlinx-kover/releases
