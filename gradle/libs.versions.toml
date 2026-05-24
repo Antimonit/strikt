@@ -34,7 +34,7 @@ spring-boot = "3.5.14"
 # https://github.com/radarsh/gradle-test-logger-plugin/releases
 test-logger = "4.0.0"
 # https://github.com/ben-manes/gradle-versions-plugin/releases
-versions = "0.51.0"
+versions = "0.54.0"
 
 [libraries]
 # https://arrow-kt.io/
