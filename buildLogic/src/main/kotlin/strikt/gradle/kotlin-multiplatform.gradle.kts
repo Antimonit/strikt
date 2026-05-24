@@ -39,6 +39,7 @@ kotlin {
       implementation(project.dependencies.platform(libs.findLibrary("junit-bom").get()))
       implementation(libs.findLibrary("junit-jupiter-api").get())
       runtimeOnly(libs.findLibrary("junit-jupiter-engine").get())
+      runtimeOnly(libs.findLibrary("junit-platform-launcher").get())
     }
   }
 }

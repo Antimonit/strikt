@@ -51,6 +51,7 @@ jackson-module-kotlin = { module = "com.fasterxml.jackson.module:jackson-module-
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 # https://github.com/JetBrains/kotlin
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
 # https://github.com/Kotlin/kotlinx.coroutines
