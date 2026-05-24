@@ -1,8 +1,6 @@
 [versions]
 # https://github.com/arrow-kt/arrow/releases
 arrow = "1.2.4"
-# https://github.com/failgood/failgood/releases
-failgood = "0.9.1"
 # https://central.sonatype.com/artifact/com.fasterxml.jackson/jackson-bom
 jackson = "2.17.2"
 # https://github.com/junit-team/junit5/releases
@@ -41,8 +39,6 @@ versions = "0.51.0"
 [libraries]
 # https://arrow-kt.io/
 arrow = { module = "io.arrow-kt:arrow-core", version.ref = "arrow" }
-# https://github.com/failgood/failgood
-failgood = { module = "dev.failgood:failgood", version.ref = "failgood" }
 # https://github.com/FasterXML/jackson-bom
 jackson-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind" }

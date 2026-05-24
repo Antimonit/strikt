@@ -14,7 +14,6 @@ kotlin {
       api(libs.opentest4j)
     }
     jvmTest.dependencies {
-      implementation(libs.failgood)
       implementation(libs.minutest)
     }
   }
