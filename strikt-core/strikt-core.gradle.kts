@@ -12,7 +12,6 @@ kotlin {
     }
     jvmMain.dependencies {
       api(libs.opentest4j)
-      implementation(libs.filepeek)
     }
     jvmTest.dependencies {
       implementation(libs.failgood)
