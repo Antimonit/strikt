@@ -24,9 +24,9 @@ import strikt.assertions.map
 infix fun <T : JsonNode> Assertion.Builder<T>.has(fieldName: String): Assertion.Builder<T> =
   assert("has a field named '$fieldName'") { subject ->
     if (subject.has(fieldName)) {
-      pass(actual = subject.fields().asSequence().map { it.key }.toList())
+      pass(actual = subject.properties().asSequence().map { it.key }.toList())
     } else {
-      fail(actual = subject.fields().asSequence().map { it.key }.toList())
+      fail(actual = subject.properties().asSequence().map { it.key }.toList())
     }
   }
 
