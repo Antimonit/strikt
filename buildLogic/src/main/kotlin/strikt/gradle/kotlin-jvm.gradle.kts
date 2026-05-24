@@ -30,4 +30,5 @@ dependencies {
   testImplementation(platform(libs.findLibrary("junit-bom").get()))
   testImplementation(libs.findLibrary("junit-jupiter-api").get())
   testRuntimeOnly(libs.findLibrary("junit-jupiter-engine").get())
+  testRuntimeOnly(libs.findLibrary("junit-platform-launcher").get())
 }
