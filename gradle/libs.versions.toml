@@ -10,7 +10,7 @@ junit = "5.11.0"
 # https://github.com/Kotlin/dokka/releases
 dokka = "1.9.20"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.0.10"
+kotlin = "2.3.21"
 # https://github.com/jeremymailen/kotlinter-gradle/releases
 kotlinter = "5.0.2"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
