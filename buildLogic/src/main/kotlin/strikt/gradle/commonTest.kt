@@ -8,7 +8,7 @@ fun Project.commonTest() {
   tasks.withType<Test> {
     systemProperty("junit.jupiter.execution.parallel.enabled", "false")
     useJUnitPlatform {
-      includeEngines("junit-jupiter", "failgood")
+      includeEngines("junit-jupiter")
     }
   }
 }
