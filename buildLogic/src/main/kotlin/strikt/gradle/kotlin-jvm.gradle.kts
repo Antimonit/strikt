@@ -24,8 +24,8 @@ commonTest()
 val libs = the<VersionCatalogsExtension>().named("libs")
 
 dependencies {
-  "implementation"(platform(libs.findLibrary("kotlin-bom").get()))
-  "implementation"(platform(libs.findLibrary("kotlinx-coroutines-bom").get()))
+  implementation(platform(libs.findLibrary("kotlin-bom").get()))
+  implementation(platform(libs.findLibrary("kotlinx-coroutines-bom").get()))
 
   testImplementation(platform(libs.findLibrary("junit-bom").get()))
   testImplementation(libs.findLibrary("junit-jupiter-api").get())
