@@ -20,7 +20,7 @@ minutest = "1.13.0"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.9"
 # https://github.com/nebula-plugins/nebula-publishing-plugin/releases
-nebula = "21.0.0"
+nebula = "21.2.0"
 # https://github.com/Codearte/gradle-nexus-staging-plugin/releases
 nexus-staging = "0.30.0"
 # https://github.com/ota4j-team/opentest4j/releases
