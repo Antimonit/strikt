@@ -2,7 +2,7 @@
 # https://github.com/arrow-kt/arrow/releases
 arrow = "2.2.2.1"
 # https://central.sonatype.com/artifact/com.fasterxml.jackson/jackson-bom
-jackson = "2.21.3"
+jackson = "2.22.0"
 # https://github.com/junit-team/junit5/releases
 junit = "6.1.0"
 # https://github.com/Kotlin/dokka/releases
