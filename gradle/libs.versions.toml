@@ -8,7 +8,7 @@ junit = "6.1.0"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.2.0"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 # https://github.com/jeremymailen/kotlinter-gradle/releases
 kotlinter = "5.5.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
