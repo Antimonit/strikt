@@ -20,7 +20,7 @@ interface Assertion {
    * Mark this result as failed.
    *
    * @param description An optional description of the failure.
-   * @property cause The exception that caused the failure, if any.
+   * @param cause The exception that caused the failure, if any.
    */
   fun fail(
     description: String? = null,
