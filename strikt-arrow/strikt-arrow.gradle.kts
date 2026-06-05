@@ -1,7 +1,3 @@
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import java.net.URI
-import java.net.URL
-
 plugins {
   id("strikt.gradle.kotlin-jvm")
   alias(libs.plugins.published)
@@ -18,15 +14,10 @@ dependencies {
   testImplementation(libs.minutest)
 }
 
-tasks.withType<DokkaTaskPartial>().configureEach {
-  dokkaSourceSets {
-    configureEach {
-      "https://arrow-kt.io/docs/apidocs/arrow-core/".also {
-        externalDocumentationLink {
-          url.set(URI(it).toURL())
-          packageListUrl.set(URI("${it}package-list").toURL())
-        }
-      }
+dokka {
+  dokkaSourceSets.configureEach {
+    externalDocumentationLinks.register("arrow-docs") {
+      url("https://apidocs.arrow-kt.io/")
     }
   }
 }

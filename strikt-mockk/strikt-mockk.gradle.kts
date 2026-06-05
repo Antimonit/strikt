@@ -13,3 +13,11 @@ dependencies {
   testImplementation(libs.minutest)
   testImplementation(libs.mockk)
 }
+
+dokka {
+  dokkaSourceSets.configureEach {
+    externalDocumentationLinks.register("mockk") {
+      url("https://javadoc.io/doc/io.mockk/mockk/")
+    }
+  }
+}

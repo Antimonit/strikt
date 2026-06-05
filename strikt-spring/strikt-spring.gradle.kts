@@ -1,6 +1,3 @@
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
-import java.net.URI
-
 plugins {
   id("strikt.gradle.kotlin-jvm")
   alias(libs.plugins.published)
@@ -23,15 +20,16 @@ dependencies {
   testImplementation(libs.spring.boot.starter.web)
 }
 
-tasks.withType<DokkaTaskPartial>().configureEach {
-  dokkaSourceSets {
-    configureEach {
-      "https://docs.spring.io/spring-framework/docs/current/javadoc-api/".also {
-        externalDocumentationLink {
-          url.set(URI(it).toURL())
-          packageListUrl.set(URI("${it}package-list").toURL())
-        }
-      }
+dokka {
+  dokkaSourceSets.configureEach {
+    externalDocumentationLinks.register("spring-docs") {
+      // Not all APIs are contained in the kotlin kdoc.
+      // For example, the whole `org.springframework.http` package from
+      // the `spring-web` artifact can be only found in javadoc.
+      url("https://docs.spring.io/spring-framework/docs/current/javadoc-api/")
+      url("https://docs.spring.io/spring-framework/docs/current/kdoc-api/")
+      // Furthermore, Spring javadoc does not publish the package-list.
+      packageListUrl("https://docs.spring.io/spring-framework/docs/current/kdoc-api/package-list")
     }
   }
 }

@@ -46,7 +46,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Generate API docs
-        run: ./gradlew dokkaHtmlMultiModule
+        run: ./gradlew dokkaGenerate
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
