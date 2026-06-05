@@ -1,6 +1,7 @@
 package strikt.assertions
 
 import strikt.api.Assertion
+import kotlin.jvm.JvmName
 
 /**
  * Maps an assertion on a [Pair] to an assertion on its [Pair.first] property.

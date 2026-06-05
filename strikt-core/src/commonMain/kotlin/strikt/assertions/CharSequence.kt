@@ -1,6 +1,7 @@
 package strikt.assertions
 
 import strikt.api.Assertion.Builder
+import kotlin.jvm.JvmName
 import kotlin.text.RegexOption.IGNORE_CASE
 
 /**
