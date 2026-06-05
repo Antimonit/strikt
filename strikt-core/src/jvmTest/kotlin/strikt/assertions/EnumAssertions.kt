@@ -12,7 +12,7 @@ internal object EnumAssertions : JUnit5Minutests {
   fun tests() =
     rootContext {
       context("name mapping") {
-        Pantheon.values().forEach { deity ->
+        Pantheon.entries.forEach { deity ->
           test("Can get name on $deity") {
             expectThat(deity).name.isEqualTo(deity.name)
           }
@@ -20,7 +20,7 @@ internal object EnumAssertions : JUnit5Minutests {
       }
 
       context("ordinal mapping") {
-        Pantheon.values().forEach { deity ->
+        Pantheon.entries.forEach { deity ->
           test("Can get ordinal on $deity") {
             expectThat(deity).ordinal.isEqualTo(deity.ordinal)
           }
