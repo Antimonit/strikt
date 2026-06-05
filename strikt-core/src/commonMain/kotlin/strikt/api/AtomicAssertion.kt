@@ -24,7 +24,7 @@ interface AtomicAssertion : Assertion {
    * from the expected value.
    * @param description A description of the failure. May contain a
    * [String.format] style placeholder for the [actual] value.
-   * @property cause The exception that caused the failure, if any.
+   * @param cause The exception that caused the failure, if any.
    */
   fun fail(
     actual: Any?,
