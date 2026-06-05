@@ -1,5 +1,6 @@
 package strikt.docs
 
+import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -21,7 +22,6 @@ import strikt.assertions.withFirst
 import strikt.assertions.withLast
 import strikt.internal.opentest4j.CompoundAssertionFailure
 import strikt.internal.opentest4j.IncompleteAssertion
-import java.time.LocalDate
 
 @DisplayName("Snippets used in Orchid docs")
 internal class Chaining {
@@ -59,7 +59,7 @@ internal class Chaining {
 
     expectThrows<CompoundAssertionFailure> {
       // --8<-- [start:traversing_subjects_2]
-      val subject = Person(name = "David", birthDate = LocalDate.of(1947, 1, 8))
+      val subject = Person(name = "David", birthDate = LocalDate(1947, 1, 8))
       expectThat(subject) {
         get { name }.isEqualTo("Ziggy")
         get { birthDate.year }.isEqualTo(1971)
@@ -72,10 +72,10 @@ internal class Chaining {
 
   @Test fun `traversing subjects 4`() {
     // --8<-- [start:traversing_subjects_4]
-    val subject = Person(name = "David", birthDate = LocalDate.of(1947, 1, 8))
+    val subject = Person(name = "David", birthDate = LocalDate(1947, 1, 8))
     expectThat(subject) {
       get(Person::name).isEqualTo("David")
-      get(Person::birthDate).get(LocalDate::getYear).isEqualTo(1947)
+      get(Person::birthDate).get(LocalDate::year).isEqualTo(1947)
     }
     // --8<-- [end:traversing_subjects_4]
   }
@@ -108,7 +108,7 @@ internal class Chaining {
 
   @Test fun `traversing subjects 7`() {
     // --8<-- [start:traversing_subjects_7]
-    val subject = Person(name = "David", birthDate = LocalDate.of(1947, 1, 8))
+    val subject = Person(name = "David", birthDate = LocalDate(1947, 1, 8))
     expectThat(subject) {
       name.isEqualTo("David")
       yearOfBirth.isEqualTo(1947)
@@ -134,7 +134,7 @@ internal class Chaining {
   }
 
   @Test fun `grouping with and 2, 3`() {
-    val person = Person(name = "David", birthDate = LocalDate.of(1947, 1, 8))
+    val person = Person(name = "David", birthDate = LocalDate(1947, 1, 8))
     // --8<-- [start:grouping_with_and_2]
     expectThat(person)
       .and {

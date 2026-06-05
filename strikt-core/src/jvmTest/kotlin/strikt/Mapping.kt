@@ -1,5 +1,6 @@
 package strikt
 
+import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -20,7 +21,6 @@ import strikt.assertions.last
 import strikt.assertions.map
 import strikt.assertions.message
 import strikt.assertions.single
-import java.time.LocalDate
 
 @DisplayName("mapping assertions")
 internal class Mapping {
@@ -166,6 +166,6 @@ internal class Mapping {
   }
 }
 
-data class Person(val name: String, val birthDate: LocalDate = LocalDate.now())
+data class Person(val name: String, val birthDate: LocalDate = LocalDate(2026, 12, 31))
 
 data class Album(val name: String)

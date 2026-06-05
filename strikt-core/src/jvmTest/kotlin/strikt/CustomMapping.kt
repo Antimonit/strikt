@@ -1,15 +1,17 @@
 package strikt
 
+import kotlinx.datetime.DatePeriod
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.plus
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
-import java.time.LocalDate
 
 @DisplayName("custom mappings")
 class CustomMapping {
-  val subject = Person("David", LocalDate.of(1947, 1, 8))
+  val subject = Person("David", LocalDate(1947, 1, 8))
 
   @Test
   fun `can map with a closure`() {
@@ -23,7 +25,7 @@ class CustomMapping {
   fun `can map with property and method references`() {
     expectThat(subject) {
       get(Person::name).isEqualTo("David")
-      get(Person::birthDate).get(LocalDate::getYear).isEqualTo(1947)
+      get(Person::birthDate).get(LocalDate::year).isEqualTo(1947)
     }
   }
 
@@ -31,8 +33,8 @@ class CustomMapping {
   fun `closures can call methods`() {
     expectThat(subject) {
       get { name.uppercase() }.isEqualTo("DAVID")
-      get { birthDate.plusYears(69).plusDays(2) }
-        .isEqualTo(LocalDate.of(2016, 1, 10))
+      get { birthDate + DatePeriod(years = 69, days = 2) }
+        .isEqualTo(LocalDate(2016, 1, 10))
     }
   }
 
@@ -101,13 +103,13 @@ class CustomMapping {
     val error =
       assertThrows<AssertionError> {
         expectThat(subject).get(Person::birthDate)
-          .get(LocalDate::getYear)
+          .get(LocalDate::year)
           .isEqualTo(1971)
       }
     expectThat(error.message).isEqualTo(
       """▼ Expect that Person(name=David, birthDate=1947-01-08):
         |  ▼ value of property birthDate:
-        |    ▼ return value of getYear:
+        |    ▼ value of property year:
         |      ✗ is equal to 1971
         |              found 1947
       """.trimMargin()

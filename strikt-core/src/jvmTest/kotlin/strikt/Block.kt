@@ -1,5 +1,6 @@
 package strikt
 
+import kotlinx.datetime.LocalDate
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -19,7 +20,6 @@ import strikt.assertions.isNull
 import strikt.assertions.single
 import strikt.assertions.startsWith
 import strikt.internal.opentest4j.IncompleteAssertion
-import java.time.LocalDate
 
 @DisplayName("assertions in blocks")
 internal class Block {
@@ -174,7 +174,7 @@ internal class Block {
   @Test
   fun `can evaluate a block of assertions on a derived subject`() {
     assertThrows<AssertionError> {
-      val subject = Person("David", LocalDate.of(1947, 1, 8))
+      val subject = Person("David", LocalDate(1947, 1, 8))
       expectThat(subject)
         .with("name", Person::name) {
           startsWith("Z")
@@ -199,7 +199,7 @@ internal class Block {
   @Test
   fun `can evaluate a block of assertions with a contextual description on a derived subject`() {
     assertThrows<AssertionError> {
-      val subject = Person("David", LocalDate.of(1947, 1, 8))
+      val subject = Person("David", LocalDate(1947, 1, 8))
       expectThat(subject)
         .with(Person::name) {
           startsWith("Z")
@@ -224,10 +224,10 @@ internal class Block {
   @Test
   fun `can chain after a successful block of assertions on a derived subject`() {
     assertThrows<AssertionError> {
-      val subject = Person("David", LocalDate.of(1947, 1, 8))
+      val subject = Person("David", LocalDate(1947, 1, 8))
       expectThat(subject)
         .with(Person::birthDate) {
-          isLessThan(LocalDate.of(2019, 11, 30))
+          isLessThan(LocalDate(2019, 11, 30))
         }
         .with(Person::name) {
           startsWith("Z")
@@ -254,7 +254,7 @@ internal class Block {
   @Test
   fun `chain after a failing block of assertions on a derived subject is not evaluated`() {
     assertThrows<AssertionError> {
-      val subject = Person("David", LocalDate.of(1947, 1, 8))
+      val subject = Person("David", LocalDate(1947, 1, 8))
       expectThat(subject)
         .with(Person::name) {
           startsWith("Z")
@@ -262,7 +262,7 @@ internal class Block {
           hasLength(5)
         }
         .with(Person::birthDate) {
-          isLessThan(LocalDate.of(2019, 11, 30))
+          isLessThan(LocalDate(2019, 11, 30))
         }
     }.let { error ->
       val expected =

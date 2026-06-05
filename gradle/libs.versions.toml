@@ -13,6 +13,8 @@ kotlin = "2.3.21"
 kotlinter = "5.5.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.11.0"
+# https://github.com/Kotlin/kotlinx-datetime/releases
+kotlinx-datetime = "0.8.0"
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.8"
 # https://central.sonatype.com/artifact/dev.minutest/minutest
@@ -53,6 +55,8 @@ kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin
 # https://github.com/Kotlin/kotlinx.coroutines
 kotlinx-coroutines-bom = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-bom", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core" }
+# https://github.com/Kotlin/kotlinx-datetime
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 # https://github.com/dmcg/minutest
 minutest = { module = "dev.minutest:minutest", version.ref = "minutest" }
 # https://mockk.io/

@@ -1,5 +1,7 @@
 package strikt.docs
 
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.Month
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import strikt.Person
@@ -21,8 +23,6 @@ import strikt.assertions.matches
 import strikt.assertions.message
 import strikt.assertions.startsWith
 import strikt.internal.opentest4j.CompoundAssertionFailure
-import java.time.LocalDate
-import java.time.MonthDay
 
 // Wrap each code snippet in comments like "// --8<-- [start:name] ... // --8<-- [end:name]"
 // Code snippets can be referenced from the docs using pymdownx.snippets
@@ -134,12 +134,10 @@ internal class Homepage {
     // --8<-- [start:homepage_ten]
     fun Assertion.Builder<LocalDate>.isStTibsDay() =
       assert("is St. Tib's Day") {
-        when (MonthDay.from(it)) {
-          MonthDay.of(2, 29) -> pass()
-          else -> fail()
-        }
+        if (it.month == Month.FEBRUARY && it.day == 29) pass()
+        else fail()
       }
-    expectThat(LocalDate.of(2020, 2, 29)).isStTibsDay()
+    expectThat(LocalDate(2020, 2, 29)).isStTibsDay()
     // --8<-- [end:homepage_ten]
   }
 
