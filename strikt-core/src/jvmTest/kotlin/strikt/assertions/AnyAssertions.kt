@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
 import strikt.api.Assertion.Builder
 import strikt.api.expectThat
-import java.time.Instant
+import kotlin.time.Instant
 
 internal object AnyAssertions : JUnit5Minutests {
   fun tests() =
@@ -231,7 +231,7 @@ internal object AnyAssertions : JUnit5Minutests {
           null to listOf("fnord"),
           listOf("fnord") to null,
           1 to 1L,
-          Instant.now().let { it to Instant.ofEpochMilli(it.toEpochMilli()) }
+          Instant.parse("2026-12-31T12:30:00Z").let { it to Instant.fromEpochMilliseconds(it.toEpochMilliseconds()) }
         )
           .forEach { (subject, expected) ->
             context("the subject and expected values are different instances") {
@@ -245,7 +245,7 @@ internal object AnyAssertions : JUnit5Minutests {
             }
           }
 
-        listOf("fnord", 1L, null, listOf("fnord"), Instant.now())
+        listOf("fnord", 1L, null, listOf("fnord"), Instant.parse("2026-12-31T12:30:00Z"))
           .map { it to it }
           .forEach { (subject, expected) ->
             context("the subject and expected values are the same instance") {
@@ -264,7 +264,7 @@ internal object AnyAssertions : JUnit5Minutests {
           null to listOf("fnord"),
           listOf("fnord") to null,
           1 to 1L,
-          Instant.now().let { it to Instant.ofEpochMilli(it.toEpochMilli()) }
+          Instant.parse("2026-12-31T12:30:00Z").let { it to Instant.fromEpochMilliseconds(it.toEpochMilliseconds()) }
         )
           .forEach { (subject, expected) ->
             context("the subject and expected values are different instances") {
@@ -276,7 +276,7 @@ internal object AnyAssertions : JUnit5Minutests {
             }
           }
 
-        listOf("fnord", 1L, null, listOf("fnord"), Instant.ofEpochMilli(0))
+        listOf("fnord", 1L, null, listOf("fnord"), Instant.fromEpochMilliseconds(0))
           .map { it to it }
           .forEach { (subject, expected) ->
             context("the subject and expected values are the same instance") {
