@@ -64,11 +64,9 @@ plugins.withId("kotlin") {
     enabled = false
   }
 
-  tasks.withType<DokkaTaskPartial>().configureEach {
-    dokkaSourceSets {
-      configureEach {
-        jdkVersion.set(11)
-      }
+  dokka {
+    dokkaSourceSets.configureEach {
+      jdkVersion.set(11)
     }
   }
 
@@ -76,7 +74,7 @@ plugins.withId("kotlin") {
     group = "build"
     description = "Assembles Javadoc jar from Dokka API docs"
     archiveClassifier.set("javadoc")
-    from(tasks.dokkaHtml)
+    from(tasks.dokkaGenerate)
   }
 
   publishing {

@@ -26,8 +26,10 @@ allprojects {
   }
 }
 
-tasks.dokkaHtmlMultiModule {
-  outputDirectory.set(rootDir.resolve("docs/api"))
+dokka {
+  dokkaPublications.html {
+    outputDirectory.set(rootDir.resolve("docs/api"))
+  }
 }
 
 configure<NexusStagingExtension> {
@@ -46,4 +48,15 @@ tasks.withType<DependencyUpdatesTask> {
   rejectVersionIf {
     candidate.isNonStable()
   }
+}
+
+dependencies {
+  dokka(project(":strikt-bom"))
+  dokka(project(":strikt-core"))
+  dokka(project(":strikt-arrow"))
+  dokka(project(":strikt-jackson"))
+  dokka(project(":strikt-jvm"))
+  dokka(project(":strikt-mockk"))
+  dokka(project(":strikt-protobuf"))
+  dokka(project(":strikt-spring"))
 }
