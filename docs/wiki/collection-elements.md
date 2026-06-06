@@ -4,13 +4,13 @@ Some assertions on collections include sub-assertions applied to the elements of
 For example, we can assert that _all_ elements conform to a repeated assertion.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:collections_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:collections_2"
 ```
 
 This produces the output:
 
 ```text
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:collections_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:collections_1"
 ```
 
 The results are broken down by individual elements in the collection, so it's easy to see which failed.

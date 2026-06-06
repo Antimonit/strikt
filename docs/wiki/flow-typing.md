@@ -22,7 +22,7 @@ Another example is making assertions about a subject's specific runtime type, or
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:flow_typing_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:flow_typing_1"
 ```
 
 The return type of the subject map's `get()` method is `Any` but using the narrowing assertion `isA<T>()` we can both assert the type of the value and, because the compiler now knows it is dealing with an `Assertion.Builder<String>` or an `Assertion.Builder<Number>`, we can use more specialized assertion methods that are only available for those subject types.

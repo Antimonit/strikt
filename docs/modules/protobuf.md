@@ -10,4 +10,4 @@ testImplementation("io.strikt:strikt-protobuf:{{ version }}")
 
 ## API Documentation
 
-- [strikt.protobuf](/api/strikt-protobuf/strikt.protobuf/)
+- [strikt.protobuf](../../api/strikt-protobuf/strikt.protobuf/)

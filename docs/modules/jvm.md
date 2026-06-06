@@ -10,5 +10,5 @@ testImplementation("io.strikt:strikt-jvm:{{ version }}")
 
 ## API Documentation
 
-- [strikt.java](/api/strikt-jvm/strikt.java/)
-- [strikt.java.time](/api/strikt-jvm/strikt.java.time/)
+- [strikt.java](../../api/strikt-jvm/strikt.java/)
+- [strikt.java.time](../../api/strikt-jvm/strikt.java.time/)

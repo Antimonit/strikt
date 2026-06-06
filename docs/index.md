@@ -27,7 +27,7 @@ Type-safe fluent assertions
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_one"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_one"
 ```
 </div>
 </div>
@@ -41,7 +41,7 @@ Flexible assertions about collections
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_two"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_two"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -49,7 +49,7 @@ Flexible assertions about collections
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_three"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_three"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -57,7 +57,7 @@ Make grouping assertions
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_four"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_four"
 ```
 </div>
 </div>
@@ -71,7 +71,7 @@ Use lambdas to execute multiple assertions on a subject at once…
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_five"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_five"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -79,7 +79,7 @@ Use lambdas to execute multiple assertions on a subject at once…
 </div>
 <div class="homepage-feature-code" markdown>
 ```text
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_six"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_six"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -87,7 +87,7 @@ Use lambdas to execute assertions on multiple subjects at once…
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_seven"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_seven"
 ```
 </div>
 </div>
@@ -101,7 +101,7 @@ Assertion functions can "narrow" the type of the assertion
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_eight"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_eight"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -109,7 +109,7 @@ Assertions can "map" to properties and method results in a type safe way
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_nine"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_nine"
 ```
 </div>
 </div>
@@ -123,7 +123,7 @@ Custom assertions are extension functions
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_ten"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_ten"
 ```
 </div>
 <div class="homepage-feature-label" markdown>
@@ -131,8 +131,8 @@ Custom mappings are extension properties
 </div>
 <div class="homepage-feature-code" markdown>
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_eleven_a"
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Homepage.kt:homepage_eleven_b"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_eleven_a"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Homepage.kt:homepage_eleven_b"
 ```
 </div>
 </div>
