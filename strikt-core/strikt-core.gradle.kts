@@ -15,6 +15,7 @@ kotlin {
     }
     jvmTest.dependencies {
       implementation(libs.minutest)
+      implementation(libs.kotlinx.datetime)
     }
   }
 }

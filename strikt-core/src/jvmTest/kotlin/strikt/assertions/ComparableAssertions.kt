@@ -6,7 +6,8 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import strikt.api.Assertion
 import strikt.api.expectThat
-import java.time.Instant
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Instant
 
 @DisplayName("assertions on Comparable")
 internal object ComparableAssertions {
@@ -117,9 +118,9 @@ internal object ComparableAssertions {
     assertionTests<Instant> {
       context("an Instant subject") {
         supportsComparisonAssertions(
-          Instant.now(),
-          { minusMillis(1) },
-          { plusMillis(1) }
+          Instant.parse("2026-12-31T12:30:00Z"),
+          { minus(1.milliseconds) },
+          { plus(1.milliseconds) }
         )
       }
     }

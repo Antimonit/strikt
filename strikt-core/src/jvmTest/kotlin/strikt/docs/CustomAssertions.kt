@@ -1,5 +1,7 @@
 package strikt.docs
 
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.Month
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.opentest4j.AssertionFailedError
@@ -9,8 +11,6 @@ import strikt.api.expectThrows
 import strikt.assertions.isEqualTo
 import strikt.assertions.isNotNull
 import strikt.assertions.message
-import java.time.LocalDate
-import java.time.MonthDay
 
 @DisplayName("Snippets used in Orchid docs")
 internal class CustomAssertions {
@@ -21,10 +21,8 @@ internal class CustomAssertions {
     // --8<-- [start:custom_assertions_1]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assert("is St. Tib's Day") {
-        when (MonthDay.from(it)) {
-          MonthDay.of(2, 29) -> pass()
-          else -> fail()
-        }
+        if (it.month == Month.FEBRUARY && it.day == 29) pass()
+        else fail()
       }
     // --8<-- [end:custom_assertions_1]
 
@@ -37,7 +35,7 @@ internal class CustomAssertions {
       """
 
     expectThrows<AssertionFailedError> {
-      expectThat(LocalDate.of(2018, 5, 1)).isStTibsDay()
+      expectThat(LocalDate(2018, 5, 1)).isStTibsDay()
     }
       .message
       .isEqualTo(s.removeSnippetTags().trimIndent().trim())
@@ -47,14 +45,11 @@ internal class CustomAssertions {
     // --8<-- [start:custom_assertions_3]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assert("is St. Tib's Day") {
-        when (MonthDay.from(it)) {
-          MonthDay.of(2, 29) -> pass()
-          else ->
-            fail(
-              description = "in fact it is %s",
-              actual = it
-            )
-        }
+        if (it.month == Month.FEBRUARY && it.day == 29) pass()
+        else fail(
+          description = "in fact it is %s",
+          actual = it
+        )
       }
     // --8<-- [end:custom_assertions_3]
 
@@ -68,7 +63,7 @@ internal class CustomAssertions {
       """
 
     expectThrows<AssertionFailedError> {
-      expectThat(LocalDate.of(2018, 5, 1)).isStTibsDay()
+      expectThat(LocalDate(2018, 5, 1)).isStTibsDay()
     }
       .message
       .isEqualTo(s.removeSnippetTags().trimIndent().trim())
@@ -78,7 +73,7 @@ internal class CustomAssertions {
     // --8<-- [start:custom_assertions_5]
     fun Assertion.Builder<LocalDate>.isStTibsDay(): Assertion.Builder<LocalDate> =
       assertThat("is St. Tib's Day") {
-        MonthDay.from(it) == MonthDay.of(2, 29)
+        it.month == Month.FEBRUARY && it.day == 29
       }
     // --8<-- [end:custom_assertions_5]
 
@@ -89,7 +84,7 @@ internal class CustomAssertions {
       """
 
     expectThrows<AssertionFailedError> {
-      expectThat(LocalDate.of(2018, 5, 1)).isStTibsDay()
+      expectThat(LocalDate(2018, 5, 1)).isStTibsDay()
     }
       .message
       .isEqualTo(s.trimIndent().trim())
