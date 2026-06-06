@@ -1,170 +1,254 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
-import strikt.api.Assertion
 import strikt.api.expectThat
 
 @DisplayName("assertions on CharSequence")
-internal object CharSequenceAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<CharSequence>> {
-      fixture { expectThat("fnord") }
+internal class CharSequenceAssertions {
+  private val subject = expectThat("fnord")
 
-      context("hasLength") {
-        test("passes when the subject has the expected length") {
+    @Nested
+    inner class HasLength {
+      @Test
+      fun `passes when the subject has the expected length`() {
+        subject.run {
           hasLength(5)
         }
+      }
 
-        test("fails when the subject does not have the expected length") {
+      @Test
+      fun `fails when the subject does not have the expected length`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             hasLength(1)
           }
         }
       }
+    }
 
-      context("matches") {
-        test("passes when the subject is a full match for the regex") {
+    @Nested
+    inner class Matches {
+      @Test
+      fun `passes when the subject is a full match for the regex`() {
+        subject.run {
           matches("[dfnor]+".toRegex())
         }
+      }
 
-        test("fails when the subject is only a partial match for the regex") {
-          assertThrows<AssertionFailedError> {
+      @Test
+      fun `fails when the subject is only a partial match for the regex`() {
+        assertThrows<AssertionFailedError> {
+          subject.run {
             matches("[fn]+".toRegex())
           }
         }
+      }
 
-        test("fails when the subject is a case insensitive match for the regex") {
+      @Test
+      fun `fails when the subject is a case insensitive match for the regex`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             matches("[DFNOR]+".toRegex())
           }
         }
+      }
 
-        test("fails when the subject does not match the regex") {
+      @Test
+      fun `fails when the subject does not match the regex`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             matches("\\d+".toRegex())
           }
         }
       }
+    }
 
-      context("matchesIgnoringCase") {
-        test("passes when the subject is a full match for the regex") {
+    @Nested
+    inner class MatchesIgnoringCase {
+      @Test
+      fun `passes when the subject is a full match for the regex`() {
+        subject.run {
           matchesIgnoringCase("[dfnor]+".toRegex())
         }
+      }
 
-        test("fails when the subject is only a partial match for the regex") {
-          assertThrows<AssertionFailedError> {
+      @Test
+      fun `fails when the subject is only a partial match for the regex`() {
+        assertThrows<AssertionFailedError> {
+          subject.run {
             matchesIgnoringCase("[fn]+".toRegex())
           }
         }
+      }
 
-        test("passes when the subject is a case insensitive match for the regex") {
+      @Test
+      fun `passes when the subject is a case insensitive match for the regex`() {
+        subject.run {
           matchesIgnoringCase("[DFNOR]+".toRegex())
         }
+      }
 
-        test("fails when the subject does not match the regex") {
+      @Test
+      fun `fails when the subject does not match the regex`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             matchesIgnoringCase("\\d+".toRegex())
           }
         }
       }
+    }
 
-      context("contains(Regex)") {
-        test("passes when the subject is a full match for the regex") {
+    @Nested
+    inner class ContainsRegex {
+      @Test
+      fun `passes when the subject is a full match for the regex`() {
+        subject.run {
           contains("[dfnor]+".toRegex())
         }
+      }
 
-        test("passes when the subject is only a partial match for the regex") {
+      @Test
+      fun `passes when the subject is only a partial match for the regex`() {
+        subject.run {
           contains("[fn]+".toRegex())
         }
+      }
 
-        test("fails when the subject contains a match with a different case") {
+      @Test
+      fun `fails when the subject contains a match with a different case`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             contains("[DFNOR]+".toRegex())
           }
         }
+      }
 
-        test("fails when the subject does not match the regex") {
+      @Test
+      fun `fails when the subject does not match the regex`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             contains("\\d+".toRegex())
           }
         }
       }
+    }
 
-      context("containsIgnoringCase(Regex)") {
-        test("passes when the subject is a full match for the regex") {
+    @Nested
+    inner class ContainsIgnoringCaseRegex {
+      @Test
+      fun `passes when the subject is a full match for the regex`() {
+        subject.run {
           containsIgnoringCase("[dfnor]+".toRegex())
         }
+      }
 
-        test("passes when the subject is only a partial match for the regex") {
+      @Test
+      fun `passes when the subject is only a partial match for the regex`() {
+        subject.run {
           containsIgnoringCase("[fn]+".toRegex())
         }
+      }
 
-        test("passes when the subject contains a match with a different case") {
+      @Test
+      fun `passes when the subject contains a match with a different case`() {
+        subject.run {
           containsIgnoringCase("[FN]+".toRegex())
         }
+      }
 
-        test("fails when the subject does not match the regex") {
+      @Test
+      fun `fails when the subject does not match the regex`() {
+        subject.run {
           assertThrows<AssertionFailedError> {
             containsIgnoringCase("\\d+".toRegex())
           }
         }
       }
+    }
 
-      context("contains(CharSequence)") {
-        test("passes when the subject contains the expected substring") {
+    @Nested
+    inner class ContainsCharSequence {
+      @Test
+      fun `passes when the subject contains the expected substring`() {
+        subject.run {
           contains("nor")
         }
+      }
 
-        test("fails when the subject contains the expected substring in a different case") {
-          assertThrows<AssertionFailedError> {
+      @Test
+      fun `fails when the subject contains the expected substring in a different case`() {
+        assertThrows<AssertionFailedError> {
+          subject.run {
             contains("NOR")
           }
         }
+      }
 
-        test("fails when the subject does not contain the expected substring") {
-          assertThrows<AssertionFailedError> {
+      @Test
+      fun `fails when the subject does not contain the expected substring`() {
+        assertThrows<AssertionFailedError> {
+          subject.run {
             contains("meme")
           }
         }
       }
+    }
 
-      context("containsIgnoringCase(CharSequence)") {
-        test("passes when the subject contains the expected substring") {
+    @Nested
+    inner class ContainsIgnoringCaseCharSequence {
+      @Test
+      fun `passes when the subject contains the expected substring`() {
+        subject.run {
           containsIgnoringCase("nor")
         }
+      }
 
-        test("passes when the subject contains the expected substring in a different case") {
+      @Test
+      fun `passes when the subject contains the expected substring in a different case`() {
+        subject.run {
           containsIgnoringCase("NOR")
         }
+      }
 
-        test("fails when the subject does not contain the expected substring") {
-          assertThrows<AssertionFailedError> {
+      @Test
+      fun `fails when the subject does not contain the expected substring`() {
+        assertThrows<AssertionFailedError> {
+          subject.run {
             containsIgnoringCase("meme")
           }
         }
       }
+    }
 
-      derivedContext<Assertion.Builder<CharSequence?>>("isNullOrEmpty") {
-        listOf("", null).forEach<CharSequence?> { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+    @Nested
+    inner class IsNullOrEmpty {
+      @TestFactory
+      fun `the assertion passes`() {
+        listOf("", null).forEach<CharSequence?> { value ->
+          val fixture = expectThat(value)
 
-            test("the assertion passes") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${value.quoted()}") {
               isNullOrEmpty()
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion fails`() {
         listOf("catflap", " ", "\t", "a", "23", "[]")
           .forEach<CharSequence?> { subject ->
-            context("when the subject is ${subject.quoted()}") {
-              fixture { expectThat(subject) }
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
+              val fixture = expectThat(subject)
 
-              test("the assertion fails") {
+              fixture.run {
                 assertThrows<AssertionFailedError> {
                   isNullOrEmpty()
                 }
@@ -172,23 +256,30 @@ internal object CharSequenceAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      derivedContext<Assertion.Builder<CharSequence?>>("isNullOrBlank") {
+    @Nested
+    inner class IsNullOrBlank {
+      @TestFactory
+      fun `the assertion passes`() {
         listOf("", null, "\t", "     ", " \n \r\n\t\n")
           .forEach<CharSequence?> { subject ->
-            context("when the subject is ${subject.quoted()}") {
-              fixture { expectThat(subject) }
-              test("the assertion passes") {
+            val fixture = expectThat(subject)
+            fixture.run {
+              DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
                 isNullOrBlank()
               }
             }
           }
+      }
 
+      @TestFactory
+      fun `the assertion fails`() {
         listOf("catflap", "a", "73", "[]").forEach<CharSequence?> { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+          val fixture = expectThat(subject)
 
-            test("the assertion fails") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               assertThrows<AssertionFailedError> {
                 isNullOrBlank()
               }
@@ -196,21 +287,26 @@ internal object CharSequenceAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isEmpty") {
-        context("when the subject is ${"".quoted()}") {
-          fixture { expectThat("") }
+      @Nested
+      inner class IsEmpty {
+        @Test
+        fun `the assertion passes when the subject is empty`() {
+          val fixture = expectThat("")
 
-          test("the assertion passes") {
+          fixture.run {
             isEmpty()
           }
         }
 
+      @TestFactory
+      fun `the assertion fails`() {
         listOf("catflap", " ", "\t", "a", "73", "[]").forEach { subject ->
-          context("${"when the subject is ${subject.quoted()}"} : ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+          val fixture = expectThat(subject)
 
-            test("the assertion fails") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               assertThrows<AssertionFailedError> {
                 isEmpty()
               }
@@ -218,28 +314,35 @@ internal object CharSequenceAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isBlank") {
+    @Nested
+    inner class IsBlank {
+      @TestFactory
+      fun `the assertion passes`() {
         listOf(
           "",
           "\t",
           "     ",
           " \n \r\n\t\n"
         ).forEach<CharSequence> { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+          val fixture = expectThat(subject)
 
-            test("the assertion passes") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               isBlank()
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion fails`() {
         listOf("catflap", "a", "23", "[]").forEach<CharSequence> { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+          val fixture = expectThat(subject)
 
-            test("the assertion fails") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               assertThrows<AssertionFailedError> {
                 isBlank()
               }
@@ -247,62 +350,78 @@ internal object CharSequenceAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isNotEmpty") {
-        context("when the subject is ${"".quoted()}") {
-          fixture { expectThat("") }
+    @Nested
+    inner class IsNotEmpty {
+      @Test
+      fun `the assertion fails when the subject is empty`() {
+        val fixture = expectThat("")
 
-          test("the assertion fails") {
-            assertThrows<AssertionFailedError> {
-              isNotEmpty()
-            }
+        fixture.run {
+          assertThrows<AssertionFailedError> {
+            isNotEmpty()
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion passes`() {
         listOf("catflap", " ", "\t", "a", "73", "[]")
           .forEach<CharSequence> { subject ->
-            context("when the subject is ${subject.quoted()}") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion passes") {
-                isNotEmpty()
+            fixture.run {
+              DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
+                fixture.isNotEmpty()
               }
             }
           }
       }
+    }
 
-      context("isNotBlank") {
+    @Nested
+    inner class IsNotBlank {
+      @TestFactory
+      fun `the assertion fails`() {
         listOf(
           "",
           "\t",
           "     ",
           " \n \r\n\t\n"
         ).forEach<CharSequence> { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
+          val fixture = expectThat(subject)
 
-            test("the assertion fails") {
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               assertThrows<AssertionFailedError> {
                 isNotBlank()
               }
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion passes`() {
         listOf("catflap", "a", "73", "[]").forEach { subject ->
-          context("when the subject is ${subject.quoted()}") {
-            fixture { expectThat(subject) }
-            test("the assertion passes") {
+          val fixture = expectThat(subject)
+          fixture.run {
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()}") {
               isNotBlank()
             }
           }
         }
       }
+    }
 
-      context("trim") {
-        fixture { expectThat(StringBuilder(" fnord ")) }
+    @Nested
+    inner class Trim {
+      @Test
+      fun `can trim char sequence`() {
+        val fixture = expectThat(StringBuilder(" fnord "))
 
-        test("can trim char sequence") {
+        fixture.run {
           trim().isEqualTo("fnord")
         }
       }

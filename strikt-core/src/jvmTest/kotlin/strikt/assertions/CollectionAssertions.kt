@@ -1,63 +1,84 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import strikt.api.Assertion
 import strikt.api.expectThat
 
-internal object CollectionAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext {
-      derivedContext<Assertion.Builder<Collection<Any?>>>("hasSize") {
-        fixture { expectThat(setOf("catflap", "rubberplant", "marzipan")) }
+internal class CollectionAssertions {
+    @Nested
+    inner class HasSize {
+      private val fixture = expectThat(setOf("catflap", "rubberplant", "marzipan"))
 
-        test("passes if the subject is the expected size") {
+      @Test
+      fun `passes if the subject is the expected size`() {
+        fixture.run {
           hasSize(3)
         }
+      }
 
-        test("fails if the subject is not the expected size") {
+      @Test
+      fun `fails if the subject is not the expected size`() {
+        fixture.run {
           assertThrows<AssertionError> {
             hasSize(1)
           }
         }
       }
+    }
 
-      derivedContext<Assertion.Builder<Collection<Any?>>>("isEmpty") {
-        context("an empty collection subject") {
-          fixture { expectThat(emptyList<Any>()) }
+    @Nested
+    inner class IsEmpty {
+      @Nested
+      inner class AnEmptyCollectionSubject {
+        private val fixture = expectThat(emptyList<Any>())
 
-          test("the assertion passes") {
+        @Test
+        fun `an empty collection subject passes`() {
+          fixture.run {
             isEmpty()
           }
         }
+      }
 
-        context("an non-empty collection subject") {
-          fixture { expectThat(listOf("catflap", "rubberplant", "marzipan")) }
+      @Nested
+      inner class ANonEmptyCollectionSubject {
+        private val fixture = expectThat(listOf("catflap", "rubberplant", "marzipan"))
 
-          test("the assertion fails") {
+        @Test
+        fun `an non-empty collection subject fails`() {
+          fixture.run {
             assertThrows<AssertionError> {
               isEmpty()
             }
           }
         }
       }
+    }
 
-      derivedContext<Assertion.Builder<Collection<Any?>>>("isNotEmpty") {
-        context("an empty collection subject") {
-          fixture { expectThat(emptyList<Any>()) }
+    @Nested
+    inner class IsNotEmpty {
+      @Nested
+      inner class AnEmptyCollectionSubject {
+        private val fixture = expectThat(emptyList<Any>())
 
-          test("the assertion fails") {
+        @Test
+        fun `an empty collection subject fails`() {
+          fixture.run {
             assertThrows<AssertionError> {
               isNotEmpty()
             }
           }
         }
+      }
 
-        context("an non-empty collection subject") {
-          fixture { expectThat(listOf("catflap", "rubberplant", "marzipan")) }
+      @Nested
+      inner class ANonEmptyCollectionSubject {
+        private val fixture = expectThat(listOf("catflap", "rubberplant", "marzipan"))
 
-          test("the assertion passes") {
+        @Test
+        fun `an non-empty collection subject passes`() {
+          fixture.run {
             isNotEmpty()
           }
         }

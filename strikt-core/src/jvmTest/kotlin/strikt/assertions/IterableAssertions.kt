@@ -1,14 +1,15 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.MultipleFailuresError
-import strikt.api.Assertion
 import strikt.api.expectThat
 import strikt.internal.opentest4j.MappingFailed
 
-internal object IterableAssertions : JUnit5Minutests {
+internal class IterableAssertions {
   /**
    * Turns a list subject into various iterable types with the same content.
    */
@@ -32,14 +33,14 @@ internal object IterableAssertions : JUnit5Minutests {
       )
     }
 
-  fun tests() =
-    rootContext {
-      context("all assertion") {
-        context("passes if all elements") {
+      @Nested
+      inner class AllAssertion {
+        @TestFactory
+        fun `all assertion passes if all elements`() {
           listOf("catflap", "rubberplant", "marzipan")
             .permute()
             .forEach { subject ->
-              test("a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("a ${subject.javaClass.simpleName} conform") {
                 expectThat(subject).all {
                   isLowerCase()
                 }
@@ -47,11 +48,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("fails if any element") {
+        @TestFactory
+        fun `all assertion fails if any element`() {
           listOf("catflap", "rubberplant", "marzipan")
             .permute()
             .forEach { subject ->
-              test("of a ${subject.javaClass.simpleName} does not conform") {
+              DynamicTest.dynamicTest("of a ${subject.javaClass.simpleName} does not conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).all {
                     startsWith('c')
@@ -62,18 +64,18 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("allIndexed assertion") {
-        context("passes if all elements") {
-          test("of a List conform") {
+        @Nested
+        inner class AllIndexedAssertion {
+          @Test
+          fun `passes if all elements of a List conform`() {
             val subject = listOf("catflap-0", "rubberplant-1", "marzipan-2")
             expectThat(subject).allIndexed { index ->
               endsWith("-$index")
             }
           }
-        }
 
-        context("fails if any element") {
-          test("of a List does not conform") {
+          @Test
+          fun `fails if any element of a List does not conform`() {
             val subject = listOf("catflap-1", "rubberplant-1", "marzipan-1")
             assertThrows<AssertionError> {
               expectThat(subject).allIndexed { index ->
@@ -82,14 +84,15 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
         }
-      }
 
-      context("any assertion") {
-        context("passes if") {
+      @Nested
+      inner class AnyAssertion {
+        @TestFactory
+        fun `passes if`() {
           listOf("catflap", "rubberplant", "marzipan")
             .permute()
             .forEach { subject ->
-              test("all elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("all elements of a ${subject.javaClass.simpleName} conform") {
                 expectThat(subject).any {
                   isLowerCase()
                 }
@@ -99,7 +102,7 @@ internal object IterableAssertions : JUnit5Minutests {
           listOf("catflap", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("one element of a ${subject.javaClass.simpleName} conforms") {
+              DynamicTest.dynamicTest("one element of a ${subject.javaClass.simpleName} conforms") {
                 expectThat(subject).any {
                   isLowerCase()
                 }
@@ -107,11 +110,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if no elements conform`() {
           listOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("no elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("no elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).any {
                     isLowerCase()
@@ -121,7 +125,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("works with not") {
+        @Test
+        fun `works with not`() {
           val subject = setOf("catflap", "rubberplant", "marzipan")
           expectThat(subject).not().any {
             isUpperCase()
@@ -129,25 +134,26 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("anyIndexed assertion") {
-        context("passes if") {
-          test("all elements of a List conform") {
+      @Nested
+      inner class AnyIndexedAssertion {
+          @Test
+          fun `passes if all elements of a List conform`() {
             val subject = listOf("catflap-0", "rubberplant-1", "marzipan-2")
             expectThat(subject).anyIndexed { index ->
               endsWith("-$index")
             }
           }
 
-          test("one element of a List conforms") {
+          @Test
+          fun `passes if one element of a List conforms`() {
             val subject = listOf("catflap-1", "rubberplant-1", "marzipan-1")
             expectThat(subject).anyIndexed { index ->
               endsWith("-$index")
             }
           }
-        }
 
-        context("fails if") {
-          test("no elements of a List conform") {
+          @Test
+          fun `fails if no elements of a List conform`() {
             val subject = listOf("catflap", "rubberplant", "marzipan")
             assertThrows<AssertionError> {
               expectThat(subject).anyIndexed { index ->
@@ -155,9 +161,9 @@ internal object IterableAssertions : JUnit5Minutests {
               }
             }
           }
-        }
 
-        test("works with not") {
+        @Test
+        fun `fails if works with not`() {
           val subject = setOf("catflap", "rubberplant", "marzipan")
           expectThat(subject).not().anyIndexed { index ->
             endsWith("-$index")
@@ -165,12 +171,14 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("none assertion") {
-        context("passes if") {
+      @Nested
+      inner class NoneAssertion {
+        @TestFactory
+        fun `passes if`() {
           listOf("catflap", "rubberplant", "marzipan")
             .permute()
             .forEach { subject ->
-              test("no elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("no elements of a ${subject.javaClass.simpleName} conform") {
                 expectThat(subject).none {
                   isUpperCase()
                 }
@@ -178,11 +186,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if`() {
           listOf("catflap", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("some elements of a ${subject.javaClass.simpleName} conforms") {
+              DynamicTest.dynamicTest("some elements of a ${subject.javaClass.simpleName} conforms") {
                 assertThrows<AssertionError> {
                   expectThat(subject).none {
                     isUpperCase()
@@ -194,7 +203,7 @@ internal object IterableAssertions : JUnit5Minutests {
           listOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("all elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("all elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).none {
                     isUpperCase()
@@ -202,28 +211,29 @@ internal object IterableAssertions : JUnit5Minutests {
                 }
               }
             }
+        }
 
-          test("works with not") {
+          @Test
+          fun `works with not`() {
             val subject = setOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
             expectThat(subject).not().none {
               isUpperCase()
             }
           }
         }
-      }
 
-      context("noneIndexed assertion") {
-        context("passes if") {
-          test("no elements of a List conform") {
+        @Nested
+        inner class NoneIndexedAssertion {
+          @Test
+          fun `passes if no elements of a List conform`() {
             val subject = listOf("catflap", "rubberplant", "marzipan")
             expectThat(subject).noneIndexed { index ->
               endsWith("-$index")
             }
           }
-        }
 
-        context("fails if") {
-          test("some elements of a List conforms") {
+          @Test
+          fun `fails if some elements of a List conform`() {
             val subject = listOf("catflap-1", "rubberplant-1", "marzipan-1")
             assertThrows<AssertionError> {
               expectThat(subject).noneIndexed { index ->
@@ -232,7 +242,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("all elements of a List conform") {
+          @Test
+          fun `fails if all elements of a List conform`() {
             val subject = listOf("catflap-0", "rubberplant-1", "marzipan-2")
             assertThrows<AssertionError> {
               expectThat(subject).noneIndexed { index ->
@@ -241,21 +252,23 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("works with not") {
+          @Test
+          fun `works with not`() {
             val subject = setOf("catflap-1", "rubberplant-1", "marzipan-1")
             expectThat(subject).not().noneIndexed { index ->
               endsWith("-$index")
             }
           }
         }
-      }
 
-      context("at least assertion") {
-        context("fails if") {
+      @Nested
+      inner class AtLeastAssertion {
+        @TestFactory
+        fun `at least assertion`() {
           listOf("catflap", "rubberplant", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("not enough elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("not enough elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).atLeast(2) {
                     isUpperCase()
@@ -265,11 +278,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("passes if") {
+        @TestFactory
+        fun `passes if`() {
           listOf("catflap", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("exactly minimum amount of elements of a ${subject.javaClass.simpleName} conforms") {
+              DynamicTest.dynamicTest("exactly minimum amount of elements of a ${subject.javaClass.simpleName} conforms") {
                 expectThat(subject).atLeast(2) {
                   isUpperCase()
                 }
@@ -279,7 +293,7 @@ internal object IterableAssertions : JUnit5Minutests {
           listOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("all elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("all elements of a ${subject.javaClass.simpleName} conform") {
                 expectThat(subject).atLeast(2) {
                   isUpperCase()
                 }
@@ -287,7 +301,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("works with not") {
+        @Test
+        fun `works with not`() {
           val subject = setOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
           assertThrows<AssertionError> {
             expectThat(subject).not().atLeast(2) {
@@ -297,12 +312,14 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("at most assertion") {
-        context("passes if") {
+      @Nested
+      inner class AtMostAssertion {
+        @TestFactory
+        fun `passes if`() {
           listOf("catflap", "rubberplant", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("fewer elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("fewer elements of a ${subject.javaClass.simpleName} conform") {
                 expectThat(subject).atMost(2) {
                   isUpperCase()
                 }
@@ -312,7 +329,7 @@ internal object IterableAssertions : JUnit5Minutests {
           listOf("catflap", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("exactly maximum amount of elements of a ${subject.javaClass.simpleName} conforms") {
+              DynamicTest.dynamicTest("exactly maximum amount of elements of a ${subject.javaClass.simpleName} conforms") {
                 expectThat(subject).atMost(2) {
                   isUpperCase()
                 }
@@ -320,11 +337,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if`() {
           listOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("too many elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("too many elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).atMost(2) {
                     isUpperCase()
@@ -334,7 +352,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("works with not") {
+        @Test
+        fun `works with not`() {
           val subject = setOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
           expectThat(subject).not().atMost(2) {
             isUpperCase()
@@ -342,12 +361,14 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("one assertion") {
-        context("passes if") {
+      @Nested
+      inner class OneAssertion {
+        @TestFactory
+        fun `passes if exactly one element conforms`() {
           listOf("catflap", "rubberplant", "MARZIPAN")
             .permute()
             .forEach { subject ->
-              test("exactly one element of a ${subject.javaClass.simpleName} conforms") {
+              DynamicTest.dynamicTest("exactly one element of a ${subject.javaClass.simpleName} conforms") {
                 expectThat(subject).one {
                   isUpperCase()
                 }
@@ -355,11 +376,12 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if too many elements conform`() {
           listOf("CATFLAP", "RUBBERPLANT", "marzipan")
             .permute()
             .forEach { subject ->
-              test("too many elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("too many elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).one {
                     isUpperCase()
@@ -371,7 +393,7 @@ internal object IterableAssertions : JUnit5Minutests {
           listOf("catflap", "rubberplant", "marzipan")
             .permute()
             .forEach { subject ->
-              test("no elements of a ${subject.javaClass.simpleName} conform") {
+              DynamicTest.dynamicTest("no elements of a ${subject.javaClass.simpleName} conform") {
                 assertThrows<AssertionError> {
                   expectThat(subject).one {
                     isUpperCase()
@@ -381,7 +403,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("works with not") {
+        @Test
+        fun `works with not`() {
           val subject = setOf("CATFLAP", "RUBBERPLANT", "MARZIPAN")
           expectThat(subject).not().one {
             isUpperCase()
@@ -389,8 +412,10 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("contains assertion") {
-        context("passes if") {
+      @Nested
+      inner class ContainsAssertion {
+        @TestFactory
+        fun `passes if`() {
           listOf(
             listOf("catflap") to arrayOf("catflap"),
             listOf("catflap", "rubberplant", "marzipan") to arrayOf("catflap"),
@@ -401,13 +426,14 @@ internal object IterableAssertions : JUnit5Minutests {
               )
           ).permuteExpected()
             .forEach { (subject, expected) ->
-              test("$subject (${subject.javaClass.simpleName}) contains ${expected.toList()}") {
+              DynamicTest.dynamicTest("$subject (${subject.javaClass.simpleName}) contains ${expected.toList()}") {
                 expectThat(subject).contains(*expected)
               }
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if`() {
           listOf(
             listOf("catflap", "rubberplant", "marzipan") to arrayOf("fnord"),
             listOf("catflap", "rubberplant", "marzipan") to
@@ -418,7 +444,7 @@ internal object IterableAssertions : JUnit5Minutests {
             emptyList<String>() to arrayOf("catflap")
           ).permuteExpected()
             .forEach { (subject, expected) ->
-              test("$subject (${subject.javaClass.simpleName}) does not contain ${expected.toList()}") {
+              DynamicTest.dynamicTest("$subject (${subject.javaClass.simpleName}) does not contain ${expected.toList()}") {
                 assertThrows<AssertionError> {
                   expectThat(subject).contains(*expected)
                 }
@@ -426,15 +452,18 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("any collection contains an empty list") {
+        @Test
+        fun `any collection contains an empty list`() {
           expectThat(listOf("catflap", "rubberplant", "marzipan")).contains()
         }
 
-        test("an empty collection contains an empty list") {
+        @Test
+        fun `an empty collection contains an empty list`() {
           expectThat(emptyList<Any>()).contains()
         }
 
-        test("has a nested failure for each missing element when there are multiple") {
+        @Test
+        fun `has a nested failure for each missing element when there are multiple`() {
           val error =
             assertThrows<AssertionError> {
               expectThat(listOf("catflap", "rubberplant", "marzipan"))
@@ -450,7 +479,8 @@ internal object IterableAssertions : JUnit5Minutests {
           )
         }
 
-        test("does not nest failures when there is only one element") {
+        @Test
+        fun `does not nest failures when there is only one element`() {
           val error =
             assertThrows<AssertionError> {
               expectThat(listOf("catflap", "rubberplant", "marzipan"))
@@ -463,12 +493,14 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("doesNotContain assertion") {
-        context("passes if") {
+      @Nested
+      inner class DoesNotContainAssertion {
+        @TestFactory
+        fun `passes if`() {
           emptyList<String>()
             .permute()
             .forEach { subject ->
-              test("subject is empty ${subject.javaClass.simpleName}") {
+              DynamicTest.dynamicTest("subject is empty ${subject.javaClass.simpleName}") {
                 expectThat(subject)
                   .doesNotContain("catflap", "rubberplant", "marzipan")
               }
@@ -484,20 +516,21 @@ internal object IterableAssertions : JUnit5Minutests {
               )
           ).permuteExpected()
             .forEach { (subject, elements) ->
-              test("a ${subject.javaClass.simpleName} contains none of the elements ${elements.toList()}") {
+              DynamicTest.dynamicTest("a ${subject.javaClass.simpleName} contains none of the elements ${elements.toList()}") {
                 expectThat(subject)
                   .doesNotContain(*elements)
               }
             }
         }
 
-        context("fails if") {
+        @TestFactory
+        fun `fails if`() {
           listOf(
             emptyList(),
             listOf("catflap", "rubberplant", "marzipan")
           ).flatMap { it.permute() }
             .forEach { subject ->
-              test("no elements are specified for subject $subject") {
+              DynamicTest.dynamicTest("no elements are specified for subject $subject") {
                 assertThrows<IllegalArgumentException> {
                   expectThat(subject).doesNotContain()
                 }
@@ -521,7 +554,7 @@ internal object IterableAssertions : JUnit5Minutests {
           )
             .permuteExpected()
             .forEach { (subject, elements) ->
-              test("a ${subject.javaClass.simpleName} contains any of the elements ${elements.toList()}") {
+              DynamicTest.dynamicTest("a ${subject.javaClass.simpleName} contains any of the elements ${elements.toList()}") {
                 assertThrows<AssertionError> {
                   expectThat(subject)
                     .doesNotContain(*elements)
@@ -530,7 +563,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
         }
 
-        test("formats its failure message correctly when there are multiple elements") {
+        @Test
+        fun `formats failure message correctly when there are multiple elements`() {
           val error =
             assertThrows<AssertionError> {
               expectThat(listOf("catflap", "rubberplant", "marzipan"))
@@ -546,7 +580,8 @@ internal object IterableAssertions : JUnit5Minutests {
           )
         }
 
-        test("formats its failure message correctly when there is a single element") {
+        @Test
+        fun `formats failure message correctly when there is a single element`() {
           val error =
             assertThrows<AssertionError> {
               expectThat(listOf("catflap", "rubberplant", "marzipan"))
@@ -559,28 +594,34 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("containsExactly assertion") {
-        derivedContext<Set<String>>("for ${Set::class}") {
-          fixture { setOf("catflap", "rubberplant", "marzipan") }
-          test("passes if the elements are identical") {
+      @Nested
+      inner class ContainsExactlyAssertion {
+        @Nested
+        inner class ForSet {
+          private val fixture = setOf("catflap", "rubberplant", "marzipan")
+          @Test
+          fun `passes if the elements are identical`() {
             expectThat(fixture)
               .containsExactly("catflap", "rubberplant", "marzipan")
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture).containsExactly("rubberplant", "catflap")
             }
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactly("catflap", "rubberplant", "marzipan", "fnord")
             }
           }
 
-          test("fails if the order is different (even though this is a Set)") {
+          @Test
+          fun `fails if the order is different even though this is a Set`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactly("rubberplant", "catflap", "marzipan")
@@ -588,15 +629,18 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        derivedContext<List<String>>("for ${List::class}") {
-          fixture { listOf("catflap", "rubberplant", "marzipan") }
+        @Nested
+        inner class ForList {
+          private val fixture = listOf("catflap", "rubberplant", "marzipan")
 
-          test("passes if all the elements exist in the same order") {
+          @Test
+          fun `passes if all the elements exist in the same order`() {
             expectThat(fixture)
               .containsExactly("catflap", "rubberplant", "marzipan")
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture).containsExactly("catflap", "rubberplant")
@@ -614,12 +658,13 @@ internal object IterableAssertions : JUnit5Minutests {
             )
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             val error =
               assertThrows<AssertionError> {
-                expectThat(fixture)
-                  .containsExactly("catflap", "rubberplant", "marzipan", "fnord")
-              }
+              expectThat(fixture)
+                .containsExactly("catflap", "rubberplant", "marzipan", "fnord")
+            }
             expectThat(error.message).isEqualTo(
               """▼ Expect that ["catflap", "rubberplant", "marzipan"]:
             |  ✗ contains exactly the elements ["catflap", "rubberplant", "marzipan", "fnord"]
@@ -638,14 +683,16 @@ internal object IterableAssertions : JUnit5Minutests {
           /**
            * @see https://github.com/robfletcher/strikt/issues/159
            */
-          test("fails if there are fewer elements than expected but the outlier is in the actual list") {
+          @Test
+          fun `fails if there are fewer elements than expected but the outlier is in the actual list`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactly("fnord", "catflap", "rubberplant", "marzipan")
             }
           }
 
-          test("fails if the order is different") {
+          @Test
+          fun `fails if the order is different`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture)
@@ -667,7 +714,8 @@ internal object IterableAssertions : JUnit5Minutests {
             )
           }
 
-          test("fails if the cardinality of an element is lower than expected") {
+          @Test
+          fun `fails if the cardinality of an element is lower than expected`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture)
@@ -689,20 +737,22 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        derivedContext<Iterable<String>>("a non-Collection Iterable subject") {
-          fixture {
+        @Nested
+        inner class ANonCollectionIterableSubject {
+          private val fixture =
             object : Iterable<String> {
               override fun iterator() = arrayOf("catflap", "rubberplant", "marzipan").iterator()
             }
-          }
 
-          test("passes if the elements are indentical") {
+          @Test
+          fun `passes if the elements are identical`() {
             expectThat(fixture)
               .describedAs("a non-Collection iterable %s")
               .containsExactly("catflap", "rubberplant", "marzipan")
           }
 
-          test("fails if the elements are ordered differently") {
+          @Test
+          fun `fails if the elements are ordered differently`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .describedAs("a non-Collection iterable %s")
@@ -710,7 +760,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .describedAs("a non-Collection iterable %s")
@@ -718,7 +769,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .describedAs("a non-Collection iterable %s")
@@ -726,7 +778,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if the cardinality of an element is lower than expected") {
+          @Test
+          fun `fails if the cardinality of an element is lower than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .describedAs("a non-Collection iterable %s")
@@ -734,7 +787,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if it's supposed to be empty and isn't") {
+          @Test
+          fun `fails if it's supposed to be empty and isn't`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .describedAs("a non-Collection iterable %s")
@@ -742,7 +796,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("passes if it's supposed to be empty and is") {
+          @Test
+          fun `passes if it's supposed to be empty and is`() {
             val emptySubject =
               object : Iterable<String> {
                 override fun iterator() = emptySequence<String>().iterator()
@@ -752,23 +807,28 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("containsExactlyInAnyOrder assertion") {
-        derivedContext<Set<String>>("a ${Set::class}") {
-          fixture { setOf("catflap", "rubberplant", "marzipan") }
+      @Nested
+      inner class ContainsExactlyInAnyOrderAssertion {
+        @Nested
+        inner class ASet {
+          private val fixture = setOf("catflap", "rubberplant", "marzipan")
 
-          test("passes if the elements are identical") {
+          @Test
+          fun `passes if the elements are identical`() {
             expectThat(fixture)
               .containsExactlyInAnyOrder("rubberplant", "catflap", "marzipan")
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactlyInAnyOrder("rubberplant", "catflap")
             }
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactlyInAnyOrder(
@@ -781,15 +841,18 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        derivedContext<List<String>>("a ${List::class}") {
-          fixture { listOf("catflap", "rubberplant", "marzipan") }
+        @Nested
+        inner class AList {
+          private val fixture = listOf("catflap", "rubberplant", "marzipan")
 
-          test("passes if all the elements exist in the same order") {
+          @Test
+          fun `passes if all the elements exist in the same order`() {
             expectThat(fixture)
               .containsExactlyInAnyOrder("catflap", "rubberplant", "marzipan")
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture)
@@ -806,7 +869,8 @@ internal object IterableAssertions : JUnit5Minutests {
             )
           }
 
-          test("fails if the cardinality of an element is lower than expected") {
+          @Test
+          fun `fails if the cardinality of an element is lower than expected`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture)
@@ -829,7 +893,8 @@ internal object IterableAssertions : JUnit5Minutests {
             )
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             val error =
               assertThrows<AssertionError> {
                 expectThat(fixture)
@@ -852,37 +917,42 @@ internal object IterableAssertions : JUnit5Minutests {
             )
           }
 
-          test("passes if the order is different") {
+          @Test
+          fun `passes if the order is different`() {
             expectThat(fixture)
               .containsExactlyInAnyOrder("rubberplant", "catflap", "marzipan")
           }
         }
 
-        derivedContext<Iterable<String>>("a non-Collection Iterable subject") {
-          fixture {
+        @Nested
+        inner class ANonCollectionIterableSubject {
+          private val fixture =
             object : Iterable<String> {
               override fun iterator() = arrayOf("catflap", "rubberplant", "marzipan").iterator()
             }
-          }
 
-          test("passes if the elements are identical") {
+          @Test
+          fun `passes if the elements are identical`() {
             expectThat(fixture)
               .containsExactlyInAnyOrder("catflap", "rubberplant", "marzipan")
           }
 
-          test("passes if the elements are ordered differently") {
+          @Test
+          fun `passes if the elements are ordered differently`() {
             expectThat(fixture)
               .containsExactlyInAnyOrder("marzipan", "rubberplant", "catflap")
           }
 
-          test("fails if there are more elements than expected") {
+          @Test
+          fun `fails if there are more elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactlyInAnyOrder("catflap", "rubberplant")
             }
           }
 
-          test("fails if there are fewer elements than expected") {
+          @Test
+          fun `fails if there are fewer elements than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactlyInAnyOrder(
@@ -894,7 +964,8 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if the cardinality of an element is lower than expected") {
+          @Test
+          fun `fails if the cardinality of an element is lower than expected`() {
             assertThrows<AssertionError> {
               expectThat(fixture)
                 .containsExactlyInAnyOrder(
@@ -906,13 +977,15 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
 
-          test("fails if it's supposed to be empty and isn't") {
+          @Test
+          fun `fails if it's supposed to be empty and isn't`() {
             assertThrows<AssertionError> {
               expectThat(fixture).containsExactlyInAnyOrder()
             }
           }
 
-          test("passes if it's supposed to be empty and is") {
+          @Test
+          fun `passes if it's supposed to be empty and is`() {
             val emptySubject =
               object : Iterable<String> {
                 override fun iterator() = emptySequence<String>().iterator()
@@ -922,17 +995,19 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("withFirst function") {
+    @Nested
+    inner class WithFirstFunction {
+      @TestFactory
+      fun `withFirst function`() {
         listOf("catflap", "rubberplant", "marzipan")
           .permute()
           .forEach { subject ->
-            test("runs assertions on the first element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("runs assertions on the first element of a ${subject.javaClass.simpleName}") {
               expectThat(subject).withFirst {
                 isEqualTo("catflap")
               }
             }
-
-            test("fails if the nested assertions fail on the first element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("fails if the nested assertions fail on the first element of a ${subject.javaClass.simpleName}") {
               assertThrows<MultipleFailuresError> {
                 expectThat(subject).withFirst {
                   isEqualTo("rubberplant")
@@ -941,18 +1016,22 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      context("withFirst(predicate) function") {
+    @Nested
+    inner class WithFirstPredicateFunction {
+      @TestFactory
+      fun `withFirst(predicate) function`() {
         listOf("catflap", "rubberplant", "marzipan")
           .permute()
           .forEach { subject ->
-            test("runs assertions on the first element of a ${subject.javaClass.simpleName} that matches the predicate") {
+            DynamicTest.dynamicTest("runs assertions on the first element of a ${subject.javaClass.simpleName} that matches the predicate") {
               expectThat(subject).withFirst({ it.startsWith('r') }) {
                 isEqualTo("rubberplant")
               }
             }
 
-            test(
+            DynamicTest.dynamicTest(
               "fails if the nested assertions fail on the first element of a ${subject.javaClass.simpleName} that matches the predicate"
             ) {
               assertThrows<MultipleFailuresError> {
@@ -962,7 +1041,7 @@ internal object IterableAssertions : JUnit5Minutests {
               }
             }
 
-            test("fails if nothing in a ${subject.javaClass.simpleName} matches the predicate") {
+            DynamicTest.dynamicTest("fails if nothing in a ${subject.javaClass.simpleName} matches the predicate") {
               assertThrows<MappingFailed> {
                 expectThat(subject).withFirst({ it.startsWith('z') }) {
                   isEqualTo("catflap")
@@ -971,18 +1050,22 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      context("withLast function") {
+    @Nested
+    inner class WithLastFunction {
+      @TestFactory
+      fun `withLast function`() {
         listOf("catflap", "rubberplant", "marzipan")
           .permute()
           .forEach { subject ->
-            test("runs assertions on the last element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("runs assertions on the last element of a ${subject.javaClass.simpleName}") {
               expectThat(subject.sorted()).withLast {
                 isEqualTo("rubberplant")
               }
             }
 
-            test("fails if the nested assertions fail on the last element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("fails if the nested assertions fail on the last element of a ${subject.javaClass.simpleName}") {
               assertThrows<MultipleFailuresError> {
                 expectThat(subject.sorted()).withLast {
                   isEqualTo("marzipan")
@@ -991,18 +1074,22 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      context("withElementAt function") {
+    @Nested
+    inner class WithElementAtFunction {
+      @TestFactory
+      fun `withElementAt function`() {
         listOf("catflap", "rubberplant", "marzipan")
           .permute()
           .forEach { subject ->
-            test("runs assertions on the nth element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("runs assertions on the nth element of a ${subject.javaClass.simpleName}") {
               expectThat(subject.sorted()).withElementAt(1) {
                 isEqualTo("marzipan")
               }
             }
 
-            test("fails if the nested assertions fail on the nth element of a ${subject.javaClass.simpleName}") {
+            DynamicTest.dynamicTest("fails if the nested assertions fail on the nth element of a ${subject.javaClass.simpleName}") {
               assertThrows<MultipleFailuresError> {
                 expectThat(subject.sorted()).withElementAt(1) {
                   isEqualTo("catflap")
@@ -1011,15 +1098,19 @@ internal object IterableAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      context("withSingle function") {
-        test("runs assertions on the single element of a collection") {
+      @Nested
+      inner class WithSingleFunction {
+        @Test
+        fun `runs assertions on the single element of a collection`() {
           expectThat(listOf("catflap")).withSingle {
             isEqualTo("catflap")
           }
         }
 
-        test("fails if the nested assertions fail on the single element of a collection") {
+        @Test
+        fun `fails if the nested assertions fail on the single element`() {
           assertThrows<MultipleFailuresError> {
             expectThat(listOf("catflap")).withSingle {
               isEqualTo("rubberplant")
@@ -1027,7 +1118,8 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        test("fails if a collection is empty") {
+        @Test
+        fun `fails if a collection is empty`() {
           assertThrows<MappingFailed> {
             expectThat(emptyList<String>()).withSingle {
               isEqualTo("rubberplant")
@@ -1035,7 +1127,8 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        test("fails if a collection contains more than one element") {
+        @Test
+        fun `fails if a collection contains more than one element`() {
           assertThrows<MappingFailed> {
             expectThat(listOf("catflap", "rubberplant", "marzipan")).withSingle {
               isEqualTo("rubberplant")
@@ -1044,13 +1137,16 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("count mapping") {
-        test("maps to an assertion on the iterable's size") {
+      @Nested
+      inner class CountMapping {
+        @Test
+        fun `maps to an assertion on the iterable's size`() {
           val subject = listOf("catflap", "rubberplant", "marzipan")
           expectThat(subject).count().isEqualTo(subject.size)
         }
 
-        test("maps to an assertion on the count of elements matching the predicate") {
+        @Test
+        fun `maps to an assertion on the count of elements matching the predicate`() {
           val subject = listOf("catflap", "rubberplant", "marzipan")
           expectThat(subject)
             .count("elements containing 't'") { it.contains("t") }
@@ -1058,13 +1154,16 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
 
-      context("isSorted(Comparable) assertion") {
-        test("passes if the subject is empty") {
+      @Nested
+      inner class IsSortedWithComparatorAssertion {
+        @Test
+        fun `passes if the subject is empty`() {
           expectThat(emptyList<Any?>())
             .isSorted(Comparator.comparingInt { it.hashCode() })
         }
 
-        test("fails in a block assertion if the subject is not in order") {
+        @Test
+        fun `fails in a block assertion if the subject is not in order`() {
           assertThrows<AssertionError> {
             expectThat(listOf(1, 3, 2)) {
               isSorted(Comparator.naturalOrder())
@@ -1072,41 +1171,45 @@ internal object IterableAssertions : JUnit5Minutests {
           }
         }
 
-        context("fails in a chained assertion if the subject is not in order") {
+        @Test
+        fun `fails in a chained assertion if the subject is not in order`() {
           assertThrows<AssertionError> {
             expectThat(listOf(1, 3, 2))
               .isSorted(Comparator.naturalOrder())
           }
         }
 
-        test("the assertion passes if the subject is in order") {
+        @Test
+        fun `the assertion passes if the subject is in order`() {
           expectThat(listOf("catflap", "marzipan", "rubberplant"))
             .isSorted(Comparator.naturalOrder<String>())
         }
 
-        test("fails if the subject is not sorted according to the comparator") {
+        @Test
+        fun `fails if the subject is not sorted according to the comparator`() {
           assertThrows<AssertionError> {
             expectThat(listOf("catflap", "rubberplant", "marzipan"))
               .isSorted(Comparator.naturalOrder<String>().reversed())
           }
         }
-      }
 
-      test("the assertion passes if the Null value is handled through the Comparator instance") {
+      @Test
+      fun `the assertion passes if the Null value is handled through the Comparator instance`() {
         expectThat(listOf("catflap", "marzipan", null))
           .isSorted(Comparator.nullsLast(Comparator.naturalOrder<String>()))
       }
 
-      test("fails with NPE if the Null value isn't handled through the Comparator instances") {
+      @Test
+      fun `fails with NPE if the Null value isn't handled through the Comparator instances`() {
         assertThrows<NullPointerException> {
           expectThat(listOf("catflap", "marzipan", null))
             .isSorted(Comparator.naturalOrder<String>())
         }
       }
 
-      derivedContext<Assertion.Builder<Collection<Collection<String>?>>>("isSorted on non-Comparable") {
-        context("a non-empty non Comparable value collection subject") {
-          fixture {
+      @Nested
+      inner class IsSortedOnNonComparable {
+          private val subject =
             expectThat(
               listOf(
                 listOf("catflap"),
@@ -1114,31 +1217,40 @@ internal object IterableAssertions : JUnit5Minutests {
                 listOf("rubberplant", "rubber bush", "rubber tree")
               )
             )
-          }
 
-          test("the assertion passes") {
+        @Test
+        fun `the assertion passes`() {
+          subject.run {
             isSorted(Comparator.comparing { it?.size ?: 0 })
           }
+        }
 
-          test("fails if the subject is not sorted according to the comparator") {
+        @Test
+        fun `fails if the subject is not sorted according to the comparator`() {
+          subject.run {
             assertThrows<AssertionError> {
               isSorted(Comparator.comparing(Collection<String>::size).reversed())
             }
           }
         }
       }
+    }
 
-      context("isSorted assertion") {
-        test("passes if the subject is empty") {
+      @Nested
+      inner class IsSortedAssertion {
+        @Test
+        fun `passes if the subject is empty`() {
           expectThat(emptyList<String>()).isSorted()
         }
 
-        test("the assertion passes if the elements are in natural order") {
+        @Test
+        fun `the assertion passes if the elements are in natural order`() {
           expectThat(listOf("catflap", "marzipan", "rubberplant"))
             .isSorted()
         }
 
-        test("the assertion fails if the elements are not in natural order") {
+        @Test
+        fun `the assertion fails if the elements are not in natural order`() {
           assertThrows<AssertionError> {
             expectThat(listOf("catflap", "rubberplant", "marzipan"))
               .isSorted()
@@ -1146,4 +1258,3 @@ internal object IterableAssertions : JUnit5Minutests {
         }
       }
     }
-}

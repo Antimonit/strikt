@@ -1,31 +1,37 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import strikt.api.expectThat
 
-internal object ListAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext {
-      context("containsSequence assertion") {
-        derivedContext<List<Int>>("a ${List::class}") {
-          fixture { listOf(1, 2, 3, 4) }
+internal class ListAssertions {
+  @Nested
+  inner class ContainsSequenceAssertion {
+    @Nested
+    inner class AList {
+      private val fixture = listOf(1, 2, 3, 4)
 
-          context("passes if") {
-            test("the subject contains the sequence") {
+      @Nested
+      inner class PassesIf {
+
+        @Test
+        fun `the subject contains the sequence`() {
               expectThat(fixture)
                 .containsSequence(3, 4)
-            }
+        }
 
-            test("the subject contains exactly the same elements as the expected sequence") {
+        @Test
+        fun `the subject contains exactly the same elements as the expected sequence`() {
               expectThat(fixture)
                 .containsSequence(1, 2, 3, 4)
-            }
-          }
+        }
+      }
 
-          context("fails if") {
-            test("the subject does not contain the sequence in the same order") {
+      @Nested
+      inner class FailsIf {
+        @Test
+        fun `the subject does not contain the sequence in the same order`() {
               val exception =
                 assertThrows<AssertionError> {
                   expectThat(fixture)
@@ -36,9 +42,10 @@ internal object ListAssertions : JUnit5Minutests {
             |  ✗ contains the sequence: [1, 4] in exactly the same order
                 """.trimMargin()
               )
-            }
+        }
 
-            test("the expected sequence is longer than the subject") {
+        @Test
+        fun `the expected sequence is longer than the subject`() {
               val exception =
                 assertThrows<AssertionError> {
                   expectThat(fixture)
@@ -49,9 +56,10 @@ internal object ListAssertions : JUnit5Minutests {
               |  ✗ contains the sequence: [1, 2, 3, 4, 5] in exactly the same order : expected sequence cannot be longer than subject
                 """.trimMargin()
               )
-            }
+        }
 
-            test("the expected sequence is empty") {
+        @Test
+        fun `the expected sequence is empty`() {
               val exception =
                 assertThrows<AssertionError> {
                   expectThat(fixture)
@@ -62,9 +70,8 @@ internal object ListAssertions : JUnit5Minutests {
             |  ✗ contains the sequence: [] in exactly the same order : expected sequence cannot empty
                 """.trimMargin()
               )
-            }
-          }
         }
       }
     }
+  }
 }

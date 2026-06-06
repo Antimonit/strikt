@@ -1,56 +1,79 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import strikt.api.Assertion
 import strikt.api.expectThat
 
 @DisplayName("assertions on ClosedRange")
-internal object ClosedRangeAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<ClosedRange<Int>>> {
-      context("contains") {
-        context("an empty IntRange") {
-          fixture { expectThat(IntRange.EMPTY) }
+internal class ClosedRangeAssertions {
+    @Nested
+    inner class Contains {
+      @Nested
+      inner class AnEmptyIntRange {
+        private val fixture: Assertion.Builder<ClosedRange<Int>> = expectThat(IntRange.EMPTY)
 
-          test("the assertion fails to contain any value") {
+        @Test
+        fun `fails to contain any value`() {
+          fixture.run {
             assertThrows<AssertionError> {
               contains(0)
-            }
-          }
-        }
-
-        context("an IntRange from 1 to 4") {
-          fixture { expectThat(1..4) }
-
-          test("assertion fails to contain 0") {
-            assertThrows<AssertionError> {
-              contains(0)
-            }
-          }
-
-          (1..4).forEach { value ->
-            test("assertion passes for containing $value") {
-              contains(value)
             }
           }
         }
       }
 
-      context("isEmpty") {
-        context("an empty IntRange") {
-          fixture { expectThat(IntRange.EMPTY) }
+      @Nested
+      inner class AnIntRangeFrom1To4 {
+        private val fixture: Assertion.Builder<ClosedRange<Int>> = expectThat(1..4)
 
-          test("the assertion succeeds") {
+        @Test
+        fun `fails to contain 0`() {
+          fixture.run {
+            assertThrows<AssertionError> {
+              contains(0)
+            }
+          }
+        }
+
+      @TestFactory
+      fun `passes for containing values in range`() {
+        fixture.run {
+          (1..4).forEach { value ->
+            DynamicTest.dynamicTest("assertion passes for containing $value") {
+              contains(value)
+            }
+          }
+        }
+      }
+    }
+  }
+
+    @Nested
+    inner class IsEmpty {
+      @Nested
+      inner class AnEmptyIntRange {
+        val fixture = expectThat(IntRange.EMPTY)
+
+        @Test
+        fun `an empty Int succeeds`() {
+          fixture.run {
             isEmpty()
           }
         }
-        context("a nonempty IntRange") {
-          fixture { expectThat(2..2) }
+      }
 
-          test("the assertion fails") {
+      @Nested
+      inner class ANonEmptyIntRange {
+        val fixture = expectThat(2..2)
+
+        @Test
+        fun `a nonempty IntRange fails`() {
+          fixture.run {
             assertThrows<AssertionError> {
               isEmpty()
             }

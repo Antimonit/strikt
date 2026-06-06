@@ -1,53 +1,70 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
 import org.opentest4j.MultipleFailuresError
-import strikt.api.Assertion
 import strikt.api.expectThat
 import strikt.internal.opentest4j.MappingFailed
 
-internal object MapAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<Map<String, String>>> {
-      context("an empty subject") {
-        fixture { expectThat(emptyMap()) }
+internal class MapAssertions {
+  @Nested
+  inner class AnEmptySubject {
+    private val subject = expectThat(emptyMap<String, String>())
 
-        test("isEmpty assertion passes") {
-          isEmpty()
-        }
+    @Test
+    fun `isEmpty assertion passes`() {
+      subject.run {
+        isEmpty()
+      }
+    }
 
-        test("isNotEmpty assertion fails") {
+    @Test
+    fun `isNotEmpty assertion fails`() {
+      subject.run {
           assertThrows<AssertionError> {
             isNotEmpty()
           }
-        }
+      }
+    }
 
-        test("get mapping returns a null subject") {
+    @Test
+    fun `get mapping returns a null subject`() {
+      subject.run {
           get("foo").isNull()
-        }
+      }
+    }
 
-        test("withValue throws an exception") {
+    @Test
+    fun `withValue throws an exception`() {
+      subject.run {
           assertThrows<MappingFailed> {
             withValue("foo") {
               isNotBlank()
             }
           }
-        }
-
-        test("keys mapping returns an empty set subject") {
-          keys.isEmpty()
-        }
-
-        test("values mapping returns an empty collection subject") {
-          values.isEmpty()
-        }
       }
+    }
 
-      context("a non-empty map") {
-        fixture {
+    @Test
+    fun `keys mapping returns an empty set subject`() {
+      subject.run {
+          keys.isEmpty()
+      }
+    }
+
+    @Test
+    fun `values mapping returns an empty collection subject`() {
+      subject.run {
+          values.isEmpty()
+      }
+    }
+  }
+
+  @Nested
+  inner class ANonEmptyMap {
+    private val subject =
           expectThat(
             mapOf(
               "foo" to "bar",
@@ -55,24 +72,36 @@ internal object MapAssertions : JUnit5Minutests {
               "qux" to "fnord"
             )
           )
-        }
 
-        test("isEmpty assertion fails") {
+    @Test
+    fun `isEmpty assertion fails`() {
+      subject.run {
           assertThrows<AssertionError> {
             isEmpty()
           }
-        }
+      }
+    }
 
-        test("isNotEmpty assertion passes") {
+    @Test
+    fun `isNotEmpty assertion passes`() {
+      subject.run {
           isNotEmpty()
-        }
+      }
+    }
 
-        context("containsKey assertion") {
-          test("passes if the subject has a matching key") {
+    @Nested
+    inner class ContainsKeyAssertion {
+
+      @Test
+      fun `passes if the subject has a matching key`() {
+        subject.run {
             containsKey("foo")
-          }
+        }
+      }
 
-          test("fails if the subject does not have a matching key") {
+      @Test
+      fun `fails if the subject does not have a matching key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 containsKey("bar")
@@ -82,15 +111,23 @@ internal object MapAssertions : JUnit5Minutests {
               |  ✗ has an entry with the key "bar""""
                 .trimMargin()
             )
-          }
         }
+      }
+    }
 
-        context("doesNotContainKey assertion") {
-          test("passes if the subject doesn't have a matching key") {
+    @Nested
+    inner class DoesNotContainKeyAssertion {
+
+      @Test
+      fun `passes if the subject doesn't have a matching key`() {
+        subject.run {
             doesNotContainKey("bar")
-          }
+        }
+      }
 
-          test("fails if the subject does have a matching key") {
+      @Test
+      fun `fails if the subject does have a matching key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 doesNotContainKey("foo")
@@ -100,15 +137,23 @@ internal object MapAssertions : JUnit5Minutests {
               |  ✗ does not have an entry with the key "foo""""
                 .trimMargin()
             )
-          }
         }
+      }
+    }
 
-        context("containsKeys assertion") {
-          test("passes if the subject has all the specified keys") {
+    @Nested
+    inner class ContainsKeysAssertion {
+
+      @Test
+      fun `passes if the subject has all the specified keys`() {
+        subject.run {
             containsKeys("foo", "baz")
-          }
+        }
+      }
 
-          test("fails if the subject does not have a matching key") {
+      @Test
+      fun `fails if the subject does not have a matching key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 containsKeys("foo", "bar", "fnord")
@@ -121,15 +166,23 @@ internal object MapAssertions : JUnit5Minutests {
               |    ✗ has an entry with the key "fnord""""
                 .trimMargin()
             )
-          }
         }
+      }
+    }
 
-        context("doesNotContainKeys assertion") {
-          test("passes if the subject does not have all the specified keys") {
+    @Nested
+    inner class DoesNotContainKeysAssertion {
+
+      @Test
+      fun `passes if the subject does not have all the specified keys`() {
+        subject.run {
             doesNotContainKeys("bar", "fnord")
-          }
+        }
+      }
 
-          test("fails if the subject does have a matching key") {
+      @Test
+      fun `fails if the subject does have a matching key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 doesNotContainKeys("bar", "fnord", "foo")
@@ -142,15 +195,23 @@ internal object MapAssertions : JUnit5Minutests {
               |    ✗ does not have an entry with the key "foo""""
                 .trimMargin()
             )
-          }
         }
+      }
+    }
 
-        context("hasEntry assertion") {
-          test("passes if the subject has a matching key value pair") {
+    @Nested
+    inner class HasEntryAssertion {
+
+      @Test
+      fun `passes if the subject has a matching key value pair`() {
+        subject.run {
             hasEntry("foo", "bar")
-          }
+        }
+      }
 
-          test("fails if the subject does not have a matching key") {
+      @Test
+      fun `fails if the subject does not have a matching key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 hasEntry("bar", "foo")
@@ -160,9 +221,12 @@ internal object MapAssertions : JUnit5Minutests {
               |  ✗ has an entry with the key "bar""""
                 .trimMargin()
             )
-          }
+        }
+      }
 
-          test("fails if the subject has a different value associated with the key") {
+      @Test
+      fun `fails if the subject has a different value associated with the key`() {
+        subject.run {
             val error =
               assertThrows<AssertionError> {
                 hasEntry("foo", "baz")
@@ -175,25 +239,41 @@ internal object MapAssertions : JUnit5Minutests {
               |            found "bar""""
                 .trimMargin()
             )
-          }
         }
+      }
+    }
 
-        context("get mapping") {
-          test("returns an assertion over the value for a valid key") {
+    @Nested
+    inner class GetMapping {
+
+      @Test
+      fun `returns an assertion over the value for a valid key`() {
+        subject.run {
             get("foo").isEqualTo("bar")
-          }
-
-          test("returns a null subject for a non-existent key") {
-            get("bar").isNull()
-          }
         }
+      }
 
-        context("getValue mapping") {
-          test("returns an assertion over the value for a valid key") {
+      @Test
+      fun `returns a null subject for a non-existent key`() {
+        subject.run {
+            get("bar").isNull()
+        }
+      }
+    }
+
+    @Nested
+    inner class GetValueMapping {
+
+      @Test
+      fun `returns an assertion over the value for a valid key`() {
+        subject.run {
             getValue("foo").isEqualTo("bar")
-          }
+        }
+      }
 
-          test("fails for a non-existent key") {
+      @Test
+      fun `fails for a non-existent key`() {
+        subject.run {
             assertThrows<AssertionFailedError> {
               getValue("bar").isEqualTo("this will never get evaluated")
             }.also {
@@ -205,25 +285,36 @@ internal object MapAssertions : JUnit5Minutests {
                   """.trimMargin()
                 )
             }
-          }
         }
+      }
+    }
 
-        context("withValue function") {
-          test("runs assertions on the value associated with the key") {
+    @Nested
+    inner class WithValueFunction {
+
+      @Test
+      fun `runs assertions on the value associated with the key`() {
+        subject.run {
             withValue("foo") {
               isEqualTo("bar")
             }
-          }
+        }
+      }
 
-          test("fails if the nested assertions fail") {
+      @Test
+      fun `fails if the nested assertions fail`() {
+        subject.run {
             assertThrows<MultipleFailuresError> {
               withValue("foo") {
                 isEqualTo("baz")
               }
             }
-          }
+        }
+      }
 
-          test("fails for a non-existent key") {
+      @Test
+      fun `fails for a non-existent key`() {
+        subject.run {
             assertThrows<MappingFailed> {
               withValue("bar") {
                 isEqualTo("this will never get evaluated")
@@ -233,19 +324,29 @@ internal object MapAssertions : JUnit5Minutests {
                 .isEqualTo("Mapping 'entry [\"bar\"]' failed with: Key bar is missing in the map.")
             }
           }
-        }
+      }
+    }
 
-        context("keys mapping") {
-          test("returns the map keys as a subject") {
+    @Nested
+    inner class KeysMapping {
+
+      @Test
+      fun `returns the map keys as a subject`() {
+        subject.run {
             keys.isEqualTo(setOf("foo", "baz", "qux"))
-          }
-        }
-
-        context("values mapping") {
-          test("returns the map values as a subject") {
-            values.containsExactlyInAnyOrder("bar", "fnord", "fnord")
-          }
         }
       }
     }
+
+    @Nested
+    inner class ValuesMapping {
+
+      @Test
+      fun `returns the map values as a subject`() {
+        subject.run {
+            values.containsExactlyInAnyOrder("bar", "fnord", "fnord")
+        }
+      }
+    }
+  }
 }

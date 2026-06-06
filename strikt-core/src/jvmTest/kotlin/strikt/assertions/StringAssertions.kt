@@ -1,45 +1,49 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import strikt.api.Assertion
 import strikt.api.expectThat
 import strikt.api.expectThrows
 import strikt.internal.opentest4j.CompoundAssertionFailure
 
 @DisplayName("assertions on String")
-internal object StringAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext {
-      derivedContext<Assertion.Builder<String>>("isEqualToIgnoringCase") {
-        fixture { expectThat("fnord") }
+internal class StringAssertions {
+  @Nested
+  inner class IsEqualToIgnoringCase {
 
-        test("passes if the subject is identical to the expected value") {
-          isEqualToIgnoringCase("fnord")
-        }
+    private val subject = expectThat("fnord")
 
-        test("fails if the subject is different") {
+    @Test
+    fun `passes if the subject is identical to the expected value`() {
+          subject.isEqualToIgnoringCase("fnord")
+    }
+
+    @Test
+    fun `fails if the subject is different`() {
           assertThrows<AssertionError> {
             expectThat("despite the negative press fnord")
               .isEqualToIgnoringCase("fnord")
           }
-        }
+    }
 
-        test("passes if the subject is the same as the expected value apart from case") {
+    @Test
+    fun `passes if the subject is the same as the expected value apart from case`() {
           expectThat("fnord").isEqualToIgnoringCase("fnord")
-        }
-      }
+    }
+  }
 
-      derivedContext<Assertion.Builder<String>>("startsWith") {
-        fixture { expectThat("fnord") }
+  @Nested
+  inner class StartsWith {
 
-        test("can expect string start") {
+    @Test
+    fun `can expect string start`() {
           expectThat("fnord").startsWith("fno")
-        }
+    }
 
-        test("outputs real start when startsWith fails") {
+    @Test
+    fun `outputs real start when startsWith fails`() {
           val expectThrows =
             expectThrows<AssertionError> {
               try {
@@ -58,16 +62,18 @@ internal object StringAssertions : JUnit5Minutests {
               """.trimMargin()
             )
         }
-      }
+  }
 
-      derivedContext<Assertion.Builder<String>>("endsWith") {
-        fixture { expectThat("fnord") }
+      @Nested
+      inner class EndsWith {
 
-        test("can expect string end") {
+        @Test
+        fun `can expect string end`() {
           expectThat("fnord").endsWith("nord")
         }
 
-        test("outputs real end when endsWith fails") {
+        @Test
+        fun `outputs real end when endsWith fails`() {
           expectThrows<AssertionError> {
             expectThat("fnord").endsWith("nor")
           }
@@ -82,7 +88,8 @@ internal object StringAssertions : JUnit5Minutests {
         }
       }
 
-      test("can have a block assertion on a string subject without overload clash") {
+      @Test
+      fun `can have a block assertion on a string subject without overload clash`() {
         val error =
           assertThrows<CompoundAssertionFailure> {
             val subject = "The Enlightened take things Lightly"
@@ -95,8 +102,8 @@ internal object StringAssertions : JUnit5Minutests {
         expectThat(error.failures.size).isEqualTo(2)
       }
 
-      test("can trim string") {
+      @Test
+      fun `can trim string`() {
         expectThat(" fnord ").trim().isEqualToIgnoringCase("fnord")
       }
-    }
 }

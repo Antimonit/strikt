@@ -1,37 +1,48 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import jdk.dynalink.linker.support.Guards.isNull
+import org.junit.jupiter.api.DynamicTest
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
 import strikt.api.Assertion.Builder
 import strikt.api.expectThat
 import kotlin.time.Instant
 
-internal object AnyAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Builder<Any?>> {
-      context("isNull") {
-        context("the subject is null") {
-          fixture { expectThat(null) }
+internal class AnyAssertions {
+    @Nested
+    inner class IsNull {
+      @Nested
+      inner class WhenSubjectIsNull {
+        private val fixture: Builder<Any?> = expectThat(null)
 
-          test("the assertion passes") {
+        @Test
+        fun `the assertion passes`() {
+          fixture.run {
             isNull()
           }
+        }
 
-          test("the assertion down-casts the subject") {
+        @Test
+        fun `the assertion down-casts the subject`() {
+          fixture.run {
             @Suppress("USELESS_IS_CHECK")
             also { assert(it is Builder<Any?>) }
               .isNull()
               .also { assert(it is Builder<Nothing>) }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion fails for non-null subjects`() {
         listOf("fnord", 1L, "null").forEach {
-          context("a non-null subject : ${it.quoted()}") {
-            fixture { expectThat(it) }
+          val fixture = expectThat(it)
 
-            test("the assertion fails") {
+          fixture.run {
+            DynamicTest.dynamicTest("a non-null subject : ${it.quoted()}") {
               assertThrows<AssertionFailedError> {
                 isNull()
               }
@@ -39,27 +50,35 @@ internal object AnyAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isNotNull") {
-        context("when the subject is null") {
-          fixture { expectThat(null) }
+    @Nested
+    inner class IsNotNull {
+      @Nested
+      inner class WhenSubjectIsNull {
+        val fixture = expectThat(null)
 
-          test("the assertion fails") {
+        @Test
+        fun `the assertion fails`() {
+          fixture.run {
             assertThrows<AssertionFailedError> {
               isNotNull()
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion passes for non-null subjects`() {
         listOf("fnord", 1L, "null").forEach<Any?> {
-          context("a non-null subject : ${it.quoted()}") {
-            fixture { expectThat(it) }
+          val fixture = expectThat(it)
 
-            test("the assertion passes") {
+          fixture.run {
+            DynamicTest.dynamicTest("a non-null subject : ${it.quoted()}") {
               isNotNull()
             }
 
-            test("down-casts the result") {
+            DynamicTest.dynamicTest("a non-null subject : ${it.quoted()}") {
               @Suppress("USELESS_IS_CHECK")
               also { assert(it is Builder<Any?>) }
                 .isNotNull()
@@ -68,12 +87,17 @@ internal object AnyAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("withNotNull") {
-        context("when the subject is null") {
-          fixture { expectThat(null) }
+    @Nested
+    inner class WithNotNull {
+      @Nested
+      inner class WhenSubjectIsNull {
+        val subject = expectThat(null)
 
-          test("the assertion fails") {
+        @Test
+        fun `the assertion fails`() {
+          subject.run {
             assertThrows<AssertionFailedError> {
               withNotNull {
                 isEqualTo("fnord")
@@ -81,12 +105,15 @@ internal object AnyAssertions : JUnit5Minutests {
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion passes for non-null subjects`() {
         listOf("fnord", 1L, "null").forEach<Any?> {
-          context("a non-null subject : ${it.quoted()}") {
-            fixture { expectThat(it) }
+          val fixture = expectThat(it)
 
-            test("the assertion passes") {
+          DynamicTest.dynamicTest("a non-null subject : ${it.quoted()}") {
+            fixture.run {
               withNotNull {
                 isEqualTo(it)
               }
@@ -94,54 +121,80 @@ internal object AnyAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isA") {
-        context("when the subject is null") {
-          fixture { expectThat(null) }
-          test("the assertion fails") {
+  @Nested
+  inner class IsA {
+      @Nested
+      inner class WhenSubjectIsNull {
+        val fixture = expectThat(null)
+        @Test
+        fun `the assertion fails`() {
+          fixture.run {
             assertThrows<AssertionFailedError> {
               isA<String>()
             }
           }
         }
+      }
 
-        context("a subject of the wrong type") {
-          fixture { expectThat(1L) }
+      @Nested
+      inner class WhenSubjectIsOfWrongType {
+        val fixture = expectThat(1L)
 
-          test("the assertion fails") {
+        @Test
+        fun `the assertion fails`() {
+          fixture.run {
             assertThrows<AssertionFailedError> {
               isA<String>()
             }
           }
         }
+      }
 
-        context("a subject of the expected type") {
-          fixture { expectThat("fnord") }
+      @Nested
+      inner class WhenSubjectIsOfExpectedType {
+        private val fixture: Builder<Any?> = expectThat("fnord")
 
-          test("the assertion passes") {
+        @Test
+        fun `the assertion passes`() {
+          fixture.run {
             isA<String>()
           }
+        }
 
-          test("the assertion narrows the subject type") {
+        @Test
+        fun `the assertion narrows the subject type`() {
+          fixture.run {
             @Suppress("USELESS_IS_CHECK")
             also { assert(it is Builder<Any?>) }
               .isA<String>()
               .also { assert(it is Builder<String>) }
           }
+        }
 
-          test("the narrowed type can use specialized assertions") {
+        @Test
+        fun `the narrowed type can use specialized assertions`() {
+          fixture.run {
             isA<String>().hasLength(5) // only available on Assertion<CharSequence>
           }
         }
+      }
 
-        context("a subject that is a sub-type of the expected type") {
-          fixture { expectThat(1L) }
+      @Nested
+      inner class WhenSubjectIsASubtype {
+        private val fixture: Builder<Any?> = expectThat(1L)
 
-          test("the assertion passes") {
+        @Test
+        fun `the assertion passes`() {
+          fixture.run {
             isA<Number>()
           }
+        }
 
-          test("the assertion narrows the subject type") {
+        @Test
+        fun `the assertion narrows the subject type`() {
+          fixture.run {
             @Suppress("USELESS_IS_CHECK")
             also { assert(it is Builder<Any?>) }
               .isA<Number>()
@@ -151,16 +204,24 @@ internal object AnyAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isEqualTo") {
-        context("a subject that is equal to the expectation") {
-          fixture { expectThat("fnord") }
+    @Nested
+    inner class IsEqualTo {
+      @Nested
+      inner class WhenSubjectIsEqualToExpectation {
+        val fixture = expectThat("fnord")
 
-          test("the assertion passes") {
+        @Test
+        fun `the assertion passes`() {
+          fixture.run {
             isEqualTo("fnord")
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion fails for non-equal pairs`() {
         listOf(
           "fnord" to "FNORD",
           1 to 1L,
@@ -168,21 +229,25 @@ internal object AnyAssertions : JUnit5Minutests {
           "fnord" to null
         )
           .forEach { (subject, expected) ->
-            context("when the subject is ${subject.quoted()}") {
-              fixture { expectThat(subject) }
+            DynamicTest.dynamicTest("when the subject is ${subject.quoted()} the assertion fails") {
+              val fixture = expectThat(subject)
 
-              test("the assertion fails") {
+              fixture.run {
                 assertThrows<AssertionFailedError> {
                   isEqualTo(expected)
                 }
               }
             }
           }
+      }
 
-        context("subject is a different type but looks the same") {
-          fixture { expectThat(5L) }
+      @Nested
+      inner class WhenSubjectIsDifferentTypeThatLooksTheSame {
+        val fixture = expectThat(5L)
 
-          test("the failure message specifies the types involved") {
+        @Test
+        fun `the failure message specifies the types involved`() {
+          fixture.run {
             val error =
               assertThrows<AssertionFailedError> {
                 isEqualTo(5)
@@ -196,18 +261,26 @@ internal object AnyAssertions : JUnit5Minutests {
           }
         }
       }
+    }
 
-      context("isNotEqualTo") {
-        context("the subject matches the expectation") {
-          fixture { expectThat("fnord") }
+    @Nested
+    inner class IsNotEqualTo {
+      @Nested
+      inner class WhenSubjectMatchesExpectation {
+        val fixture = expectThat("fnord")
 
-          test("the assertion fails") {
+        @Test
+        fun `the assertion fails`() {
+          fixture.run {
             assertThrows<AssertionFailedError> {
               isNotEqualTo("fnord")
             }
           }
         }
+      }
 
+      @TestFactory
+      fun `the assertion passes for non-equal pairs`() {
         listOf(
           "fnord" to "FNORD",
           1 to 1L,
@@ -215,17 +288,21 @@ internal object AnyAssertions : JUnit5Minutests {
           "fnord" to null
         )
           .forEach { (subject, expected) ->
-            context("when the subject is ${subject.quoted()} and the expected value is ${expected.quoted()}") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion passes") {
+            fixture.run {
+              DynamicTest.dynamicTest("when the subject is ${subject.quoted()} and expected is ${expected.quoted()}") {
                 isNotEqualTo(expected)
               }
             }
           }
       }
+    }
 
-      context("isSameInstanceAs") {
+    @Nested
+    inner class IsSameInstanceAs {
+      @TestFactory
+      fun `the assertion fails for different instances`() {
         listOf(
           listOf("fnord") to listOf("fnord"),
           null to listOf("fnord"),
@@ -234,31 +311,38 @@ internal object AnyAssertions : JUnit5Minutests {
           Instant.parse("2026-12-31T12:30:00Z").let { it to Instant.fromEpochMilliseconds(it.toEpochMilliseconds()) }
         )
           .forEach { (subject, expected) ->
-            context("the subject and expected values are different instances") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion fails") {
+            fixture.run {
+              DynamicTest.dynamicTest("the subject and expected values are different instances") {
                 assertThrows<AssertionFailedError> {
                   isSameInstanceAs(expected)
                 }
               }
             }
           }
+      }
 
+      @TestFactory
+      fun `the assertion passes for same instances`() {
         listOf("fnord", 1L, null, listOf("fnord"), Instant.parse("2026-12-31T12:30:00Z"))
           .map { it to it }
           .forEach { (subject, expected) ->
-            context("the subject and expected values are the same instance") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion passes") {
+            fixture.run {
+              DynamicTest.dynamicTest("the subject and expected values are the same instance: ${subject.quoted()}") {
                 isSameInstanceAs(expected)
               }
             }
           }
       }
+    }
 
-      context("isNotSameInstanceAs") {
+    @Nested
+    inner class IsNotSameInstanceAs {
+      @TestFactory
+      fun `the assertion passes for different instances`() {
         listOf(
           listOf("fnord") to listOf("fnord"),
           null to listOf("fnord"),
@@ -267,22 +351,25 @@ internal object AnyAssertions : JUnit5Minutests {
           Instant.parse("2026-12-31T12:30:00Z").let { it to Instant.fromEpochMilliseconds(it.toEpochMilliseconds()) }
         )
           .forEach { (subject, expected) ->
-            context("the subject and expected values are different instances") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion passes") {
+            fixture.run {
+              DynamicTest.dynamicTest("the subject and expected values are different instances") {
                 isNotSameInstanceAs(expected)
               }
             }
           }
+      }
 
+      @TestFactory
+      fun `the assertion fails for same instances`() {
         listOf("fnord", 1L, null, listOf("fnord"), Instant.fromEpochMilliseconds(0))
           .map { it to it }
           .forEach { (subject, expected) ->
-            context("the subject and expected values are the same instance") {
-              fixture { expectThat(subject) }
+            val fixture = expectThat(subject)
 
-              test("the assertion fails") {
+            fixture.run {
+              DynamicTest.dynamicTest("the subject and expected values are the same instance: ${subject.quoted()}") {
                 assertThrows<AssertionFailedError> {
                   isNotSameInstanceAs(expected)
                 }
@@ -290,30 +377,38 @@ internal object AnyAssertions : JUnit5Minutests {
             }
           }
       }
+    }
 
-      context("isContainedIn") {
-        context("with a collection of the same type") {
-          fixture {
+    @Nested
+    inner class IsContainedIn {
+      @Nested
+      inner class WithACollectionOfTheSameType {
+        val fixture =
             expectThat("fnord")
-          }
 
-          test("fails if the subject is not in the expected iterable") {
+        @Test
+        fun `fails if the subject is not in the expected iterable`() {
+          fixture.run {
             assertThrows<AssertionFailedError> {
               isContainedIn(listOf("catflap", "rubberplant", "marzipan"))
             }
           }
+        }
 
-          test("passes if the subject is in the expected iterable") {
+        @Test
+        fun `passes if the subject is in the expected iterable`() {
+          fixture.run {
             isContainedIn(listOf("catflap", "rubberplant", "marzipan", "fnord"))
           }
         }
+      }
 
-        context("with a collection of a super type") {
-          fixture {
-            expectThat(1)
-          }
-
-          test("passes if the subject is in the expected iterable") {
+      @Nested
+      inner class WithACollectionOfASuperType {
+        val fixture = expectThat(1)
+        @Test
+        fun `passes if the subject is in the expected iterable`() {
+          fixture.run {
             // this is really just testing compilation works
             isContainedIn(listOf<Number>(1, 1L, 1.0, 1.0f))
           }

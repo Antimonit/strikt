@@ -1,10 +1,9 @@
 package strikt
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
-import strikt.api.Assertion
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.isA
@@ -13,27 +12,39 @@ import strikt.assertions.isFailure
 import strikt.assertions.isSuccess
 import strikt.assertions.message
 
-internal class Catching : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<Result<String>>> {
-      context("a successful action") {
-        fixture {
+internal class Catching {
+  @Nested
+  inner class ASuccessfulAction {
+        private val subject = run {
           expectCatching { "kthxbye" }
         }
 
-        test("maps to the action's returned value") {
+    @Test
+    fun `maps to the action's returned value`() {
+      run {
+        subject.run {
           isSuccess()
             .isA<String>()
             .isEqualTo("kthxbye")
         }
+      }
+    }
 
-        test("is not failed") {
+    @Test
+    fun `is not failed`() {
+      run {
+        subject.run {
           assertThrows<AssertionFailedError> {
             isFailure()
           }
         }
+      }
+    }
 
-        test("chains correctly in a block") {
+    @Test
+    fun `chains correctly in a block`() {
+      run {
+        subject.run {
           assertThrows<AssertionError> {
             and {
               isFailure().isA<NullPointerException>()
@@ -49,26 +60,42 @@ internal class Catching : JUnit5Minutests {
           }
         }
       }
+    }
+  }
 
-      context("a failed action") {
-        fixture {
+  @Nested
+  inner class AFailedAction {
+        private val subject = run {
           expectCatching { error("o noes") }
         }
 
-        test("maps to the exception thrown by the action") {
+    @Test
+    fun `maps to the exception thrown by the action`() {
+      run {
+        subject.run {
           isFailure()
             .isA<IllegalStateException>()
             .message
             .isEqualTo("o noes")
         }
+      }
+    }
 
-        test("is not successful") {
+    @Test
+    fun `is not successful`() {
+      run {
+        subject.run {
           assertThrows<AssertionFailedError> {
             isSuccess()
           }
         }
+      }
+    }
 
-        test("chains correctly in a block") {
+    @Test
+    fun `chains correctly in a block`() {
+      run {
+        subject.run {
           assertThrows<AssertionError> {
             and {
               isSuccess().isA<String>()
@@ -85,4 +112,5 @@ internal class Catching : JUnit5Minutests {
         }
       }
     }
+  }
 }
