@@ -10,4 +10,4 @@ testImplementation("io.strikt:strikt-mockk:{{ version }}")
 
 ## API Documentation
 
-- [strikt.mockk](/api/strikt-mockk/strikt.mockk/)
+- [strikt.mockk](../../api/strikt-mockk/strikt.mockk/)

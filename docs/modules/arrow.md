@@ -10,4 +10,4 @@ testImplementation("io.strikt:strikt-arrow:{{ version }}")
 
 ## API Documentation
 
-- [strikt.arrow](/api/strikt-arrow/strikt.arrow/)
+- [strikt.arrow](../../api/strikt-arrow/strikt.arrow/)

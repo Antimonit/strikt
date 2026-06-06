@@ -10,4 +10,4 @@ testImplementation("io.strikt:strikt-jackson:{{ version }}")
 
 ## API Documentation
 
-- [strikt.jackson](/api/strikt-jackson/strikt.jackson/)
+- [strikt.jackson](../../api/strikt-jackson/strikt.jackson/)

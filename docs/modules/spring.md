@@ -10,4 +10,4 @@ testImplementation("io.strikt:strikt-spring:{{ version }}")
 
 ## API Documentation
 
-- [strikt.spring](/api/strikt-spring/strikt.spring/)
+- [strikt.spring](../../api/strikt-spring/strikt.spring/)
