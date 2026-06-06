@@ -30,7 +30,7 @@ protobuf-java = "4.35.0"
 # https://github.com/google/protobuf-gradle-plugin/releases
 protobuf-plugin = "0.10.0"
 # https://github.com/spring-projects/spring-boot/releases
-spring-boot = "3.5.14"
+spring-boot = "4.0.6"
 # https://github.com/radarsh/gradle-test-logger-plugin/releases
 test-logger = "4.0.0"
 # https://github.com/ben-manes/gradle-versions-plugin/releases
