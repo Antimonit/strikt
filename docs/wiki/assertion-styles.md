@@ -12,13 +12,13 @@ That is, the first assertion that fails breaks the chain and further assertions 
 Each assertion in the chain returns an `Assertion.Builder` object that supports further assertions.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_1"
 ```
 
 Produces the output:
 
 ```text
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_2"
 ```
 
 Notice that the `isUpperCase()` assertion is not applied as the earlier `hasLength(1)` assertion failed.
@@ -32,13 +32,13 @@ Block assertions do _not_ fail fast.
 That is, all assertions in the block are evaluated, and the result of the "compound" assertion will include results for all the assertions made in the block.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_3"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_3"
 ```
 
 Produces the output:
 
 ```text
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_4"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_4"
 ```
 
 All assertions are applied and since two fail there are two errors logged.
@@ -48,13 +48,13 @@ All assertions are applied and since two fail there are two errors logged.
 Chained assertions inside a block _will_ still fail fast but will not prevent other assertions in the block from being evaluated.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_5"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_5"
 ```
 
 Produces the output:
 
 ```text
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_6"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_6"
 ```
 
 Note the `isA<Int>` assertion (that would have failed) was not evaluated since it was chained after `lessThan(1)` which failed.
@@ -70,5 +70,5 @@ All assertions inside the `expect` lambda are evaluated.
 The previous examples can be combined into a single `expect` block.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:assertion_styles_7"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:assertion_styles_7"
 ```

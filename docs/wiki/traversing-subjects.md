@@ -3,7 +3,7 @@
 Although you can obviously write assertions for the properties of an object with code like this:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_1"
 ```
 
 Sometimes it's useful to be able to transform an assertion on a subject to an assertion on a property of that subject, or the result of a method call.
@@ -19,7 +19,7 @@ The `get` method returns an `Assertion.Builder<R>` where the new subject (whose 
 This is useful for making assertions about the properties of an object, or the values returned by methods, particularly if you want to use a block-style assertion to validate multiple object properties.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_4"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_4"
 ```
 
 ## Using _get_ with lambdas
@@ -27,14 +27,14 @@ This is useful for making assertions about the properties of an object, or the v
 An alternate version of the `get` method takes a lambda whose receiver is the current subject.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_2"
 ```
 
 Strikt will attempt to read the test source to find out the name of the variables.
 This example produces output that looks like this:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_3"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_3"
 ```
 
 ### Performance considerations
@@ -54,7 +54,7 @@ If the assertion subject is an `Iterable` Strikt provides a `map` function much 
 It is effectively like using `get` on each element of the `Iterable` subject.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_5"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_5"
 ```
 
 In this case the `map` function is transforming the `Assertion.Builder<List<Person>>` into an `Assertion.Builder<List<String>>` by applying the `name` property to each element.
@@ -66,13 +66,13 @@ If you find yourself frequently using `get` for the same properties or methods, 
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_6"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_6"
 ```
 
 You can then write the earlier example as:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:traversing_subjects_7"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:traversing_subjects_7"
 ```
 
 ## Built-in traversals

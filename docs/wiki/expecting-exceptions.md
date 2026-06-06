@@ -4,7 +4,7 @@ To assert that some code does or does not throw an exception use the `expectCatc
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:catching_exceptions_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:catching_exceptions_1"
 ```
 
 The `expectCatching` function returns `Assertion.Builder<Try<T>>` with the assertion's subject being a wrapper for either the value the lambda returns, or the exception it throws.
@@ -20,7 +20,7 @@ If you just need to test that _any_ exception was thrown you can just use the `i
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:catching_exceptions_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:catching_exceptions_2"
 ```
 
 ## With block assertions
@@ -29,7 +29,7 @@ For example:
 The `catching` function returns a `Assertion.Builder<Try<T>>` mentioned above.
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:catching_exceptions_3"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:catching_exceptions_3"
 ```
 
 ### Shorthand form
@@ -38,7 +38,7 @@ You can also use the `expectThrows<E>(A)` function which is simply a shorthand f
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Assertions.kt:expect_throws_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Assertions.kt:expect_throws_1"
 ```
 
 ## Asserting success

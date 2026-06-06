@@ -14,7 +14,7 @@ The `and` method is helpful in these scenarios.
 For example:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_and_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_and_1"
 ```
 
 The type after `expectThat` is `Assertion.Builder<T?>` (assuming `subject` has a nullable declared type) but the receiver of `and` is `Assertion.Builder<T>` as `isNotNull` has narrowed the subject type.
@@ -25,26 +25,26 @@ Another use for `and` is to create a branch of assertions that apply to a sub-tr
 For example, if testing a complex value type with nested properties:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_and_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_and_2"
 ```
 
 The `with` function gives you another option for doing this:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_with_1"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_with_1"
 ```
 
 Of course, it may be better to structure the same assertion with separate assertions.
 This is a lot more readable:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_and_3"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_and_3"
 ```
 
 Testing properties of a collection can be done similarly:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_and_4"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_and_4"
 ```
 
 ## _with*_ extension functions
@@ -65,5 +65,5 @@ These include:
 For example, the previous assertions could also be written as:
 
 ```kotlin
---8<-- "strikt-core/src/test/kotlin/strikt/docs/Chaining.kt:grouping_with_with_2"
+--8<-- "strikt-core/src/jvmTest/kotlin/strikt/docs/Chaining.kt:grouping_with_with_2"
 ```
