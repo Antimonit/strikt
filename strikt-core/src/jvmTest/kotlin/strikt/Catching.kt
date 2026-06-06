@@ -1,6 +1,5 @@
 package strikt
 
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
@@ -13,104 +12,69 @@ import strikt.assertions.isSuccess
 import strikt.assertions.message
 
 internal class Catching {
-  @Nested
-  inner class ASuccessfulAction {
-        private val subject = run {
-          expectCatching { "kthxbye" }
-        }
 
-    @Test
-    fun `maps to the action's returned value`() {
-      run {
-        subject.run {
-          isSuccess()
-            .isA<String>()
-            .isEqualTo("kthxbye")
-        }
-      }
-    }
+  @Test
+  fun `isSuccess maps to the action's returned value`() {
+    expectCatching { "kthxbye" }
+      .isSuccess()
+      .isA<String>()
+      .isEqualTo("kthxbye")
+  }
 
-    @Test
-    fun `is not failed`() {
-      run {
-        subject.run {
-          assertThrows<AssertionFailedError> {
-            isFailure()
-          }
-        }
-      }
-    }
-
-    @Test
-    fun `chains correctly in a block`() {
-      run {
-        subject.run {
-          assertThrows<AssertionError> {
-            and {
-              isFailure().isA<NullPointerException>()
-            }
-          }.also { exception ->
-            expectThat(exception.message).isEqualTo(
-              """
-            |▼ Expect that Success(kthxbye):
-            |  ✗ is failure
-            |    returned "kthxbye"
-              """.trimMargin()
-            )
-          }
-        }
-      }
+  @Test
+  fun `isFailure fails when the action succeeded`() {
+    assertThrows<AssertionFailedError> {
+      expectCatching { "kthxbye" }.isFailure()
     }
   }
 
-  @Nested
-  inner class AFailedAction {
-        private val subject = run {
-          expectCatching { error("o noes") }
-        }
-
-    @Test
-    fun `maps to the exception thrown by the action`() {
-      run {
-        subject.run {
-          isFailure()
-            .isA<IllegalStateException>()
-            .message
-            .isEqualTo("o noes")
-        }
+  @Test
+  fun `isSuccess chains correctly in a block`() {
+    assertThrows<AssertionError> {
+      expectCatching { "kthxbye" }.and {
+        isFailure().isA<NullPointerException>()
       }
+    }.also { exception ->
+      expectThat(exception.message).isEqualTo(
+        """
+        |▼ Expect that Success(kthxbye):
+        |  ✗ is failure
+        |    returned "kthxbye"
+        """.trimMargin()
+      )
     }
+  }
 
-    @Test
-    fun `is not successful`() {
-      run {
-        subject.run {
-          assertThrows<AssertionFailedError> {
-            isSuccess()
-          }
-        }
-      }
+  @Test
+  fun `isFailure maps to the exception thrown by the action`() {
+    expectCatching { error("o noes") }
+      .isFailure()
+      .isA<IllegalStateException>()
+      .message
+      .isEqualTo("o noes")
+  }
+
+  @Test
+  fun `isSuccess fails when the action failed`() {
+    assertThrows<AssertionFailedError> {
+      expectCatching { error("o noes") }.isSuccess()
     }
+  }
 
-    @Test
-    fun `chains correctly in a block`() {
-      run {
-        subject.run {
-          assertThrows<AssertionError> {
-            and {
-              isSuccess().isA<String>()
-            }
-          }.also { exception ->
-            expectThat(exception.message).isEqualTo(
-              """
-            |▼ Expect that Failure(java.lang.IllegalStateException: o noes):
-            |  ✗ is success
-            |    threw java.lang.IllegalStateException
-              """.trimMargin()
-            )
-          }
-        }
+  @Test
+  fun `isFailure chains correctly in a block`() {
+    assertThrows<AssertionError> {
+      expectCatching { error("o noes") }.and {
+        isSuccess().isA<String>()
       }
+    }.also { exception ->
+      expectThat(exception.message).isEqualTo(
+        """
+        |▼ Expect that Failure(java.lang.IllegalStateException: o noes):
+        |  ✗ is success
+        |    threw java.lang.IllegalStateException
+        """.trimMargin()
+      )
     }
   }
 }
