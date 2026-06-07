@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+code, pre, kbd, .md-typeset code, .md-typeset pre, .md-typeset kbd {
+  font-size: 1em;
+}
+
+/* Custom primary color */
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0a0a0a;
+  --md-primary-fg-color--light: rgba(10, 10, 10, 0.54);
+  --md-primary-fg-color--dark: #000000;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+}
+
+/* Site-wide dark code blocks (Prism Tomorrow, matching strikt.io) */
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-code-bg-color: #363636;
+  --md-code-fg-color: #ccc;
+  --md-code-hl-comment-color: #999;
+  --md-code-hl-punctuation-color: #ccc;
+  --md-code-hl-generic-color: #999;
+  --md-code-hl-variable-color: #f08d49;
+  --md-code-hl-name-color: #ccc;
+  --md-code-hl-keyword-color: #cc99cd;
+  --md-code-hl-operator-color: #67cdcc;
+  --md-code-hl-string-color: #7ec699;
+  --md-code-hl-number-color: #f08d49;
+  --md-code-hl-constant-color: #f8c555;
+  --md-code-hl-special-color: #e2777a;
+  --md-code-hl-function-color: #6196cc;
+}
+
+/* Inline code: light background, red text (user preference) */
+:not(pre) > code {
+  background-color: #f5f5f5 !important;
+  color: #da1039 !important;
+}
+
+/* Body link color (matching original Bulma blue) */
+.md-content a:not(.md-button) {
+  color: #3273dc;
+}
+
+.md-content a:not(.md-button):hover {
+  color: #2793da;
+}
+
+/* Constrain homepage content width */
+.md-content__inner {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Homepage intro text (matching original .column.is-8 centered) */
+.homepage-version {
+  text-align: center;
+}
+
+.homepage-intro {
+  max-width: 66.67%;
+  margin: 0 auto;
+}
+
+/* Homepage logo: 50% width on tablet+ (matching original .column.is-half) */
+@media screen and (min-width: 769px), print {
+  .md-content h1 img[alt="Strikt"] {
+    flex: none;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* Homepage feature sections (matching original .columns.is-multiline.is-gapless, 4:8 ratio) */
+.homepage-feature {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 0;
+  row-gap: 0;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+.homepage-feature-title {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.homepage-feature-title::after {
+  content: '';
+  grid-column: 2;
+  background: #363636;
+}
+
+.homepage-feature-title h2 {
+  grid-column: 1;
+  margin: 0;
+  padding: 1.25rem 1.5rem 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: right;
+  color: #4a4a4a;
+}
+
+.homepage-feature-label {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  text-align: right;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #4a4a4a;
+  padding: 1rem 1.5rem;
+}
+
+.homepage-feature-label p {
+  margin: 0;
+}
+
+.homepage-feature-code {
+  background: #363636;
+  padding: 0.5rem 0rem;
+  overflow-x: auto;
+}
+
+.homepage-feature-code .highlight,
+.homepage-feature-code pre {
+  margin: 0;
+}
+
+/* Mobile: stack vertically, matching original <768px behaviour */
+@media screen and (max-width: 768px) {
+  .homepage-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-feature-title h2 {
+    text-align: left;
+  }
+
+  .homepage-feature-label {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
