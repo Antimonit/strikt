@@ -14,7 +14,7 @@ kotlinter = "5.5.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.11.0"
 # https://github.com/Kotlin/kotlinx-datetime/releases
-kotlinx-datetime = "0.8.0"
+kotlinx-datetime = "0.8.0-0.6.x-compat"
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.8"
 # https://central.sonatype.com/artifact/dev.minutest/minutest
