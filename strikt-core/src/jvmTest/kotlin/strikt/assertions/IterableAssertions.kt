@@ -33,26 +33,26 @@ internal class IterableAllAssertion {
 
   @Test
   fun `passes if all elements conform`() {
-    listOf("catflap", "rubberplant", "marzipan")
-      .permute()
-      .forEach { subject ->
-        expectThat(subject).all {
-          isLowerCase()
-        }
-      }
+          listOf("catflap", "rubberplant", "marzipan")
+            .permute()
+            .forEach { subject ->
+              expectThat(subject).all {
+                isLowerCase()
+              }
+            }
   }
 
   @Test
   fun `fails if any element does not conform`() {
-    listOf("catflap", "rubberplant", "marzipan")
-      .permute()
-      .forEach { subject ->
-        assertThrows<AssertionError> {
-          expectThat(subject).all {
-            startsWith('c')
-          }
-        }
-      }
+          listOf("catflap", "rubberplant", "marzipan")
+            .permute()
+            .forEach { subject ->
+              assertThrows<AssertionError> {
+                expectThat(subject).all {
+                  startsWith('c')
+                }
+              }
+            }
   }
 }
 
