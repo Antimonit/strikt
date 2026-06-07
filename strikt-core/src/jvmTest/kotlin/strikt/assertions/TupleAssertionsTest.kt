@@ -10,6 +10,7 @@ internal class PairAssertionsTest {
   fun `first maps to component1`() {
     expectation.first.isEqualTo("a")
   }
+
   @Test
   fun `second maps to component2`() {
     expectation.second.isEqualTo(1)
@@ -24,10 +25,12 @@ internal class TripleAssertionsTest {
   fun `first maps to component1`() {
     expectation.first.isEqualTo("a")
   }
+
   @Test
   fun `second maps to component2`() {
     expectation.second.isEqualTo("b")
   }
+
   @Test
   fun `third maps to component3`() {
     expectation.third.isEqualTo(1)
