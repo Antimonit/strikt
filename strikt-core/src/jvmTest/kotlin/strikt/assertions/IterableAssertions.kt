@@ -6,28 +6,28 @@ import org.opentest4j.MultipleFailuresError
 import strikt.api.expectThat
 import strikt.internal.opentest4j.MappingFailed
 
-/**
- * Turns a list subject into various iterable types with the same content.
- */
-private fun <E : Comparable<E>> List<E>.permute(): List<Iterable<E>> =
-  listOf(
-    this,
-    toSet(),
-    toSortedSet()
-  )
-
-/**
- * Turns a list subject with expected values into various iterable types with
- * the same content and the same expected value.
- */
-private fun <E : Comparable<E>, EX> List<Pair<List<E>, EX>>.permuteExpected(): List<Pair<Iterable<E>, EX>> =
-  flatMap {
+  /**
+   * Turns a list subject into various iterable types with the same content.
+   */
+  private fun <E : Comparable<E>> List<E>.permute(): List<Iterable<E>> =
     listOf(
-      it.first to it.second,
-      it.first.toSet() to it.second,
-      it.first.toSortedSet() to it.second
+      this,
+      toSet(),
+      toSortedSet()
     )
-  }
+
+  /**
+   * Turns a list subject with expected values into various iterable types with
+   * the same content and the same expected value.
+   */
+  private fun <E : Comparable<E>, EX> List<Pair<List<E>, EX>>.permuteExpected(): List<Pair<Iterable<E>, EX>> =
+    flatMap {
+      listOf(
+        it.first to it.second,
+        it.first.toSet() to it.second,
+        it.first.toSortedSet() to it.second
+      )
+    }
 
 internal class IterableAllAssertion {
 
