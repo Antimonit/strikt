@@ -10,13 +10,17 @@ internal class CharSequenceHasLength {
 
   @Test
   fun `passes when the subject has the expected length`() {
-    subject.hasLength(5)
+    subject.run {
+      hasLength(5)
+    }
   }
 
   @Test
   fun `fails when the subject does not have the expected length`() {
-    assertThrows<AssertionFailedError> {
-      subject.hasLength(1)
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        hasLength(1)
+      }
     }
   }
 }
@@ -26,27 +30,35 @@ internal class CharSequenceMatches {
 
   @Test
   fun `passes when the subject is a full match for the regex`() {
-    subject.matches("[dfnor]+".toRegex())
+    subject.run {
+      matches("[dfnor]+".toRegex())
+    }
   }
 
   @Test
   fun `fails when the subject is only a partial match for the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.matches("[fn]+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        matches("[fn]+".toRegex())
+      }
     }
   }
 
   @Test
   fun `fails when the subject is a case insensitive match for the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.matches("[DFNOR]+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        matches("[DFNOR]+".toRegex())
+      }
     }
   }
 
   @Test
   fun `fails when the subject does not match the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.matches("\\d+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        matches("\\d+".toRegex())
+      }
     }
   }
 }
@@ -56,25 +68,33 @@ internal class CharSequenceMatchesIgnoringCase {
 
   @Test
   fun `passes when the subject is a full match for the regex`() {
-    subject.matchesIgnoringCase("[dfnor]+".toRegex())
+    subject.run {
+      matchesIgnoringCase("[dfnor]+".toRegex())
+    }
   }
 
   @Test
   fun `fails when the subject is only a partial match for the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.matchesIgnoringCase("[fn]+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        matchesIgnoringCase("[fn]+".toRegex())
+      }
     }
   }
 
   @Test
   fun `passes when the subject is a case insensitive match for the regex`() {
-    subject.matchesIgnoringCase("[DFNOR]+".toRegex())
+    subject.run {
+      matchesIgnoringCase("[DFNOR]+".toRegex())
+    }
   }
 
   @Test
   fun `fails when the subject does not match the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.matchesIgnoringCase("\\d+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        matchesIgnoringCase("\\d+".toRegex())
+      }
     }
   }
 }
@@ -84,25 +104,33 @@ internal class CharSequenceContainsRegex {
 
   @Test
   fun `passes when the subject is a full match for the regex`() {
-    subject.contains("[dfnor]+".toRegex())
+    subject.run {
+      contains("[dfnor]+".toRegex())
+    }
   }
 
   @Test
   fun `passes when the subject is only a partial match for the regex`() {
-    subject.contains("[fn]+".toRegex())
+    subject.run {
+      contains("[fn]+".toRegex())
+    }
   }
 
   @Test
   fun `fails when the subject contains a match with a different case`() {
-    assertThrows<AssertionFailedError> {
-      subject.contains("[DFNOR]+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        contains("[DFNOR]+".toRegex())
+      }
     }
   }
 
   @Test
   fun `fails when the subject does not match the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.contains("\\d+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        contains("\\d+".toRegex())
+      }
     }
   }
 }
@@ -112,23 +140,31 @@ internal class CharSequenceContainsIgnoringCaseRegex {
 
   @Test
   fun `passes when the subject is a full match for the regex`() {
-    subject.containsIgnoringCase("[dfnor]+".toRegex())
+    subject.run {
+      containsIgnoringCase("[dfnor]+".toRegex())
+    }
   }
 
   @Test
   fun `passes when the subject is only a partial match for the regex`() {
-    subject.containsIgnoringCase("[fn]+".toRegex())
+    subject.run {
+      containsIgnoringCase("[fn]+".toRegex())
+    }
   }
 
   @Test
   fun `passes when the subject contains a match with a different case`() {
-    subject.containsIgnoringCase("[FN]+".toRegex())
+    subject.run {
+      containsIgnoringCase("[FN]+".toRegex())
+    }
   }
 
   @Test
   fun `fails when the subject does not match the regex`() {
-    assertThrows<AssertionFailedError> {
-      subject.containsIgnoringCase("\\d+".toRegex())
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        containsIgnoringCase("\\d+".toRegex())
+      }
     }
   }
 }
@@ -138,20 +174,26 @@ internal class CharSequenceContainsCharSequence {
 
   @Test
   fun `passes when the subject contains the expected substring`() {
-    subject.contains("nor")
+    subject.run {
+      contains("nor")
+    }
   }
 
   @Test
   fun `fails when the subject contains the expected substring in a different case`() {
-    assertThrows<AssertionFailedError> {
-      subject.contains("NOR")
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        contains("NOR")
+      }
     }
   }
 
   @Test
   fun `fails when the subject does not contain the expected substring`() {
-    assertThrows<AssertionFailedError> {
-      subject.contains("meme")
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        contains("meme")
+      }
     }
   }
 }
@@ -161,18 +203,24 @@ internal class CharSequenceContainsIgnoringCaseCharSequence {
 
   @Test
   fun `passes when the subject contains the expected substring`() {
-    subject.containsIgnoringCase("nor")
+    subject.run {
+      containsIgnoringCase("nor")
+    }
   }
 
   @Test
   fun `passes when the subject contains the expected substring in a different case`() {
-    subject.containsIgnoringCase("NOR")
+    subject.run {
+      containsIgnoringCase("NOR")
+    }
   }
 
   @Test
   fun `fails when the subject does not contain the expected substring`() {
-    assertThrows<AssertionFailedError> {
-      subject.containsIgnoringCase("meme")
+    subject.run {
+      assertThrows<AssertionFailedError> {
+        containsIgnoringCase("meme")
+      }
     }
   }
 }
