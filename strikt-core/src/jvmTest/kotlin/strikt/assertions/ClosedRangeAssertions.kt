@@ -1,61 +1,41 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
-import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import strikt.api.Assertion
 import strikt.api.expectThat
 
-@DisplayName("assertions on ClosedRange")
-internal object ClosedRangeAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<ClosedRange<Int>>> {
-      context("contains") {
-        context("an empty IntRange") {
-          fixture { expectThat(IntRange.EMPTY) }
+internal class ClosedRangeAssertions {
 
-          test("the assertion fails to contain any value") {
-            assertThrows<AssertionError> {
-              contains(0)
-            }
-          }
-        }
-
-        context("an IntRange from 1 to 4") {
-          fixture { expectThat(1..4) }
-
-          test("assertion fails to contain 0") {
-            assertThrows<AssertionError> {
-              contains(0)
-            }
-          }
-
-          (1..4).forEach { value ->
-            test("assertion passes for containing $value") {
-              contains(value)
-            }
-          }
-        }
-      }
-
-      context("isEmpty") {
-        context("an empty IntRange") {
-          fixture { expectThat(IntRange.EMPTY) }
-
-          test("the assertion succeeds") {
-            isEmpty()
-          }
-        }
-        context("a nonempty IntRange") {
-          fixture { expectThat(2..2) }
-
-          test("the assertion fails") {
-            assertThrows<AssertionError> {
-              isEmpty()
-            }
-          }
-        }
-      }
+  @Test
+  fun `contains fails when the range is empty`() {
+    assertThrows<AssertionError> {
+      expectThat<ClosedRange<Int>>(IntRange.EMPTY).contains(0)
     }
+  }
+
+  @Test
+  fun `contains fails when the value is out of the range`() {
+    assertThrows<AssertionError> {
+      expectThat<ClosedRange<Int>>(1..4).contains(0)
+    }
+  }
+
+  @Test
+  fun `contains passes when the value is within the range`() {
+    (1..4).forEach { value ->
+      expectThat<ClosedRange<Int>>(1..4).contains(value)
+    }
+  }
+
+  @Test
+  fun `isEmpty passes when the range is empty`() {
+    expectThat<ClosedRange<Int>>(IntRange.EMPTY).isEmpty()
+  }
+
+  @Test
+  fun `isEmpty fails when the range is not empty`() {
+    assertThrows<AssertionError> {
+      expectThat<ClosedRange<Int>>(2..2).isEmpty()
+    }
+  }
 }

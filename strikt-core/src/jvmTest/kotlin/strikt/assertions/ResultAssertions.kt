@@ -1,53 +1,41 @@
 package strikt.assertions
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
-import strikt.api.Assertion
 import strikt.api.expectThat
 
-internal object ResultAssertions : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<Result<Int>>> {
-      context("isFailure") {
-        context("the result subject is a failure") {
-          fixture { expectThat(Result.failure(Exception("boom"))) }
+internal class ResultAssertions {
 
-          test("the assertion passes") {
-            isFailure().isA<Exception>().message.isEqualTo("boom")
-          }
-        }
+  @Test
+  fun `when result is a failure the isFailure assertion passes`() {
+    expectThat(Result.failure<Int>(Exception("boom")))
+      .isFailure()
+      .isA<Exception>()
+      .message
+      .isEqualTo("boom")
+  }
 
-        context("the result subject is a success") {
-          fixture { expectThat(Result.success(42)) }
-
-          test("the assertion fails") {
-            assertThrows<AssertionFailedError> {
-              isFailure()
-            }
-          }
-        }
-      }
-
-      context("isSuccess") {
-        context("the result subject is a success") {
-          fixture { expectThat(Result.success(42)) }
-
-          test("the assertion passes") {
-            isSuccess().isEqualTo(42)
-          }
-        }
-
-        context("the result subject is a failure") {
-          fixture { expectThat(Result.failure(Exception())) }
-
-          test("the assertion fails") {
-            assertThrows<AssertionFailedError> {
-              isSuccess()
-            }
-          }
-        }
-      }
+  @Test
+  fun `when result is a success the isFailure assertion fails`() {
+    assertThrows<AssertionFailedError> {
+      expectThat(Result.success(42))
+        .isFailure()
     }
+  }
+
+  @Test
+  fun `when result is a success the isSuccess assertion passes`() {
+    expectThat(Result.success(42))
+      .isSuccess()
+      .isEqualTo(42)
+  }
+
+  @Test
+  fun `when result is a failure the isSuccess assertion fails`() {
+    assertThrows<AssertionFailedError> {
+      expectThat(Result.failure<Int>(Exception()))
+        .isSuccess()
+    }
+  }
 }

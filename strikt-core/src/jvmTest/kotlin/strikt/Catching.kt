@@ -1,10 +1,8 @@
 package strikt
 
-import dev.minutest.junit.JUnit5Minutests
-import dev.minutest.rootContext
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
-import strikt.api.Assertion
 import strikt.api.expectCatching
 import strikt.api.expectThat
 import strikt.assertions.isA
@@ -13,76 +11,70 @@ import strikt.assertions.isFailure
 import strikt.assertions.isSuccess
 import strikt.assertions.message
 
-internal class Catching : JUnit5Minutests {
-  fun tests() =
-    rootContext<Assertion.Builder<Result<String>>> {
-      context("a successful action") {
-        fixture {
-          expectCatching { "kthxbye" }
-        }
+internal class Catching {
 
-        test("maps to the action's returned value") {
-          isSuccess()
-            .isA<String>()
-            .isEqualTo("kthxbye")
-        }
+  @Test
+  fun `isSuccess maps to the action's returned value`() {
+    expectCatching { "kthxbye" }
+      .isSuccess()
+      .isA<String>()
+      .isEqualTo("kthxbye")
+  }
 
-        test("is not failed") {
-          assertThrows<AssertionFailedError> {
-            isFailure()
-          }
-        }
-
-        test("chains correctly in a block") {
-          assertThrows<AssertionError> {
-            and {
-              isFailure().isA<NullPointerException>()
-            }
-          }.also { exception ->
-            expectThat(exception.message).isEqualTo(
-              """
-            |▼ Expect that Success(kthxbye):
-            |  ✗ is failure
-            |    returned "kthxbye"
-              """.trimMargin()
-            )
-          }
-        }
-      }
-
-      context("a failed action") {
-        fixture {
-          expectCatching { error("o noes") }
-        }
-
-        test("maps to the exception thrown by the action") {
-          isFailure()
-            .isA<IllegalStateException>()
-            .message
-            .isEqualTo("o noes")
-        }
-
-        test("is not successful") {
-          assertThrows<AssertionFailedError> {
-            isSuccess()
-          }
-        }
-
-        test("chains correctly in a block") {
-          assertThrows<AssertionError> {
-            and {
-              isSuccess().isA<String>()
-            }
-          }.also { exception ->
-            expectThat(exception.message).isEqualTo(
-              """
-            |▼ Expect that Failure(java.lang.IllegalStateException: o noes):
-            |  ✗ is success
-            |    threw java.lang.IllegalStateException
-              """.trimMargin()
-            )
-          }
-        }
-      }
+  @Test
+  fun `isFailure fails when the action succeeded`() {
+    assertThrows<AssertionFailedError> {
+      expectCatching { "kthxbye" }.isFailure()
     }
+  }
+
+  @Test
+  fun `isSuccess chains correctly in a block`() {
+    assertThrows<AssertionError> {
+      expectCatching { "kthxbye" }.and {
+        isFailure().isA<NullPointerException>()
+      }
+    }.also { exception ->
+      expectThat(exception.message).isEqualTo(
+        """
+        |▼ Expect that Success(kthxbye):
+        |  ✗ is failure
+        |    returned "kthxbye"
+        """.trimMargin()
+      )
+    }
+  }
+
+  @Test
+  fun `isFailure maps to the exception thrown by the action`() {
+    expectCatching { error("o noes") }
+      .isFailure()
+      .isA<IllegalStateException>()
+      .message
+      .isEqualTo("o noes")
+  }
+
+  @Test
+  fun `isSuccess fails when the action failed`() {
+    assertThrows<AssertionFailedError> {
+      expectCatching { error("o noes") }.isSuccess()
+    }
+  }
+
+  @Test
+  fun `isFailure chains correctly in a block`() {
+    assertThrows<AssertionError> {
+      expectCatching { error("o noes") }.and {
+        isSuccess().isA<String>()
+      }
+    }.also { exception ->
+      expectThat(exception.message).isEqualTo(
+        """
+        |▼ Expect that Failure(java.lang.IllegalStateException: o noes):
+        |  ✗ is success
+        |    threw java.lang.IllegalStateException
+        """.trimMargin()
+      )
+    }
+  }
 }
