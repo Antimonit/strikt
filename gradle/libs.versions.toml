@@ -28,7 +28,7 @@ nexus-staging = "0.30.0"
 # https://github.com/ota4j-team/opentest4j/releases
 opentest4j = "1.3.0"
 # https://central.sonatype.com/artifact/com.google.protobuf/protobuf-java
-protobuf-java = "4.35.0"
+protobuf-java = "4.35.1"
 # https://github.com/google/protobuf-gradle-plugin/releases
 protobuf-plugin = "0.10.0"
 # https://github.com/spring-projects/spring-boot/releases
