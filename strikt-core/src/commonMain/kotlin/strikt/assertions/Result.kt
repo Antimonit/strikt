@@ -65,7 +65,7 @@ fun <R> Assertion.Builder<Result<R>>.isSuccess(): Assertion.Builder<R> =
   message = "Replaced with isSuccess()",
   replaceWith = ReplaceWith("isSuccess()")
 )
-fun <T : Any?> Assertion.Builder<Result<T>>.succeeded(): Assertion.Builder<T> = isSuccess()
+fun <T> Assertion.Builder<Result<T>>.succeeded(): Assertion.Builder<T> = isSuccess()
 
 /**
  * Asserts that the subject is a failed result and maps this assertion to an
@@ -77,7 +77,7 @@ fun <T : Any?> Assertion.Builder<Result<T>>.succeeded(): Assertion.Builder<T> = 
   message = "Replaced with isFailure()",
   replaceWith = ReplaceWith("isFailure()")
 )
-fun <T : Any?> Assertion.Builder<Result<T>>.failed(): Assertion.Builder<Throwable> = isFailure()
+fun <T> Assertion.Builder<Result<T>>.failed(): Assertion.Builder<Throwable> = isFailure()
 
 /**
  * Asserts that the subject is a isFailure result that threw an exception

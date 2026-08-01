@@ -81,7 +81,7 @@ fun <T> expectDoesNotThrow(
  *
  * @return an assertion for the successful or failed result of [action].
  */
-fun <T : Any?> expectCatching(action: suspend () -> T): DescribeableBuilder<Result<T>> =
+fun <T> expectCatching(action: suspend () -> T): DescribeableBuilder<Result<T>> =
   expectThat(
     runCatching {
       runBlocking { action() }
