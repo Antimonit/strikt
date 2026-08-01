@@ -21,7 +21,7 @@ import strikt.assertions.message
 import strikt.assertions.startsWith
 import strikt.internal.opentest4j.CompoundAssertionFailure
 
-@DisplayName("Snippets used in Orchid docs")
+@DisplayName("Snippets used in MkDocs")
 internal class Assertions {
   // assertion-styles.md
 // -----------------------------------------------------------------------------

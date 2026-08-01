@@ -23,7 +23,7 @@ import strikt.assertions.withLast
 import strikt.internal.opentest4j.CompoundAssertionFailure
 import strikt.internal.opentest4j.IncompleteAssertion
 
-@DisplayName("Snippets used in Orchid docs")
+@DisplayName("Snippets used in MkDocs")
 internal class Chaining {
   // traversing-subjects.md
 // -----------------------------------------------------------------------------

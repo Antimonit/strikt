@@ -12,7 +12,7 @@ import strikt.assertions.isEqualTo
 import strikt.assertions.isNotNull
 import strikt.assertions.message
 
-@DisplayName("Snippets used in Orchid docs")
+@DisplayName("Snippets used in MkDocs")
 internal class CustomAssertions {
   // custom-assertions.md
 // -----------------------------------------------------------------------------
