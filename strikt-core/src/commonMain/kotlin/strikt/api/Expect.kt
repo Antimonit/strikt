@@ -23,9 +23,7 @@ fun expect(block: suspend ExpectationBuilder.() -> Unit) {
         block()
       }
     }
-    .let {
-      Throwing.evaluate(subjects)
-    }
+  Throwing.evaluate(subjects)
 }
 
 /**
