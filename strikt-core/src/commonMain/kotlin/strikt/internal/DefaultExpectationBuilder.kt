@@ -5,8 +5,6 @@ import strikt.api.Assertion
 import strikt.api.DescribeableBuilder
 import strikt.api.ExpectationBuilder
 import strikt.internal.AssertionStrategy.Collecting
-import kotlin.Result.Companion.failure
-import kotlin.Result.Companion.success
 
 internal class DefaultExpectationBuilder(
   private val subjects: MutableList<AssertionSubject<*>>
@@ -27,9 +25,9 @@ internal class DefaultExpectationBuilder(
     that(
       try {
         runBlocking { action() }
-          .let(::success)
+          .let { Result.success(it) }
       } catch (e: Throwable) {
-        failure<T>(e)
+        Result.failure(e)
       }
     )
 }
