@@ -4,18 +4,17 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import strikt.api.expectThat
 
-@Suppress("SimplifyBooleanWithConstants")
 internal class BooleanAssertions {
 
   @Test
   fun `isTrue passes when the subject is true`() {
-    expectThat("a" == "a").isTrue()
+    expectThat(true).isTrue()
   }
 
   @Test
   fun `isTrue fails when the subject is false`() {
     assertThrows<AssertionError> {
-      expectThat("a" == "A").isTrue()
+      expectThat(false).isTrue()
     }
   }
 
@@ -28,13 +27,13 @@ internal class BooleanAssertions {
 
   @Test
   fun `isFalse passes when the subject is false`() {
-    expectThat("a" == "A").isFalse()
+    expectThat(false).isFalse()
   }
 
   @Test
   fun `isFalse fails when the subject is true`() {
     assertThrows<AssertionError> {
-      expectThat("a" == "a").isFalse()
+      expectThat(true).isFalse()
     }
   }
 
