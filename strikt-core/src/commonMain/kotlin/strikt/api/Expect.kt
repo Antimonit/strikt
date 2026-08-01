@@ -7,7 +7,6 @@ import strikt.assertions.isSuccess
 import strikt.internal.AssertionBuilder
 import strikt.internal.AssertionStrategy.Collecting
 import strikt.internal.AssertionStrategy.Throwing
-import strikt.internal.AssertionStrategy.Throwing.evaluate
 import strikt.internal.AssertionSubject
 import strikt.internal.DefaultExpectationBuilder
 
@@ -25,7 +24,7 @@ fun expect(block: suspend ExpectationBuilder.() -> Unit) {
       }
     }
     .let {
-      evaluate(subjects)
+      Throwing.evaluate(subjects)
     }
 }
 
@@ -53,7 +52,7 @@ fun <T> expectThat(
 ) {
   AssertionSubject(subject).let { context ->
     AssertionBuilder(context, Collecting).apply(block)
-    evaluate(context)
+    Throwing.evaluate(context)
   }
 }
 
