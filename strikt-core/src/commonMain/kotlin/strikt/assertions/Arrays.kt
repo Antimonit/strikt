@@ -1,6 +1,7 @@
 package strikt.assertions
 
 import strikt.api.Assertion
+import kotlin.jvm.JvmName
 
 /**
  * Asserts that the subject's content is equal to that of [other] according to
