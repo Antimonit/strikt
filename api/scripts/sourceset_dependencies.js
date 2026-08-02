@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":strikt-protobuf/main":[],":strikt-spring/main":[],":strikt-jackson/main":[],":strikt-core/commonMain":[],":strikt-core/jvmMain":[":strikt-core/commonMain"],":strikt-arrow/main":[],":strikt-jvm/main":[],":strikt-mockk/main":[]}'
