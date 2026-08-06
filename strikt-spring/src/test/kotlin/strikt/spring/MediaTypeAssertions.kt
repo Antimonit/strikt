@@ -5,8 +5,8 @@ import dev.minutest.rootContext
 import org.junit.jupiter.api.assertThrows
 import org.opentest4j.AssertionFailedError
 import org.springframework.http.MediaType
+import org.springframework.http.MediaType.ALL
 import org.springframework.http.MediaType.APPLICATION_JSON
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8
 import org.springframework.http.MediaType.IMAGE_PNG
 import strikt.api.Assertion
 import strikt.api.expectThat
@@ -17,16 +17,16 @@ internal object MediaTypeAssertions : JUnit5Minutests {
     rootContext<Assertion.Builder<MediaType?>> {
       context("a non-null media type subject") {
         fixture {
-          expectThat(APPLICATION_JSON_UTF8)
+          expectThat(APPLICATION_JSON)
         }
 
         context("isCompatibleWith assertion") {
           test("passes if the content type is an exact match") {
-            isCompatibleWith(APPLICATION_JSON_UTF8)
+            isCompatibleWith(APPLICATION_JSON)
           }
 
-          test("passes if the content type is a sub-type") {
-            isCompatibleWith(APPLICATION_JSON)
+          test("passes if the content type is a wildcard") {
+            isCompatibleWith(ALL)
           }
 
           test("fails if the content type is different") {
